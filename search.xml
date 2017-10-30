@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[nginx服务器返回json文件时content-type不正确的坑]]></title>
+    <url>%2F2017%2F10%2Fnginx%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%94%E5%9B%9Ejson%E6%96%87%E4%BB%B6%E6%97%B6content-type%E4%B8%8D%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%9D%91.html</url>
+    <content type="text"><![CDATA[最近在用vue写个demo时，使用vue-resource 的$htpp.get()请求一个json文件时，webstrom本地环境可以获取到，response headers 中content-type:application/json，通过$http.get().then(res =&gt; {})回调函数中的res.body.result即可获取json文件的内容，但是在上传我的云服务器后请求返回的是content-type:application/octet-stream： 即返回的是一个二进制流的文件，在下载文件时会用到这个类型，但是res.body.result就获取不到内容了。 踩坑前端 在百度搜索相关问题几乎没有,在前端群里没人知道…算是遇到了个奇葩的问题… 首先想到的是在发送get请求时设置http请求报文包头中的content-type=application/json： 123Vue.http.options.headers = &#123; &apos;Content-Type&apos;:&apos;application/json&apos;&#125;; 但是这只是设置报文发送的格式，并没有设置客户端希望服务器返回的内容格式，于是继续设置Accept： 1234Vue.http.options.headers = &#123; &apos;Content-Type&apos;:&apos;application/json&apos;, &apos;Accept&apos;:&apos;application/json&apos;&#125;; 测试还是不行，响应报文中content-type依旧是application/octet-stream，很苦恼… 服务器在鼓捣半天确认前端没有错误后，我觉得问题应该出在服务器上。我的服务器centos是基于nginx，于是开始搜索关于nginx不返回json格式内容的问题。得到要在server中配置location拦截：1234location ~ ^/get_json &#123; default_type application/json; return 200 &apos;&#123;&quot;status&quot;:&quot;success&quot;,&quot;result&quot;:&quot;nginx json&quot;&#125;&apos;;&#125; 这个配置要在nginx.conf中配置（我的配置文件还有个nginx.conf.default，两个都要配置），如果不知道nginx.conf文件在哪，可以使用搜索命令：1find / | grep nginx.conf location 具体在文件哪里配置，参考nginx配置文件nginx.conf详细解释配置文件修改之后要重新运行配置文件，不过要进入/nginx/sbin中执行命令： 1./nginx -s reload 测试一下还是不行… 最后在stackoverflow上看到了一个问题：Enabling content-type application/json for all the json files in nginx，即nginx中没有设置json文件的content-type为application/json！于是，找到和nginx.conf同在一个文件夹conf下的mime.types文件和mime.types.default，修改。 12vi mime.typesvi mime.types.default 加上：application/json json; 效果图： 然后重启配置文件，进入/nginx/sbin中执行命令： 1./nginx -s reload 问题解决！ 总结为什么nginx的默认配置里面没有application/json呢…不科学…如果你遇到同样的问题，我的建议是先查看mime.types里面有没有application/json的配置，没有就加上，然后测试。无效的话就在nginx.conf中加入location的配置，在js中为get方法配置content-type和accept，就可以了。]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Q&amp;A</tag>
+        <tag>centos</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[在centos上安装node.js]]></title>
+    <url>%2F2017%2F10%2F%E5%9C%A8centos%E4%B8%8A%E5%AE%89%E8%A3%85node.js.html</url>
+    <content type="text"><![CDATA[我的云服务器是centos 6.8 64位，最近需要在服务器上跑node.js程序，所以安装了node.js，网上有很多办法，试了一些，有些没用，踩了一点坑，总结一下。 安装下载node.js包首先通过wget下载node.js包，因为服务器是64位，所以在官网选择64位的版本下载链接；1#wget https://nodejs.org/dist/v6.10.1/node-v6.10.1-linux-x64.tar.xz 解压1#tar xvf node-v0.12.0.tar.gz 进入目录123#cd node-v4.2.3-linux-x86/bin#node -v //v4.2.3 成功！ 配置要想全局使用还需要配置连接 12#ln -s /root/node-v4.2.3-linux-x86/bin/node /usr/local/bin/node# ln -s /root/node-v4.2.3-linux-x86/bin/npm /usr/local/bin/npm 然后在根目录测试： 12#node -v//v4.2.3 成功！]]></content>
+      <categories>
+        <category>node.js</category>
+      </categories>
+      <tags>
+        <tag>centos</tag>
+        <tag>node</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[HTML DOM的nodeType属性]]></title>
+    <url>%2F2017%2F10%2FHTML%20DOM%E7%9A%84nodeType%E5%B1%9E%E6%80%A7.html</url>
+    <content type="text"><![CDATA[遇到这样一个问题：123&lt;div id='container'&gt; &lt;p class='active'&gt;first&lt;/p&gt;&lt;/div&gt; 在知道父级id之后，我想选取其firstChild即&lt;p class=&#39;active&#39;&gt;first&lt;/p&gt;,但是container.firstChild.className 却是undefined！ 12let container = document.getElementById('container');console.log(container.firstChild.className);//undefined HTML DOM的nodeType属性（节点类型）：nodeType一共存在 12 种不同的节点类型；详细的可看W3school的文档这里直说常见的前3种： Element，元素节点，nodeType返回1； Attr，属性节点，nodeType返回2； Text，文本节点，nodeType返回3； 当使用element.firstChild时，因为&lt;p class=&#39;active&#39;&gt;first&lt;/p&gt; 之前有换行，所以会返回3，即文本节点。 解决方法： 使用firstElementChild替代firstChild，顾名思义，即选取第一个元素节点； 使用childNodes[1]替代firstChild，即选取第二个子节点。 nodeName（节点名称）&amp;nodeValue（节点值） nodeType nodeName nodeValue Element 元素名（p/div/…） null Attr 属性名称（name/class/id/…） 属性值 Text #text text内容 参考了DOM中元素节点、属性节点、文本节点的理解和W3school]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+        <tag>Q&amp;A</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[对象属性的删除、判断、遍历操作]]></title>
+    <url>%2F2017%2F10%2F%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E7%9A%84%E5%88%A0%E9%99%A4%E3%80%81%E5%88%A4%E6%96%AD%E3%80%81%E9%81%8D%E5%8E%86%E6%93%8D%E4%BD%9C.html</url>
+    <content type="text"><![CDATA[最近在读《JavaScript Enlightenment》（JavaScript启示录） 使用delete删除一个属性12345let a = &#123; age:00, gender:'male' &#125;delete a.age; delete是将对象属性删除的唯一的方法，将对象属性设为undefined或null只会改变属性的值，并不会删除。 使用in操作符检查一个对象是否包含给定属性根据原型链的概念，即使一个空对象，其内部属性也继承了Object.prototype的属性。Object.prototype是原型链的最顶级。1234let test0 = &#123;name:'tom'&#125;;//这里的name要加引号console.log('name' in test0);//trueconsole.log('toString' in test0);//输出true,继承了原型链上的Object.prototype的属性 使用hasOwnProperty()检查对象属性是否来自原型链1234let test1 = &#123;name:'jack'&#125;console.log(test1.hasOwnProperty('name'));//输出trueconsole.log('toString' in test1);//输出true,原型链上的Object.prototype的属性console.log(test1.hasOwnProperty('toString'));//输出false 使用for-in和hasOwnProperty()循环枚举对象的属性1234567891011let test2 = &#123; age:00, gender:'male'&#125;for(let key in test2)&#123; //使用hasOwnProperty()判断是否是来自原型链的属性 if(test2.hasOwnProperty(key))&#123; console.log(key);//属性 console.log(test2[key]);//属性的值 &#125;&#125; for-in循环有一个缺点，他不仅会遍历特定对象的本地属性，还会遍历其继承的对象上的属性 循环访问的属性并不是其被定义的顺序]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+        <tag>js启示录</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[函数的两个附加参数：this和arguments]]></title>
+    <url>%2F2017%2F10%2F%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%A4%E4%B8%AA%E9%99%84%E5%8A%A0%E5%8F%82%E6%95%B0%EF%BC%9Athis%E5%92%8Carguments.html</url>
+    <content type="text"><![CDATA[在《JavaScript语言精粹》（蝴蝶书）中讲到函数除了声明定义的参数外，每个函数都接受两个附加的参数：this 和 arguments 。 其中this有四个调用模式： 方法调用模式 函数调用模式 构造器调用模式 apply调用模式 方法调用模式一个函数被保存为对象的一个属性时，称该函数为一个方法，此时this指向该对象，通过this去访问该对象的属性，取值或者修改；1234567var myObj = &#123; value : 0, test : function ()&#123; console.log(this.value +=1) ; &#125;&#125;myObj.test() //1 函数调用模式当一个函数不是一个对象的属性时，而是单独存在时，那么它被当作一个函数调用，此时函数内部的this指向全局对象； 1234567var value = 1;//全局变量var test = function ()&#123; var value = 2; //私有变量 console.log(this.value );//1 console.log(value );//2&#125;test(); 假如该函数是一个函数的内部函数，那么其this应绑定其外部函数的this变量，即和外部this的指向相同，但是js并不是这样，这也是js设计的缺陷之一；在inner()中，this指向了全局对象，而不是指向了myObj; 12345678910111213var value = 1;//全局变量var myObj = &#123; value : 0, test : function ()&#123; console.log(this.value);//0 var inner = function()&#123; console.log(this.value);//1 console.log(value);//1 &#125; inner(); &#125;&#125;myObj.test(); 解决方法：在外部函数test中定义一个变量，赋值为this; 1234567891011test : function ()&#123; console.log(this.value);//0 var that = this; var inner = function()&#123; console.log(that.value);//0 console.log(value);//1 &#125; inner(); &#125; 构造器调用模式123456789var Person = function (str,num)&#123; this.name = str; this.age = num;&#125;Person.prototype.getName = function()&#123; console.log(this.name);&#125;var me = new Person("simmzl",21);me.getName();//simmzl 通过构造函数实例化一个新的对象时，构造函数中this会随之绑定到该新对象； Apply 调用模式每个函数都有call()和apply()方法 12obj.call(thisObj, arg1, arg2, ...);obj.apply(thisObj, [arg1, arg2, ...]); 两者作用一致，都是把obj(即this)绑定到thisObj，这时候thisObj具备了obj的属性和方法。或者说thisObj『继承』了obj的属性和方法。 12345678910111213141516function Cat()&#123; this.food="fish";&#125;Cat.prototype.say = function()&#123; alert("I love "+this.food);&#125;function Dog()&#123; this.food="bone";&#125;var blackCat = new Cat;blackCat.say();//I love fishvar whiteDog = new Dog();//whiteDog 并没有定义say(),可使用apply或者call使whiteDog能够调用blackCat的say()blackCat.say.apply(whiteDog);//I love bone arguments它是一个类数组，有length的属性和index下标，没有数组的方法。关于类数组以及如何利用call()、apply()使用数组方法等，可以看之前的文章：做了动物的战争web小游戏之后的总结]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+        <tag>蝴蝶书</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JS权威指南(犀牛书)读书笔记]]></title>
+    <url>%2F2017%2F09%2FJS%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97(%E7%8A%80%E7%89%9B%E4%B9%A6)%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0.html</url>
+    <content type="text"><![CDATA[NoteOfRhinoBook JS权威指南(犀牛书)读书笔记 创建这个项目的原因：秋招中发现自己的基础还是相对薄弱，希望能够完善自己的js基础，多过几遍犀牛书。之所以放在Github上，就当作给自己一个督促吧，每天都要看，并且及时更新笔记。 第一章 概述123var book = &#123; name:"Rhino"&#125; 访问对象属性除了.还可以用[]; 1book.name == book["name"]; 数组和对象都可以包含另一个数组或者对象； 第二章 第三章 词法结构和类型、值、变量 js区分大小写，html不区分；如js构造函数名首字母大写等; js支持Unicode,变量要求以字母、$和_开头，所有很多颜文字是可以用的2333： 123var ಠ_ಠ;var 눈_눈;var อิ_อิ; js数据类型包括原始类型和对象类型；js中除了数字、字符串、布尔、null、undefined外就是对象，特殊的对象有数组、函数；null和undefined是无法拥有方法的值； js解释器拥有自己的内存管理机制，垃圾回收； js是面向对象的编程语言； 求余运算符%； ES标准是不支持8进制数的，js中用16进制 12var a = 0xfff;isNaN(a); //false 0和-0只有在作为被除数时才不相同，1/0 === 1/-0 ;//正无穷大和负无穷大（很少用到）； 一个有趣的现象：任何使用二进制浮点数的编程语言在对十进制分数（0.1,0.01…）只能做到及其近似精确(有舍入误差)，amazing! 123var x = .3 - .2;var y = .2 - .1;x == y; //false;x = 0.09999999999999998 ,y = 0.1; ES5中字符串当作只读数组，有length属性，可使用索引,调用方法返回的是个新字符串； 123456789101112var str = "hello,world";str.charAt(index);//取出第index的字符；str.substring(start,end);//返回第start到end的字符,不包括endstr.slice(start,end);//同上str.slice(-3);//后三str.indexOf("o");//首次出现o的位置str.lastIndexOf("o");//最后出现o的位置str.indexOf("o",3);//在位置3及之后首次出现“o”的位置str.split(",");//以,分割(数组是splice(),还有arr.slice())str.replace("h","H");//替换str.toUpperCasr();//大写//还有一些正则表达式的方法等等 其中str.split()和数组的splice()和slice()有点绕，所以特意写了一篇博客 3.9 变量声明 js是动态语言（Python/Ruby），即不给任何变量指定数据类型，相对的，C/C++/C#/JAVA则是静态语言； 在严格模式下给一个未声明的变量赋值会报错，非严格则会提升为全局变量； 只声明不赋值变量数据类型为undefined；3.10 变量作用域scope 在函数体内，局量（局部变量）的优先级高于同名的全量。即若在函数内声明一个和全量重名的局量或者和全量重名的参数，则全量在函数体内会被其覆盖； 123456789101112131415//局部变量var a ="global";function checkScope()&#123; var a="local"; return a;&#125;console.log(checkScope());//localconsole.log(a);//global//参数var b ="global";function checkScope(b)&#123; b="local"; return b;&#125;console.log(checkScope());//local 函数作用域和声明提前 在C语言中，每一个花括号内的代码都有各自的作用域，叫做块级作用域，而js是没有块级作用域的（block scope）; js使用的是函数作用域（function scope）：变量在声明他们的函数体以及这个函数嵌套的函数体内都是有定义的； 声明提前：js函数里声明的所有变量（但不涉及赋值）都被提前到了函数体的顶部！1234567var scope = "global";function f() &#123; console.log(scope);//undefined(不是global，也不是local) var scope = "local"; //该声明会提前到函数体顶但是没有把赋值提前，只有程序执行到该语句才会被赋值 console.log(scope); //此时局部变量scope才被赋值为local&#125;//所以可以将变量声明放在函数体顶部，然后用到时再赋值，这是个不错的编程习惯！ JS的全局变量相当于全局对象的属性。使用var 声明时无法删除（delete）; 123456789var a = 1;b = 2;this.c = 3;delete a;delete b;delete c;console.log(a);//1console.log(b);//未定义console.log(c);//未定义 作用域链 每一段js代码（全局代码或者函数）都有一个与之关联的作用域链，这个作用域链是一个对象列表或链表； “变量解析”过程：查找一个变量x的值时，先从链的第一个对象中查找，如果该对象有叫x这个属性的话，则使用这个属性的值， 否则查找链上的下一个对象，以此类推，直到找到，否则抛出一个引用错误（Reference Error）的异常。 所以对于最顶层代码，链上只有一个全局对象；在全局对象包含的一个没有嵌套的函数体内，其链上第一个是定义该函数参数和局部变量的对象，第二个是全局对象，依次类推； 定义一个函数时，他的作用域已被决定。调用该函数时，程序会创建一个新的对象来存储该函数的局部变量，并将这个对象添加到该函数本来的作用域链上。（这里意思我觉得应该就是复制原来的作用域链给自己） 对于嵌套函数来说，每次其外部函数被调用时，内部函数会被重新定义了一遍，因为调用时创建了一个新的对象，所以这时候嵌套函数的作用域链也会跟着改变。8.9 闭包 理解了作用域链，闭包也就好理解多了； 当内部函数在定义它的作用域的外部被引用时,就创建了该内部函数的闭包,如果内部函数引用了位于外部函数的变量,当外部函数调用完毕后,这些变量在内存不会被释放,因为闭包需要它们，涉及js垃圾回收机制； 1234567891011121314function outerFun()&#123; var a=0; function innerFun()&#123; a++; alert(a); &#125; return innerFun; //注意这里 &#125; var obj=outerFun(); obj(); //结果为1 obj(); //结果为2 var obj2=outerFun(); obj2();//结果为1 obj2();//结果为2 闭包着实不好理解…..前面我把闭包想简单了….在参考了阮一峰等大神的博客之后写了一篇博客作为整理思路，理解闭包之后js的Garbage Collection好理解多了…在博客最后也写到了GC； 第三章下 类型、值、变量1234typeof(null);//objecttypeof(undefined);//undefinedundefined == null;//trueundefined === null;//false 全局变量 js解释器启动时（浏览器加载页面时），创建一个新的全局对象，定义一些初始属性： 全局属性：undefined、NaN; 全局函数：parseInt(),eval()等； 构造函数：Date(),RegExp(),String()，Array()等； 全局对象：Math,JSON 在代码最顶层可使用this引用全局对象； 在浏览器中window充当全局对象；一些对象,诸如包装对象、对象比较12345var s ="test";s.indexOf("e");//1s.len=4;var a =s.len;console.log(a);//undefined 如上代码，s.indexOf()可以调用Sting对象的方法，所以s是个临时对象，但s.len的值并没有赋给a;这是因为字符串s引用Sting对象的方法indexOf()时，会创建一个临时对象，引用完之后就被GC回收，此时不是对象就不能创建一个新的属性len；a自然就未定义；所以，包装对象就是存取字符串、数字、布尔的属性时创建的临时对象；1234var s = new String("ab");s.len=2;var a =s.len;console.log(a);//2 通过构造函数显式创建包装函数，可以实现为其添加属性（这是一般正常的用法~~~） 原始值（undefined,null,布尔，数字，字符串）不可更改，对象中的值（数组，函数）可以更改； 两个属性和属性值都相等的对象也是不相等的： 1234var a=&#123;x:1&#125;,b=&#123;x:1&#125;;a===b;//false,两个=也不相等var c = [1,2,3],d=[1,2,3];c===d;//false 类型转换 转为数字和布尔值： 12345678910undefined -&gt; NaN/falsenull -&gt; 0/false"" -&gt;0/false"1.2" -&gt;1.2/true"one" -&gt;NaN/true0/-0 -&gt;0/falseNaN -&gt;false[] -&gt;0/false(除了0、-0、NaN的数字都是true)空数组、空对象、空函数都是true 使用“==”判断时，会自动转化类型，用“===”则不会； 显示转换，调用构造函数如Number(“3”); toString(进制)和toFixed(0/1/2/3/…)(保留n位小数)12var n=17;var turn = n.toString(空/2/8/16);//不同进制 第四章 表达式和运算符都是一些常见的东西… in运算符测试属性是否存在，左侧为字符串或者可以转换为字符串，右侧为对象；(这个就有点像for-in语句了) 123456var obj = &#123;x:1,y:2&#125;;"x" in obj;//true"toString" in obj;//true(因为obj继承了toString())var arr=[1,2,3];"1" in arr;//true1 in arr;//true instanceof;左侧为一个对象（否则返回false），右侧为标识对象的类（涉及原型链）； 1234var d = new Date;d instanceof Date;//trued instanceof Object;//true//(数组同理) &amp;&amp; 新理解&amp;&amp;原来除了我之前一直以为的对布尔值或者转换后的布尔值进行与操作外，还有第三层骚操作！！！ &amp;&amp;语句会先运行左操作数，如果左操作数返回结果为false，则其不会再运行右操作数； 左为真，则其会运行右操作数并将右操作数返回结果作为整个表达式的结果！ 123if(a == b)stop();//等价于(a==b) &amp;&amp; stop(); - 很骚。 || 计算第一个操作数，真则返回该结果；否则运算第二个；都为假则返回假值； eval();]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+        <tag>犀牛书</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[以后就在这里写BLOG了]]></title>
+    <url>%2F2017%2F09%2F%E4%BB%A5%E5%90%8E%E5%B0%B1%E5%9C%A8%E8%BF%99%E9%87%8C%E5%86%99BLOG%E4%BA%86.html</url>
+    <content type="text"><![CDATA[初衷最早的时候，我使用wordpress在自己的云服务器上搭建了博客，可是wordpress体积还是有些大的，有着繁琐的后台管理程序和数据库，因为一次倒腾配置文件的失误或者插件安装的问题，导致整个博客后台无法运行，删除了wordpress之后就没有再写博客了。后来开始在CSDN上写，CSDN还是有诸多限制的，而且CSDN给我一种只适合写技术类文章的感觉，不过好在值得信任，方便，打开即用。不过作为前端，还是想有个由自己域名搭建的轻量级博客，除了技术类文章也可以发发吐槽、照片之类的东西，一切由自己决定。 选择hexo昨天看了一些安装Hexo的文章，很有帮助，比如知行合一 | 用 Hexo 搭建博客；找了很多主题，逛了不少由hexo搭建的博客，最终在next和yilia之间选择了next.mist；其中yilia的作者litten的博客很值得一看，很喜欢他生活的态度。 坑当然在配置hexo中也遇到一些坑， 在站点配置文件中配置本该在主题配置文件中配置的选项 hexo d 出错 忘了… 不过好在next的官方文档很详细和搜索引擎的强大。 CSDN–&gt;MD在CSDN上也写了一些文章，都是学习前端遇到的问题。倒腾了很久，想找个工具能够把文章批量转成hexo所用的md格式，从而转进hexo，无奈都是python和java写的，对运行环境要求严格，还有各种扩展包。最终在Github上找到了h2m，js写的，能够在线将html代码转成md格式，（还是js好呀，一个浏览器搞定）虽然不能批量处理，不过就当是重温以前的笔记了，而且我也添加了很多现在的见解。 图床以后要是图多的话，图床必不可少，七牛云服务不错，推荐个Windows下的图片上传工具MPic,是个提高效率的好工具。（大佬们想用的工具找不到一言不合就自己写个…） FTPSyncGitHub Pages屏蔽了百度的爬虫，要想让自己的blog被百度收录，网上很多方法是再托管一份在coding.net上，我配置了一下，发现从coding.net那边跳转过来时，会被强行加上一个coding.net的中转页面，如果想去掉只能充钱升级为￥199/年的黄金会员或者在首页写上Hosted by Coding Pages……这怎么能忍!既然自己有域名和云服务器，干脆直接将文件也上传一份到自己的服务器上好的。于是我在网站后台新建站点blog.simmzl.cn,并为其创建个相应目录的FTP账号。HEXO官方文档中部署方式除了GIT，还有FTPSync：安装 hexo-deployer-ftpsync。1$ npm install hexo-deployer-ftpsync --save 修改配置。12345678910deploy: type: ftpsync host: &lt;host&gt; //主机地址，自己的IP地址或者网址 user: &lt;user&gt; //FTP的用户名 pass: &lt;password&gt; //FTP的密码 remote: [remote] //远程主机的根目录 写 / 就好了 port: [port] //FTP端口，21 ignore: [ignore] //忽略的文件或目录 connections: [connections] //使用的连接数 默认1 verbose: [true|false] //显示调试信息 配置之后，12hexo ghexo d 上传成功。]]></content>
+      <categories>
+        <category>闲聊</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[事件冒泡、事件捕获、默认事件与事件代理（委托）]]></title>
+    <url>%2F2017%2F09%2F%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E3%80%81%E4%BA%8B%E4%BB%B6%E6%8D%95%E8%8E%B7%E3%80%81%E9%BB%98%E8%AE%A4%E4%BA%8B%E4%BB%B6%E4%B8%8E%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86%EF%BC%88%E5%A7%94%E6%89%98%EF%BC%89.html</url>
+    <content type="text"><![CDATA[之前偶然间遇到需要一个事件冒泡的问题，虽然有看过相关的分析，但要用到还是记不清楚，就在这里整理一下这4个事件吧。 1234&lt;div class="parent" onclick="alert("par")"&gt; &lt;div class="child" onclick="alert("chi")"&gt; &lt;/div&gt;&lt;/div&gt; 事件冒泡：点击child,先触发child事件，再冒泡到parent,触发父级事件（会一直冒泡到文档根）；这个过程是可以阻止的，方法obj.stopPropagation()：(多益二笔考了这个，结果我给忘了……) 事件捕获：点击child,先触发parent事件，再逐级往下进行捕获到child,触发child事件； 默认事件：浏览器具有默认行为，诸如a标签的点击跳转，右键点击跳出菜单等；阻止默认事件：obj.preventDefault();(多益二笔和阻止默认事件一起考的，这个我记得)； 事件冒泡和事件捕获的选择(IE默认事件冒泡，其他浏览器默认捕获)其中addEventListener()中 true为捕获，false为冒泡； 1234obj.addEventListener("click",function()&#123;&#125;,true) //捕获obj.addEventListener("click",function()&#123;&#125;,false) //冒泡 事件代理（委托） 以下参考了js中的事件委托或是事件代理详解，并做了精简和提炼 首先，事件代理是利用了事件冒泡的！（之前一直好奇事件冒泡这种不方便的东西有什么用…..直到了解了事件代理）比如现在的需求是有100个li标签，每个都要给他设置个点击事件；最直接的方法是写个for循环，遍历添加事件。 但是在JavaScript中，添加的事件处理程序数量将关系到页面的整体运行性能，因为需要不断的与dom节点进行交互，访问dom的次数越多，引起浏览器重绘与重排的次数也就越多，就会延长整个页面的交互就绪时间，这就是为什么性能优化的主要思想之一就是减少DOM操作的原因；如果要用事件委托，就会将所有的操作放到js程序里面，与dom的操作就只需要交互一次，这样就能大大的减少与dom的交互次数，提高性能； 给每个li添加事件：123456&lt;ul id="ul"&gt; &lt;li&gt;111&lt;/li&gt; &lt;li&gt;222&lt;/li&gt; &lt;li&gt;333&lt;/li&gt; &lt;li&gt;444&lt;/li&gt;&lt;/ul&gt; 1234var oUl = document.getElementById("ul");oUl.onclick = function()&#123; alert(123);&#125; 当li被点击时，由于冒泡原理，事件就会冒泡到ul上，因为ul上有点击事件，所以事件就会触发。但是，这里当点击ul的时候，也是会触发的，那么如果我想让事件代理的效果跟直接给节点的事件效果一样怎么办？比如说只有点击li才会触发。 Event对象提供了一个属性叫target，可以返回事件的目标节点，也就是说，target就可以表示为当前的事件操作的dom，但是不是真正操作dom，而且，这个是有兼容性的，标准浏览器用ev.target，IE浏览器用event.srcElement，此时只是获取了当前节点的位置，并不知道是什么节点名称，这里我们用nodeName来获取具体是什么标签名，这个返回的是一个大写的。 12345678910var oUl = document.getElementById("ul");oUl.onclick = function(e)&#123; //兼容IE var e = e || window.event; var target = e.target || e.srcElement; if(target.nodeName == 'LI')&#123; alert(123); alert(target.innerHTML); &#125;&#125; 给每个子节点添加不同事件之前做了个购物车的DEMO在一个tr中，几个td的点击事件不同，这是就要用到switch 123456&lt;div id="box"&gt; &lt;input type="button" id="add" value="添加" /&gt; &lt;input type="button" id="remove" value="删除" /&gt; &lt;input type="button" id="move" value="移动" /&gt; &lt;input type="button" id="select" value="选择" /&gt;&lt;/div&gt; 123456789101112131415161718192021var oBox = document.getElementById("box");oBox.onclick = function (e) &#123; var e = e || window.event; var target = e.target || e.srcElement; if(target.nodeName == 'INPUT')&#123; switch(target.id)&#123; case 'add' : alert('添加'); break; case 'remove' : alert('删除'); break; case 'move' : alert('移动'); break; case 'select' : alert('选择'); break; &#125; &#125;&#125; 增加子节点时当父级不使用代理事件，给其添加子节点时，子节点的点击事件也要添加！这就又增加了一个dom操作。当父级代理事件时，该子节点不用添加点击事件就会因为事件冒泡触发父级的代理事件！]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+        <tag>面试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[让人头大的闭包和垃圾回收机制GC]]></title>
+    <url>%2F2017%2F09%2F%E8%AE%A9%E4%BA%BA%E5%A4%B4%E5%A4%A7%E7%9A%84%E9%97%AD%E5%8C%85%E5%92%8C%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6GC.html</url>
+    <content type="text"><![CDATA[在理解了作用域和看了诸多如阮一峰大神的博客后之后，闭包还是花了很长时间去理解。 闭包（closure）是Javascript语言的一个难点，也是它的特色，很多高级应用都要依靠闭包实现。 123456789functionf1()&#123; var n=999; functionf2()&#123; alert(n); &#125; return f2; &#125; var result=f1(); result(); // 999//实现了从函数外部读取函数内部变量n 什么是闭包？上面代码中的f2函数，就是闭包。 各种专业文献上的”闭包”（closure）定义非常抽象，很难看懂。我的理解是，闭包就是能够读取其他函数（f1）内部变量的函数(f2)。 在js中，只有函数内部的子函数才能读取局部变量，因此可以把闭包简单理解成”定义在一个函数(f1)内部的函数(f2)”。 所以，在本质上，闭包就是将函数(f1)内部和函数外部（f1外部）连接起来的一座桥梁。在js中，所有的function都是一个闭包 闭包的用途 ## (#闭包的用途)闭包可以用在许多地方。它的最大用处有两个，一个是前面提到的可以读取函数内部的变量，另一个就是让这些变量的值始终保持在内存中，即维持一个变量。 闭包能够通过保护函数内的变量安全（即函数的变量只能由其内部函数访问，不能被其外部访问）实现JS私有属性和私有方法； 123456789101112function f1()&#123; var n = 999; nAdd = function () &#123;n += 1&#125;;//全局变量，没加var function f2()&#123; alert(n); &#125; return f2;&#125;var result = f1();//全局变量result = f2result(); // 999nAdd();result(); // 1000 f2被赋予result,成为了全局变量，所以f2始终在内存中，而f2作用域链上依赖f1，所以导致f1也始终在内存中，在f1被引用后，不会被垃圾回收机制（garbage collection）回收； var result=f1()这里引用了f1()；n的值为999，并一直在内存中，运行result()即f2();结果999；nAdd()后，n=n+1=1000；再次执行result()，结果1000；这就是这些函数内部的变量的值始终保持在内存中。 使用闭包的注意点 由于闭包会使得函数中的变量都被保存在内存中，内存消耗很大，所以不能滥用闭包，否则会造成网页的性能问题，在IE中可能导致内存泄露。解决方法是，在退出函数之前，将不使用的局部变量全部删除。 闭包会在父函数外部，改变父函数内部变量的值。所以，如果你把父函数当作对象（object）使用，把闭包当作它的公用方法（Public Method），把内部变量当作它的私有属性（private value），这时一定要小心，不要随便改变父函数内部变量的值。 123456789101112131415161718function outerFun() &#123; var a = 0; function innerFun() &#123; a++; alert(a); &#125; return innerFun;&#125;var obj = outerFun();obj(); //1//当每次调用后，因为inner引用了outer的变量，inner(闭包)需要它们，所以这些变量的值还在内存中，不会被GC回收；obj(); //2 // 不同引用之间变量的值不影响；var obj2 = outerFun();obj2(); //1obj2(); //2 知道了这些，js的垃圾回收机制（GC）好懂多了！ ## (#知道了这些js的垃圾回收机制gc好懂多了)在Javascript中， 如果一个对象不再被引用，那么这个对象就会被GC回收。 如果两个对象互相引用，而不再被第3者所引用，那么，引用之后这两个互相引用的对象也会被回收。就像是： 123456789function outer()&#123; var i=0; function inner()&#123; i++; &#125; inner();&#125;//这里面outer和inner相互引用，引用之后会被GC回收掉； 如果函数a被b引用，b又被a外的c引用（闭包），则函数a执行后不会被回收的原因。 除此之外把闭包讲的很深入的一篇博客 (target=undefined)，还讲了函数的执行环境(excution context)、活动对象(call object)、作用域(scope)、作用域链(scope chain)。并以函数a从定义到执行的过程为例阐述这几个概念。]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>闭包</tag>
+        <tag>垃圾回收机制</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[清除浮动的6种方法]]></title>
+    <url>%2F2017%2F09%2F%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%846%E7%A7%8D%E6%96%B9%E6%B3%95.html</url>
+    <content type="text"><![CDATA[看到一些清除浮动的方法，自己试了一遍之后的总结。 HTML： 1234567&lt;div class="div1"&gt; &lt;div style="float:left"&gt;Left&lt;/div&gt; &lt;div style='float:right'&gt;Right&lt;/div&gt;&lt;/div&gt;&lt;div class="div2"&gt; div2&lt;/div&gt; 父级div1定义伪类:after。有点麻烦，代码多，很多网站使用，跟&lt;div style=&quot;clear:both&quot;&gt;&lt;/div&gt;很相似; 12345678.div1:after&#123; content:""; display:block; clear:both; /*更严谨的加上下面两行*/ visibility:hidden; height:0;&#125; 结尾处加空div标签clear:both，或者br标签。 123456&lt;div class="div1"&gt; &lt;div class="left"&gt;Left&lt;/div&gt; &lt;div class="right"&gt;Right&lt;/div&gt; &lt;div style="clear:both"&gt;&lt;/div&gt; &lt;!--或者：&lt;br&gt;--&gt;&lt;/div&gt; 父级div也浮动，需要定义宽度。都浮动的话容易出现新问题，不推荐使用。 父级div定义 display:table，不推荐。 父级div定义 overflow：auto/hidden 123.div1&#123; overflow:auto/hidden;&#125; 父级div定义 height。]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[美团笔试编程题]]></title>
+    <url>%2F2017%2F09%2F%E7%BE%8E%E5%9B%A2%E7%AC%94%E8%AF%95%E7%BC%96%E7%A8%8B%E9%A2%98.html</url>
+    <content type="text"><![CDATA[2017/9/1更（找个时间熟悉熟悉赛码、牛客的在线编程环境吧，输入输出有点懵逼） 很多主要是数组、字符串的操作； 还是要多学习：数组对象 12345slice(start,end);//截取split(" ");//分割indexOf();//查找是否存在，有，返回索引；无，返回-1；splice(index,howmany,item....);//删除sort(function);//排序pop();//删返last item;对应shift(),删返first 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152// Q:// 输入:// 第一行n,n个超链接;// 之后每行一个超链接;// 然后一行m,m个已经点击过的超链接,有重复;// 之后每行一个超链接；// 输出:// 未被点击的链接，按字典序排列;// 如：// 输入：// 6// meituan// jindong// tb// bd// tx// sn// 5// jindong// sn// tb// jd// tb// 输出：// bd// meituan// txvar readline ="6 mt jd tb bd tx sn 5 jd sn tb jd tb",clear=[],index;var rl=readline.split(" ");var n = parseInt(rl[0]);// 获取所有链接var all = rl.slice(1,n+1);// 获取所有点击过的var clicked = rl.slice(n+2);//console.log(all,clicked);//去掉clicked重复的for (var i=0;i&lt;clicked.length;i++)&#123; //indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置。没有出现则返回-1；str.indexOf()和array.indexOf()都可以if(clear.indexOf(clicked[i]) === -1)&#123; clear.push(clicked[i]); &#125;&#125;//console.log(clear);// 遍历查询clear中的元素是否在all中存在，若存在，获取该元素索引，然后在all中根据索引删除它；for( i=0;i&lt;clear.length;i++)&#123; index = all.indexOf(clear[i]); if(index !== -1)&#123; // splice方法从该索引开始，删除指定数量（1个）的值，不添加新的元素 all.splice(index,1); &#125;&#125;console.log(all.sort()); 1234567891011121314151617181920212223242526272829303132333435363738394041// Q:// 输入：第一行为n,即多少个数字；第二行，为任意0和1，空格隔开；// 输出：最长的相邻两个数都不相同的子串// 如：// 输入：// 10// 0 1 1 0 1 0 1 1 1 0// 输出：// 5//在线笔试用的是Google V8引擎，读取输入用read_line()；这里模拟输入var readline = "10 0 1 1 0 1 0 1 1 1 0";var rl = readline.split(" ");var n = parseInt(rl[0]);var num = rl.slice(1);var result = [], cont = [];//对比结果和计数数组var myLength = 1;result.push(num[0]);//存入第一个数进行对比for (var i = 0; i &lt; num.length - 1; i++) &#123;// 判断result的第i个是否等于num的第i+1个是否相等，其实就是num的第i个和i+1个是否相等； if (result[i] !== num[i + 1]) &#123;//不等，则符合条件，长度+1，并num[i+1]存入result做下一次的对比； myLength++; result.push(num[i + 1]); &#125; else &#123; //相等，长度置为1，重新开始计数，并num[i+1]存入result做下一次的对比，这里也要存进去，否则result[i]会被赋值undefined myLength = 1; //再写一遍，没写这个我调试了好久。。。 result.push(num[i + 1]); &#125;// 把每次判断之后得到的结果都存入cont数组 cont.push(myLength);&#125;// 对cont数组按小-&gt;大排序cont.sort(function (a, b) &#123; return a - b;&#125;);//输出最后一个//pop()删除返回最后一个元素//console.log(cont.pop());console.log(cont[cont.length - 1]);]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+        <tag>笔试题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[str.split与arr.splice()和arr.slice()详解]]></title>
+    <url>%2F2017%2F08%2Fstr.split%E4%B8%8Earr.splice()%E5%92%8Carr.slice()%E8%AF%A6%E8%A7%A3.html</url>
+    <content type="text"><![CDATA[str.split()和arr.slice()差不多，都是根据参数分割原字符串/数组，并产生一个新的array。而splice()真是相见恨晚啊，很强大了 str.split()split英文原意为分开，分裂（以一个标准将字符串分开）； 把一个字符串分割成字符串数组, 语法： 1stringObject.split(separator,howmany) 123separator 必需。**字符串或正则表达式**，从该参数指定的地方分割 stringObject。howmany 可选。该参数可指定返回的数组的最大长度。如果设置了该参数，返回的子串不会多于这个参数指定的数组。如果没有设置该参数，整个字符串都会被分割，不考虑它的长度。 12345var str="How are you doing today?"str.split(" ")//['How','are','you','doing','today?']str.split("")//['H','o','w',' ','a'...'?']str.split(" ",3)//['How','are','you']str.split("a")//["How ", "re you doing tod", "y ?"] 与str.split()相反的是arr.join(separator); 12var str="How are you doing today?"str.split(" ").join(" ")//"How are you doing today?" arr.slice()slice英文原意为划分，切下；（当成选择复制更好理解） slice() 方法可从已有的数组中返回选定范围的元素，是一个新数组！ 语法： 12arrayObject.slice(start,end)//start可以是负数，end可以不加，则为直到末尾； 123var arr = ["0How", "1are", "2you", "3doing", "4today"];arr.slice(1,3);//["1are", "2you"]arr.slice(1);// ["1are", "2you", "3doing", "4today"] 这里面有个坑，写这篇博客用console调试时才发现： slice(1,3)选取的是1和2，并不包含end所指的那个元素！ arr.splice()splice英文原意为粘结处（从粘结处开始添加或者删除） 重点来了！ splice() 方法是向/从数组中添加/删除项目，然后返回被添加/删除的项目。说白了，就是可以往数组添加和删除元素。 注释：该方法会改变原始数组。 语法： 1arrayObject.splice(index,howmany,item1,.....,itemX) 123index 必需。整数，规定添加/删除项目的位置，可使用负数；howmany 必需。要删除的项目数量。**如果设置为 0，则不会删除项目。item1, ..., itemX 可选。**向数组添加的新项目。** 示例： 1234567var arr = [0,1,2,3,4,5,6,7]//往数组4的位置插入一个“test”:arr.splice(3,0,"test");//[]console.log(arr);//[0,1,2,3,"test",4,5,6,7]//删除数组中3-5，替换为"h","a","h","a":arr.splice(3,5,"h","a","h","a");//[3,4,5]console.log(arr);//[0, 1, 2, "h", "a", "h", "a", 6, 7] 这里面又有个坑….写这篇博客用console调试时才发现….： arr.splice(3,5,”h”,”a”,”h”,”a”)返回的是被删除的元素组成的数组！！！不是arr,之前以为直接返回arr]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+        <tag>易乱</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[做了动物的战争web小游戏之后的总结]]></title>
+    <url>%2F2017%2F08%2F%E5%81%9A%E4%BA%86%E5%8A%A8%E7%89%A9%E7%9A%84%E6%88%98%E4%BA%89web%E5%B0%8F%E6%B8%B8%E6%88%8F%E4%B9%8B%E5%90%8E%E7%9A%84%E6%80%BB%E7%BB%93.html</url>
+    <content type="text"><![CDATA[DEMO预览 遇到的问题总结 1.HTML 5 新加入的全局属性 hidden可以直接在标签里设置hidden,兼容低版本方法：通过css属性选择器设置：123*[hidden]&#123; display:none;&#125; 设置：hidden =”hidden”也可通过js设置true or false改变； 2.HTML 5 新加入的全局自定义属性 data-*如在本项目中为方格设置data-index=”0”;在js中获取：123function (e) &#123; e.target.dataset.index;&#125; 3.find() &amp; filter()1arr.find(function(currentValue,index,arr), thisValue) 不会改变原数组的值，作用为找到则返回第一个找到元素，否则返回undefined;!undefined = true; js版本：ES6 12345678910array.filter(function(currentValue,index,arr), thisValue)var ages = [32, 33, 16, 40]; function checkAdult(age) &#123; return age &gt;= 18; &#125; function myFunction() &#123; document.getElementById("demo").innerHTML = ages.filter(checkAdult); &#125; //32,33,40 不会改变原数组的值，作用为找到并返回所有元素，否则返回undefined; js版本：1.6 4.this此处报错无法调用this.clickSquare,这个this指向Game,但在function中无法指向Game123$squares.forEach(function (t) &#123; t.addEventListener('click', this.clickSquare.bind(this)) &#125;); 解决方法：在该function之外将 this.clickSquare.bind(this)定义为一个变量，再引用：123456//解决forEach内无法用thisvar onClickSquare = this.clickSquare.bind(this);//遍历加入事件$squares.forEach(function (t) &#123; t.addEventListener(&apos;click&apos;, onClickSquare)&#125;); 或者定义this为一个变量，也是一个很好用的小技巧1var self = this; 5.element.querySelector(CSS 选择器) &amp; element.querySelectorAll(CSS 选择器);element.querySelector(CSS 选择器) 匹配返回指定CSS选择器的第一个元素。如果没有找到，返回 null; element.querySelectorAll(CSS 选择器) var all = element.querySelectorAll(CSS 选择器); 返回与指定的选择器组匹配的文档中的元素列表 返回的对象是NodeList，是对象object，也是类数组。 那么什么是类数组？ 即有数组的一些基本属性length、下标索引，其子元素可通过all.item(i)访问；但不完全是数组，如NodeList是DOM操作如getElementsByTagName()等取出来的为类数组； 他们也有自己的属性，例如item，另外NodeList最大的特点就是时效性（live）。与数组的区别以及时效性可以看下详解； NodeList具有length，下标索引这些数组的属性特征，但是不可以使用数组的push、pop、shift、unshift等数组原生的方法，这时候需要将其转化为数组；在该项目中，1var $squares = [].slice.call(document.querySelectorAll('.square')); 其中slice:arrayObj.slice(start, end),作用为截取数组arr中start—end部分返回新的数组，不写Start,end则默认全部； 其中 call([thisObj[,arg1[arg2[[argN]]]]]); 定义：调用一个对象的一个方法，以另一个对象替换当前对象。 说明：call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。很难懂……找到一个实例：12345678910111213141516 function add(a,b) &#123; alert(a+b); &#125; function sub(a,b) &#123; alert(a-b); &#125; add.call(sub,3,1);//4 //这个例子意思就是用add来替换sub,使add能够调用sub的参数，add.call(sub,3,1) == add(3,1)，//注意：js中的函数其实是对象，函数名是对 Function 对象的引用。``` 所以`[].slice.call(document.querySelectorAll('.square'))`的意思是：**用`call()`使`document.querySelectorAll('.square')`这个对象（类数组）的值能够通过数组方法slice()复制出来，存入`$squares`中**；（理解了半天才懂），也可以通过Array.prototype.slice.call(all)实现：```javascript var $squares = Array.prototype.slice.call(all) 两篇不错的相关博客：详解实例]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+        <tag>web游戏</tag>
+        <tag>html</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[flex布局]]></title>
+    <url>%2F2017%2F08%2Fflex%E5%B8%83%E5%B1%80.html</url>
+    <content type="text"><![CDATA[Flex是Flexible Box的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。任何一个容器都可以指定为Flex布局。 学习flex推荐使用flexbox froggy，一个学习CSS flexbox布局的小游戏,事半功倍！ 苟利… 使用行内元素也可以使用Flex布局。 123.box&#123; display:inline-flex;&#125; Webkit内核的浏览器，必须加上-webkit前缀。 1234.box&#123; display:-webkit-flex;/* Safari */ display: flex;&#125; 注意，设为Flex布局以后，子元素的float、clear和vertical-align属性将失效。 主要的6个属性： flex-direction - 确定主轴方向 flex-wrap - 定义怎么换行 flex-flow - 上面两个属性的简写 justify-content - 主轴对齐方式 align-items - 主轴垂直方向对齐方式 align-content - 多根轴线怎么对齐方式 flex-direction属性决定主轴的方向（即项目的排列方向）。123.box &#123; flex-direction: row | row-reverse | column | column-reverse;&#125; 默认情况下，项目都排在一条线（又称”轴线”）上。flex-wrap属性定义，如果一条轴线排不下，如何换行。123.box&#123; flex-wrap: nowrap | wrap | wrap-reverse;&#125; flex-flow属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap。123.box &#123; flex-flow:&lt;flex-direction&gt;||&lt;flex-wrap&gt;;&#125; justify-content属性定义了项目在主轴上的对齐方式。123.box &#123; justify-content: flex-start | flex-end| center | space-between | space-around;&#125; align-items属性定义项目在交叉轴上如何对齐。123.box &#123; align-items: flex-start | flex-end| center | baseline | stretch;&#125; align-content属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。12.box &#123; align-content: flex-start | flex-end| center | space-between | space-around | stretch;&#125;]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+        <tag>flex</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[标签间隔和mouseout子元素触发]]></title>
+    <url>%2F2017%2F08%2F%E6%A0%87%E7%AD%BE%E9%97%B4%E9%9A%94%E5%92%8Cmouseout%E5%AD%90%E5%85%83%E7%B4%A0%E8%A7%A6%E5%8F%91.html</url>
+    <content type="text"><![CDATA[Q：设置了几个a标签，设marign和padding均为0时，a标签之间仍有间隔；A： 去掉a标签之间的空格，换行等，实现&lt;a&gt;&lt;/a&gt;&lt;a&gt;&lt;/a&gt;&lt;a&gt;&lt;/a&gt; 父级设置font-size:0；子级再设置具体的font-size； Q： 为元素P添加mouseout事件时，当鼠标移到其子元素a时，也会触发事件。12345&lt;p&gt; &lt;a&gt;1&lt;/a&gt; &lt;a&gt;2&lt;/a&gt; &lt;a&gt;3&lt;/a&gt;&lt;/p&gt; A：这是js原生自带的问题，解决方法两种： 使用mouseleave替代mouseout; onmouseenter 事件不支持冒泡 ; 不过mouseenter和mouseleave有个小问题：让鼠标从文档外直接进入绑定事件的元素时，mouseenter不生效； 使用jQ的mouseout替代原生的onmouseout； 拓展： onmouseenter对应onmouseleave; onmouseover对应onmouseout; onmouseup（鼠标按键被松开时）对应onmousedown.]]></content>
+      <categories>
+        <category>HTML</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+        <tag>Q&amp;A</tag>
+        <tag>html</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[js中把字符串变成变量名]]></title>
+    <url>%2F2017%2F08%2Fjs%E4%B8%AD%E6%8A%8A%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8F%98%E6%88%90%E5%8F%98%E9%87%8F%E5%90%8D.html</url>
+    <content type="text"><![CDATA[定义：eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。 做一个demo的时候遇到需要批量生成变量名的地方，如下： 12var myChart = "myChart" + index;myChart.setOption(option); index为函数参数； 但是”myChart”只是一个字符串，并不是变量名！搜索得出解决方法： 1var myChart = eval("myChart" + index);]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[AJAX总结]]></title>
+    <url>%2F2017%2F08%2FAJAX%E6%80%BB%E7%BB%93.html</url>
+    <content type="text"><![CDATA[AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML） 更新于2017/09/29 分为JS原生和JQ版本，当作最近学习的一个总结吧。 js原生XMLHttpRequest 对象所有现代浏览器均支持 XMLHttpRequest 对象（IE5 和 IE6 使用 ActiveXObject）。 XMLHttpRequest的五步使用： 建立XMLHttpRequest对象 注册回调函数 使用open方法设置和服务器端交互的基本信息 设置发送的数据，开始和服务器端交互 在回调函数中判断交互是否结束，响应是否正确，并根据需要过去服务器端返回的数据，更新页面内容创建 XMLHttpRequest 对象的语法： 1var xmlhttp=new XMLHttpRequest(); 老版本的 Internet Explorer （IE5 和 IE6）使用 ActiveX 对象：1var xmlhttp=new ActiveXObject("Microsoft.XMLHTTP"); XMLHttpRequest 对象的两个方法GET/POST：123456xmlhttp.open(method,url,async);// method：请求的类型；GET 或 POST// url：文件在服务器上的位置// async：true（异步）或 false（同步）xmlhttp.send(str);// string：仅用于 POST 请求 GET 还是 POST？ 与 POST 相比，GET 更简单也更快，大部分情况下都能用； GET请求会将参数跟在URL后进行传递，而POST请求则是作为HTTP消息的实体内容发给服务器； GET方式提交的数据有限，因为URL长度有限，而POST 没有数据量限制，可以向服务器发送大量数据； GET方式请求的数据会被浏览器缓存起来，有安全问题； GET通过URL传参的格式：1234// 一个xmlhttp.open("GET","demo.txt?name="+str,true);// 多个xmlhttp.open("GET","demo.txt?fname="+str+"&amp;lname="+str1,true); post()格式12xmlhttp.open("POST","demo_post.php",true);xmlhttp.send();//如果有参数就要在send()中加：send("name="+str) 更复杂点的如表单输入的就要用setRequestHeader()设置http头部了:1xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded"); onreadystatechange 事件每当 readyState 改变时，就会触发 onreadystatechange 事件。 XMLHttpRequest 对象的属性XMLHttpRequest.responseText 获得字符串形式的响应数据。XMLHttpRequest.readyState 一共有5个状态 0: 请求未初始化 1: 服务器连接已建立 2: 请求已接收 3: 请求处理中 4: 请求已完成，且响应已就绪 XMLHttpRequest.status http响应状态码 HTTP常见状态码： 200 OK 301 客户请求的文档在其他地方 302 类似于301，但新的URL应该被视为临时性的替代，而不是永久性的。 304 服务器告诉客户，原来缓冲的文档还可以继续使用。 400 Bad Request 语法错误，服务器不能理解 401 Unauthorized 未通过密码验证 403 Forbidden 资源不可用 404 Not Found 410 Gone 请求的文档已经不再可用 500 Internal Server Error 服务器错误 505 服务器只支持请求的HTTP版本号 以注册时输入完用户名之后验证是否已存在为例12345678910111213141516171819202122232425262728293031323334function checkUpName(str) &#123; if (str.length == 0) &#123; document.getElementById("mySpan").innerHTML = "请填写用户名"; &#125; else &#123; // 第一步 创建XMLHttpRequest对象 var xmlhttp; if (window.XMLHttpRequest) &#123; // code for IE7+, Firefox, Chrome, Opera, Safari xmlhttp = new XMLHttpRequest(); &#125; else &#123; // code for IE6, IE5 xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); &#125; // 第二步 注册回调函数 xmlhttp.onreadystatechange = function () &#123; // 第五步 拿到数据更新内容 if (xmlhttp.readyState == 4 &amp;&amp; xmlhttp.status == 200) &#123; if (xmlhttp.responseText == 1) &#123; document.getElementById("mySpan").innerHTML = "用户名可用" &#125; if (xmlhttp.responseText == 0) &#123; document.getElementById("mySpan").innerHTML = "用户名已被占用" &#125; &#125; &#125;; // 第三步 设置要请求的信息 //请求url加上输入框的值str xmlhttp.open("GET", "register.php?input=" + str, true); //第四步 发送请求指令 xmlhttp.send(); &#125;&#125; jQ版本1$(selector).load(URL,data,callback); load() 方法从服务器加载数据，并把返回的数据放入被选元素中。1$("#div1").load("demo_test.txt #p1"); 把 “demo_test.txt” 文件中 id=”p1” 的元素的内容，加载到指定的 &lt;div&gt; 元素中： callback中包含： responseTxt - 包含调用成功时的结果内容 statusTXT - 包含调用的状态 xhr - 包含 XMLHttpRequest 对象（xhr.status 、xhr.statusText等） jQuery $.get() 方法123456$.get(URL,callback);//可选cllback = function(data, status)&#123; // data请求后的得到的内容数据 // status 响应的http状态码&#125; jQuery $.post() 方法123456789$.post(URL,data,callback);$.post("demo_test_post.php", //data为要传给服务器的参数，为json格式。 &#123; name:"Donald Duck", city:"Duckburg" &#125;, function(data,status)&#123; &#125;); jQuery $.Ajax() 方法更加灵活，也更复杂。 1$.ajax([settings]) 有很多设置项，详细请看W3School，这里列举常用的： url = “” - 请求的文件地址 type = “GET”/“POST” 默认”GET” data ={ } - 为JSON字符串，发送到服务器的数据。将自动转换为要求的格式 async =true/false 异步 cache = true/false 缓存123456789success:function(data,str)&#123; //请求成功后调用。data:返回后的数据,str为“success”&#125;error:function(xhr,str,e)&#123; //失败后调用，参数：XMLHttpRequest 对象、错误信息、（可选）捕获的异常对象&#125;complete:function(xhr,info)&#123; //info = success/error可以通过这个替代success和 error两个函数&#125;]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>ajax</tag>
+        <tag>js</tag>
+      </tags>
+  </entry>
+</search>
