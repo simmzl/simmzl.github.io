@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title><![CDATA[nginx服务器返回json文件时content-type不正确的坑]]></title>
-    <url>%2F2017%2F10%2Fnginx%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%94%E5%9B%9Ejson%E6%96%87%E4%BB%B6%E6%97%B6content-type%E4%B8%8D%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%9D%91.html</url>
+    <url>%2F2017%2F10%2Fnginx%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%94%E5%9B%9Ejson%E6%96%87%E4%BB%B6%E6%97%B6contentType%E4%B8%8D%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%9D%91.html</url>
     <content type="text"><![CDATA[最近在用vue写个demo时，使用vue-resource 的$htpp.get()请求一个json文件时，webstrom本地环境可以获取到，response headers 中content-type:application/json，通过$http.get().then(res =&gt; {})回调函数中的res.body.result即可获取json文件的内容，但是在上传我的云服务器后请求返回的是content-type:application/octet-stream： 即返回的是一个二进制流的文件，在下载文件时会用到这个类型，但是res.body.result就获取不到内容了。 踩坑前端 在百度搜索相关问题几乎没有,在前端群里没人知道…算是遇到了个奇葩的问题… 首先想到的是在发送get请求时设置http请求报文包头中的content-type=application/json： 123Vue.http.options.headers = &#123; &apos;Content-Type&apos;:&apos;application/json&apos;&#125;; 但是这只是设置报文发送的格式，并没有设置客户端希望服务器返回的内容格式，于是继续设置Accept： 1234Vue.http.options.headers = &#123; &apos;Content-Type&apos;:&apos;application/json&apos;, &apos;Accept&apos;:&apos;application/json&apos;&#125;; 测试还是不行，响应报文中content-type依旧是application/octet-stream，很苦恼… 服务器在鼓捣半天确认前端没有错误后，我觉得问题应该出在服务器上。我的服务器centos是基于nginx，于是开始搜索关于nginx不返回json格式内容的问题。得到要在server中配置location拦截：1234location ~ ^/get_json &#123; default_type application/json; return 200 &apos;&#123;&quot;status&quot;:&quot;success&quot;,&quot;result&quot;:&quot;nginx json&quot;&#125;&apos;;&#125; 这个配置要在nginx.conf中配置（我的配置文件还有个nginx.conf.default，两个都要配置），如果不知道nginx.conf文件在哪，可以使用搜索命令：1find / | grep nginx.conf location 具体在文件哪里配置，参考nginx配置文件nginx.conf详细解释配置文件修改之后要重新运行配置文件，不过要进入/nginx/sbin中执行命令： 1./nginx -s reload 测试一下还是不行… 最后在stackoverflow上看到了一个问题：Enabling content-type application/json for all the json files in nginx，即nginx中没有设置json文件的content-type为application/json！于是，找到和nginx.conf同在一个文件夹conf下的mime.types文件和mime.types.default，修改。 12vi mime.typesvi mime.types.default 加上：application/json json; 效果图： 然后重启配置文件，进入/nginx/sbin中执行命令： 1./nginx -s reload 问题解决！ 总结为什么nginx的默认配置里面没有application/json呢…不科学…如果你遇到同样的问题，我的建议是先查看mime.types里面有没有application/json的配置，没有就加上，然后测试。无效的话就在nginx.conf中加入location的配置，在js中为get方法配置content-type和accept，就可以了。]]></content>
       <categories>
         <category>Linux</category>
@@ -199,8 +199,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>ajax</tag>
         <tag>js</tag>
+        <tag>ajax</tag>
       </tags>
   </entry>
 </search>
