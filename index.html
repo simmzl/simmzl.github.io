@@ -388,7 +388,7 @@
 
       
         
-          <p>最近在用vue写个demo时，使用vue-resource 的<code>$htpp.get()</code>请求一个json文件时，webstrom本地环境可以获取到，<code>response headers</code> 中<code>content-type:application/json</code>，通过<code>$http.get().then(res =&gt; {})</code>回调函数中的<code>res.body.result</code>即可获取json文件的内容，但是在上传我的云服务器后请求返回的是<code>content-type:application/octet-stream</code>：</p>
+          <p>最近在用vue写个demo时，使用vue-resource 的<code>$htpp.get()</code>请求一个json文件时，webstrom本地环境可以获取到，http响应报文包头中content-type为application/json，通过<code>$http.get().then(res =&gt; {})</code>回调函数中的<code>res.body.result</code>即可获取json文件的内容，但是在上传我的云服务器后请求返回的是<code>content-type:application/octet-stream</code>：</p>
 <p><img src="http://owq0w2j6m.bkt.clouddn.com/blog/171030/egaFgGGDb1.png?imageslim" alt="mark"></p>
 <p>即返回的是一个二进制流的文件，在下载文件时会用到这个类型，但是<code>res.body.result</code>就获取不到内容了。</p>
           <!--noindex-->

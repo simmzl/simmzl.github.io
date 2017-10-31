@@ -69,21 +69,21 @@
 
 
 
-<meta name="description" content="最近在用vue写个demo时，使用vue-resource 的$htpp.get()请求一个json文件时，webstrom本地环境可以获取到，response headers 中content-type:application/json，通过$http.get().then(res =&amp;gt; {})回调函数中的res.body.result即可获取json文件的内容，但是在上传我的云服务器后请">
+<meta name="description" content="最近在用vue写个demo时，使用vue-resource 的$htpp.get()请求一个json文件时，webstrom本地环境可以获取到，http响应报文包头中content-type为application/json，通过$http.get().then(res =&amp;gt; {})回调函数中的res.body.result即可获取json文件的内容，但是在上传我的云服务器后请求返回的是co">
 <meta name="keywords" content="Q&amp;A,centos">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nginx服务器返回json文件时content-type不正确的坑">
 <meta property="og:url" content="http://blog.simmzl.cn/2017/10/nginx服务器返回json文件时contentType不正确的坑.html">
 <meta property="og:site_name" content="CQ STUDIO">
-<meta property="og:description" content="最近在用vue写个demo时，使用vue-resource 的$htpp.get()请求一个json文件时，webstrom本地环境可以获取到，response headers 中content-type:application/json，通过$http.get().then(res =&amp;gt; {})回调函数中的res.body.result即可获取json文件的内容，但是在上传我的云服务器后请">
+<meta property="og:description" content="最近在用vue写个demo时，使用vue-resource 的$htpp.get()请求一个json文件时，webstrom本地环境可以获取到，http响应报文包头中content-type为application/json，通过$http.get().then(res =&amp;gt; {})回调函数中的res.body.result即可获取json文件的内容，但是在上传我的云服务器后请求返回的是co">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://owq0w2j6m.bkt.clouddn.com/blog/171030/egaFgGGDb1.png?imageslim">
 <meta property="og:image" content="http://owq0w2j6m.bkt.clouddn.com/blog/171030/6IKE3Gjd84.png?imageslim">
 <meta property="og:image" content="http://owq0w2j6m.bkt.clouddn.com/blog/171030/86KhHhD75E.png?imageslim">
-<meta property="og:updated_time" content="2017-10-30T08:46:53.698Z">
+<meta property="og:updated_time" content="2017-10-31T15:52:15.458Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx服务器返回json文件时content-type不正确的坑">
-<meta name="twitter:description" content="最近在用vue写个demo时，使用vue-resource 的$htpp.get()请求一个json文件时，webstrom本地环境可以获取到，response headers 中content-type:application/json，通过$http.get().then(res =&amp;gt; {})回调函数中的res.body.result即可获取json文件的内容，但是在上传我的云服务器后请">
+<meta name="twitter:description" content="最近在用vue写个demo时，使用vue-resource 的$htpp.get()请求一个json文件时，webstrom本地环境可以获取到，http响应报文包头中content-type为application/json，通过$http.get().then(res =&amp;gt; {})回调函数中的res.body.result即可获取json文件的内容，但是在上传我的云服务器后请求返回的是co">
 <meta name="twitter:image" content="http://owq0w2j6m.bkt.clouddn.com/blog/171030/egaFgGGDb1.png?imageslim">
 
 
@@ -395,7 +395,7 @@
       
 
       
-        <p>最近在用vue写个demo时，使用vue-resource 的<code>$htpp.get()</code>请求一个json文件时，webstrom本地环境可以获取到，<code>response headers</code> 中<code>content-type:application/json</code>，通过<code>$http.get().then(res =&gt; {})</code>回调函数中的<code>res.body.result</code>即可获取json文件的内容，但是在上传我的云服务器后请求返回的是<code>content-type:application/octet-stream</code>：</p>
+        <p>最近在用vue写个demo时，使用vue-resource 的<code>$htpp.get()</code>请求一个json文件时，webstrom本地环境可以获取到，http响应报文包头中content-type为application/json，通过<code>$http.get().then(res =&gt; {})</code>回调函数中的<code>res.body.result</code>即可获取json文件的内容，但是在上传我的云服务器后请求返回的是<code>content-type:application/octet-stream</code>：</p>
 <p><img src="http://owq0w2j6m.bkt.clouddn.com/blog/171030/egaFgGGDb1.png?imageslim" alt="mark"></p>
 <p>即返回的是一个二进制流的文件，在下载文件时会用到这个类型，但是<code>res.body.result</code>就获取不到内容了。</p>
 <a id="more"></a>
