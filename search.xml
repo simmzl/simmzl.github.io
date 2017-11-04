@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[11-03笔试题]]></title>
+    <url>%2F2017%2F11%2F11-03%E7%AC%94%E8%AF%95%E9%A2%98.html</url>
+    <content type="text"><![CDATA[编程题1.给出一个字符串，求出其中出现次数最多的字符和其出现的次数； 12345我的思路：- 首先获取没有重复的字符合集数组tmp;- 再获取与tmp索引对应的字符出现次数数组sum;- 找出sum中数字最大的索引max;- 会出现两种情况：sum中数字最大的只有一个；有多个； 12345678910111213141516171819202122232425262728293031323334353637383940let str = "asdfgfggaa";let arr=[],tmp=[],sum=[],max=0;arr = str.split("");tmp.push(arr[0]);// 获取字符串中只出现一次的字符的集合：数组tmpfor(let j=0;j&lt;arr.length;j++)&#123; if(tmp.indexOf(arr[j]) === -1)&#123; tmp.push(arr[j]); &#125;&#125;//获取跟tmp数组相对应的其内部元素出现的次数的数组sumfor(let i=0;i&lt;tmp.length;i++ )&#123; let result = arr.filter(function (item) &#123; return tmp[i]===item; &#125;); sum[i] = result.length;&#125;// 得到出现次数最多的字符的索引maxfor(let j=0;j&lt;sum.length;j++)&#123; if (sum[max] &lt; sum[j])&#123; max = j; &#125;&#125;//两种情况：次数最多只有一个；次数最多有多个let query = sum.filter(function (item) &#123; return sum[max] === item;&#125;);if(query.length&gt;1)&#123; console.log('有多个次数最多的字符！'); console.log('出现的次数：'+sum[max]); console.log('他们分别是：'); sum.map(function (item,index) &#123; if(item === sum[max])&#123; console.log(tmp[index]); &#125; &#125;)&#125;else &#123; console.log('出现次数最多的字符：'+tmp[max]); console.log('出现的次数：'+sum[max]);&#125; 结果： 分别求没有重复的数组和对应的出现次数还是太麻烦，用对象更简单！ 12345678910111213141516171819202122232425262728293031let str="asdfgfggaaa";let json=&#123;&#125;;for(let i=0;i&lt;str.length;i++)&#123; //判断json中是否存在str.charAr(i)的值 if(!json[str.charAt(i)])&#123; //不存在则将其存放在json中,赋值为1 json[str.charAt(i)]=1; &#125;else&#123; //存在则这个字符的值加1，即次数加1 json[str.charAt(i)]++; &#125;&#125;console.log(json);//char存储出现次数最多的字符，num为该字符出现的次数let char='';let num=0;//遍历json,找到值最大的字符和值for(let key in json)&#123; if(json[key]&gt;num)&#123; //如果json[key]大于num,就将键（字符）存放在char中，值存放在num中 char=key; num=json[key]; &#125;&#125;//再遍历一次json,输出所有键值等于最多次数num的键和值for(let key in json)&#123; if (json[key] === num )&#123; console.log('出现次数是：'+num); console.log('字符是：'+key); &#125;&#125; 结果： 2.将一个url的参数解析出来并封装成json格式； 获取“？”之后的部分 以“&amp;”分割各个参数 以“=”分割各个参数与值 1234567891011121314let url = "https://www.baidu.com?name=guale&amp;age=100&amp;pwd=233&amp;sex=male";// 找到？的索引indexlet index = url.indexOf('?');// 剪切？之后的参数部分let str = url.slice(index+1);// 以&amp;分割得到参数和值组成的数组let arr = str.split('&amp;');let json=&#123;&#125;;// 遍历arr数组，将数组每个元素以=分割，参数名存为json键，参数值存为对应键的值arr.map( item =&gt; &#123; let tmp = item.split('='); json[tmp[0]] = tmp[1];&#125;); 结果： 一些小题邮箱的正则1/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/; rgb(255,16,25)转成十六进制格式其实就是分别将255、16、25转成16进制（FF、10、19），再合并成#FF1019就可以了，当时不知道这关系。。。1#FF1019 font: 16px/20px Arial;所以行高和字体大小是多少？font 简写属性在一个声明中设置所有字体属性，平时写都是分开写的。可以按顺序设置如下属性： font-style // 字体风格normal、italic、oblique、inherit font-variant //字体异体 normal、small-caps、inherit font-weight // nor、inh、100-900、bold、bolder、lighter font-size/line-height font-family 12font-size:16px;line-height:20px; [,,,,].join(‘,’)结果是多少首先[0,1,2,3,]其实就是[0,1,2,3]，所以[,,,,].length=4，并不是5;12[0,1,2,3,].join(&apos;,&apos;) = &quot;0,1,2,3&quot;[,,,,].join(&apos;,&apos;) = &quot;,,,&quot; 浏览器内核有哪些safari和曾经的chrome是Webkit内核，IE是Trident内核（三叉戟），firefox是Gecko内核（壁虎），opera和google联合研发的Blink内核（Opera内核原为Presto） transform：scale（2,2.5）用matrix怎么写1transform：matrix(2 0 0 2.5 0 0); matrix(a,b,c,d,e,f)，其中a和d控制scale缩放，e和f控制translate平移]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>笔试题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[nginx服务器返回json文件时content-type不正确的坑]]></title>
     <url>%2F2017%2F10%2Fnginx%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%94%E5%9B%9Ejson%E6%96%87%E4%BB%B6%E6%97%B6contentType%E4%B8%8D%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%9D%91.html</url>
     <content type="text"><![CDATA[最近在用vue写个demo时，使用vue-resource 的$htpp.get()请求一个json文件时，webstrom本地环境可以获取到，http响应报文包头中content-type为application/json，通过$http.get().then(res =&gt; {})回调函数中的res.body.result即可获取json文件的内容，但是在上传我的云服务器后请求返回的是content-type:application/octet-stream： 即返回的是一个二进制流的文件，在下载文件时会用到这个类型，但是res.body.result就获取不到内容了。 踩坑前端 在百度搜索相关问题几乎没有,在前端群里没人知道…算是遇到了个奇葩的问题… 首先想到的是在发送get请求时设置http请求报文包头中的content-type=application/json： 123Vue.http.options.headers = &#123; &apos;Content-Type&apos;:&apos;application/json&apos;&#125;; 但是这只是设置报文发送的格式，并没有设置客户端希望服务器返回的内容格式，于是继续设置Accept： 1234Vue.http.options.headers = &#123; &apos;Content-Type&apos;:&apos;application/json&apos;, &apos;Accept&apos;:&apos;application/json&apos;&#125;; 测试还是不行，响应报文中content-type依旧是application/octet-stream，很苦恼… 服务器在鼓捣半天确认前端没有错误后，我觉得问题应该出在服务器上。我的服务器centos是基于nginx，于是开始搜索关于nginx不返回json格式内容的问题。得到要在server中配置location拦截：1234location ~ ^/get_json &#123; default_type application/json; return 200 &apos;&#123;&quot;status&quot;:&quot;success&quot;,&quot;result&quot;:&quot;nginx json&quot;&#125;&apos;;&#125; 这个配置要在nginx.conf中配置（我的配置文件还有个nginx.conf.default，两个都要配置），如果不知道nginx.conf文件在哪，可以使用搜索命令：1find / | grep nginx.conf location 具体在文件哪里配置，参考nginx配置文件nginx.conf详细解释配置文件修改之后要重新运行配置文件，不过要进入/nginx/sbin中执行命令： 1./nginx -s reload 测试一下还是不行… 最后在stackoverflow上看到了一个问题：Enabling content-type application/json for all the json files in nginx，即nginx中没有设置json文件的content-type为application/json！于是，找到和nginx.conf同在一个文件夹conf下的mime.types文件和mime.types.default，修改。 12vi mime.typesvi mime.types.default 加上：application/json json; 效果图： 然后重启配置文件，进入/nginx/sbin中执行命令： 1./nginx -s reload 问题解决！ 总结为什么nginx的默认配置里面没有application/json呢…不科学…如果你遇到同样的问题，我的建议是先查看mime.types里面有没有application/json的配置，没有就加上，然后测试。无效的话就在nginx.conf中加入location的配置，在js中为get方法配置content-type和accept，就可以了。]]></content>
@@ -126,8 +137,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>笔试题</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -199,8 +210,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>ajax</tag>
         <tag>js</tag>
+        <tag>ajax</tag>
       </tags>
   </entry>
 </search>
