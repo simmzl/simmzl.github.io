@@ -80,7 +80,7 @@
 <meta property="og:image" content="http://static.simmzl.cn/blog/171104/E9fdJ54BK1.png?imageslim">
 <meta property="og:image" content="http://static.simmzl.cn/blog/171104/IGh02GHHIk.png?imageslim">
 <meta property="og:image" content="http://static.simmzl.cn/blog/171104/D89E1E0219.png?imageslim">
-<meta property="og:updated_time" content="2017-11-15T15:02:00.495Z">
+<meta property="og:updated_time" content="2017-11-15T15:04:55.784Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="11月笔试题&amp;面试">
 <meta name="twitter:description" content="笔试 编程 问答   面试 cookie&amp;amp;session 安全 页面加载与渲染 性能优">
@@ -458,7 +458,7 @@
 <h3 id="利用cookie和setInterval"><a href="#利用cookie和setInterval" class="headerlink" title="利用cookie和setInterval"></a>利用cookie和setInterval</h3><p>将要传递的信息存储在cookie中，每隔一定时间读取cookie信息，即可随时获取要传递的信息。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//a页面</span></div><div class="line"><span class="built_in">document</span>.cookie=<span class="string">"name=demo"</span>;</div><div class="line"></div><div class="line"><span class="comment">//b页面</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getKey</span>(<span class="params">key</span>) </span>&#123;  </div><div class="line">    <span class="keyword">return</span> <span class="built_in">JSON</span>.parse(<span class="string">"&#123;\""</span>+ <span class="built_in">document</span>.cookie.replace(<span class="regexp">/;\s+/gim</span>,<span class="string">"\",\""</span>).replace(<span class="regexp">/=/gim</span>, <span class="string">"\":\""</span>) +<span class="string">"\"&#125;"</span>)[key];  </div><div class="line">&#125;  </div><div class="line">setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(getKey(<span class="string">"name"</span>));  </div><div class="line">&#125;,<span class="number">1000</span>);</div></pre></td></tr></table></figure>
 <h2 id="对jsp的了解"><a href="#对jsp的了解" class="headerlink" title="对jsp的了解"></a>对jsp的了解</h2><p>JSP 与 PHP、ASP、ASP.NET 等语言类似，运行在服务端的语言。全称Java Server Pages，jsp文件是在服务器上执行，JSP页面由HTML代码和嵌入其中的Java代码所组成，就想php代码可以写进html中一样，jsp使用<code>&lt;% jsp代码 %&gt;</code>插入到html中</p>
-<h2 id="对Promise的了解"><a href="#对Promise的了解" class="headerlink" title="对Promise的了解"></a>对Promise的了解</h2><p>Promise是异步编程的一种解决方案，在ES6推出之后成为了原生对象。面试时被问到promise一脸懵逼，为此特意整理了一篇博客<a href="">Promise对象-异步编程解决方案</a></p>
+<h2 id="对Promise的了解"><a href="#对Promise的了解" class="headerlink" title="对Promise的了解"></a>对Promise的了解</h2><p>Promise是异步编程的一种解决方案，在ES6推出之后成为了原生对象。面试时被问到promise一脸懵逼，为此特意整理了一篇博客<a href="http://blog.simmzl.cn/2017/11/Promise%E5%AF%B9%E8%B1%A1-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.html">Promise对象-异步编程解决方案</a></p>
 <h2 id="如何加快页面加载速度"><a href="#如何加快页面加载速度" class="headerlink" title="如何加快页面加载速度"></a>如何加快页面加载速度</h2><ul>
 <li>使用CDN加速</li>
 <li>雪碧图</li>
