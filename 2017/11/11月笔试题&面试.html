@@ -80,7 +80,7 @@
 <meta property="og:image" content="http://static.simmzl.cn/blog/171104/E9fdJ54BK1.png?imageslim">
 <meta property="og:image" content="http://static.simmzl.cn/blog/171104/IGh02GHHIk.png?imageslim">
 <meta property="og:image" content="http://static.simmzl.cn/blog/171104/D89E1E0219.png?imageslim">
-<meta property="og:updated_time" content="2017-11-15T15:04:55.784Z">
+<meta property="og:updated_time" content="2017-11-15T15:08:06.891Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="11月笔试题&amp;面试">
 <meta name="twitter:description" content="笔试 编程 问答   面试 cookie&amp;amp;session 安全 页面加载与渲染 性能优">
@@ -494,11 +494,11 @@
 <h4 id="基于本地的XSS攻击"><a href="#基于本地的XSS攻击" class="headerlink" title="基于本地的XSS攻击"></a>基于本地的XSS攻击</h4><p>为用户提供免费的wifi，但是提供免费wifi的<strong>网关</strong>会往你访问的任何页面插入一段脚本，获取你的敏感数据，像这种直接存在于页面，无须经过服务器返回脚本处理就直接跨域发送用户信息的行为就是基于本地的XSS攻击。</p>
 <h4 id="防范"><a href="#防范" class="headerlink" title="防范"></a>防范</h4><ul>
 <li>文本输入时对js关键字做编码，让回给用户浏览器的js不可执行</li>
-<li><p>字符串过滤</p>
+<li>字符串过滤</li>
+</ul>
 <h3 id="CSRF（跨站请求伪造）"><a href="#CSRF（跨站请求伪造）" class="headerlink" title="CSRF（跨站请求伪造）"></a>CSRF（跨站请求伪造）</h3><p>CSRF是通过<strong>伪装来自受信任用户的请求</strong>来利用受信任的网站；</p>
-</li>
-<li><p>登录受信任网站a, 在本地生成cookie；</p>
-</li>
+<ul>
+<li>登录受信任网站a, 在本地生成cookie；</li>
 <li>不登出a的情况下访问危险网站b；</li>
 <li>b要求访问a；</li>
 <li>用户访问a，并执行了恶意代码</li>
