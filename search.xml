@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[左侧定宽，右侧自适应与双飞翼布局]]></title>
+    <url>%2F2017%2F11%2F%E5%B7%A6%E4%BE%A7%E5%AE%9A%E5%AE%BD%EF%BC%8C%E5%8F%B3%E4%BE%A7%E8%87%AA%E9%80%82%E5%BA%94%E4%B8%8E%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80.html</url>
+    <content type="text"><![CDATA[左侧定宽，右侧自适应布局：123&lt;!-- html --&gt;&lt;div class="left"&gt;left&lt;/div&gt;&lt;div class="right"&gt;right&lt;/div&gt; 123456789.left&#123; background-color: #4FB3A4; width: 200px; height: 500px;&#125;.right&#123; background-color: #e07d075c; height: 500px;&#125; flex 布局123456789body&#123; display: flex;&#125; .left&#123; flex: 0 0 200px;&#125;.right&#123; flex: 1;&#125; 1flex: none | [ &lt;&apos;flex-grow&apos;&gt; &lt;&apos;flex-shrink&apos;&gt; &lt;&apos;flex-basis&apos;&gt; ] 默认 0 1 auto flex-grow：定义项目的放大比例，默认为0 flex-shrink：定义了项目的缩小比例，默认为1 flex-basis：定义了在分配多余空间之前，项目占据的主轴空间（main size） 左侧浮动，右侧width:100%123456.left&#123; float: left;&#125;.right&#123; width: 100%;&#125; 左侧绝对定位，右侧设置margin-left123456789body&#123; position: relative;&#125;.left&#123; position: absolute;&#125;.right&#123; margin-left: 200px;&#125; 两侧都是绝对定位1234567891011body&#123; position: relative;&#125;.left&#123; position: absolute;&#125;.right&#123; position: absolute; left: 200px; width: 100%;&#125; 两侧都左浮动，右侧设置calc宽度1234567.left&#123; float: left;&#125;.right&#123; float: left; width: calc(100% - 200px);&#125; 负margin首先需要把右侧自适应部分用容器包起来并放在前面： 1234&lt;div class=&quot;wrapper&quot;&gt; &lt;div class=&quot;right&quot;&gt;right&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;left&quot;&gt;left&lt;/div&gt; 1234567891011.wrapper&#123; float: left; width: 100%;&#125;.left&#123; float: left; margin-left: -100%;&#125;.right&#123; margin-left: 200px;&#125; 双飞翼布局（三栏布局、圣杯布局）]]></content>
+      <categories>
+        <category>css</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Promise对象-异步编程解决方案]]></title>
     <url>%2F2017%2F11%2FPromise%E5%AF%B9%E8%B1%A1-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.html</url>
     <content type="text"><![CDATA[不使用promise 使用promise 三种状态 声明一个Promise对象 Promise.then() Promise中的数据传递 Promise.all() Promise.race() 不使用promise当我们使用AJAX请求一个数据时：12345678910111213var url = 'https://xxx.com/xx.json';var result;var XHR = new XMLHttpRequest();XHR.open('GET', url, true);XHR.send();XHR.onreadystatechange = () =&gt; &#123; if (XHR.readyState == 4 &amp;&amp; XHR.status == 200) &#123; result = XHR.response; console.log(result); &#125;&#125; 当需要做另外一个ajax请求，这个新的ajax请求的其中一个参数，得从上一个ajax请求中获取，这个时候我们就不得不如下这样做： 12345678910111213141516171819202122var url = 'https://xxx.com/xx.json';var result;var XHR = new XMLHttpRequest();XHR.open('GET', url, true);XHR.send();XHR.onreadystatechange = () =&gt; &#123; if (XHR.readyState == 4 &amp;&amp; XHR.status == 200) &#123; result = XHR.response; console.log(result); // 新的ajax请求 var url2 = 'https://xxx.com/xx.json'; var XHR2 = new XMLHttpRequest(); XHR2.open('GET', url, true); XHR2.send(); XHR2.onreadystatechange = () =&gt; &#123; ... &#125; &#125;&#125; 如果有多个ajax请求都需要其上一个请求中的数据时，即使使用回调函数也会使代码可读性和可维护性降低，层层嵌套从而产生所谓的回调地狱。 使用promise状态promise有三种状态，分别是 pending -进行中 resolved -已完成 rejected -已失败 当Promise的状态又pending转变为resolved或rejected时，会执行相应的方法，并且状态一旦改变，就无法再次改变状态，这也是它名字promise-承诺的由来. 声明一个Promise对象在Promise对象的构造函数中，将一个函数作为第一个参数。这个函数就是用来处理Promise的状态变化。12345678910111213141516171819// 方法1let promise = new Promise ( (resolve, reject) =&gt; &#123; if (success) &#123; resolve(value); &#125; else &#123; reject(error); &#125;&#125;)// 方法2function promise () &#123; return new Promise ((resolve, reject) =&gt; &#123; if (success) &#123; resolve(value); &#125; else &#123; reject(error); &#125; &#125;)&#125; Promise.then().then()方法使Promise原型链上的方法，它包含两个参数，分别是已成功resolved的回调和已失败rejected的回调 1234promise.then( () =&gt; &#123; console.log('this is success callback') &#125;, () =&gt; &#123; console.log('this is fail callback') &#125;) Promise中的数据传递1234567891011121314151617181920212223242526let fn = num =&gt; &#123; return new Promise((resolve, reject) =&gt; &#123; if (typeof num === 'number') &#123; resolve(num); &#125; else &#123; reject(TypeError); &#125; &#125;);&#125;;fn(2).then(num =&gt; &#123; console.log('first: ' + num); return num + 1;&#125;) .then(num =&gt; &#123; console.log('second: ' + num); return num + 1; &#125;) .then(num =&gt; &#123; console.log('third: ' + num); &#125;);// 输出结果// first: 2// second: 3// third: 4 Promise.all()当有一个ajax请求，它的参数需要另外2个甚至更多请求都有返回结果之后才能确定时，需要用到all()；Promise.all接收一个Promise对象组成的数组作为参数，当这个数组所有的Promise对象状态都变成resolved的时候，它才会去调用成功回调方法。否则执行失败方法； 12345678910let p1 = new Promise(...);let p2 = new Promise(...);let p3 = new Promise(...);let promise = Promise.all( [p1, p2, p3] );promise.then( ...).catch( ...) Promise.race()与Promise.all相似的是，Promise.race都是以一个Promise对象组成的数组作为参数，不同的是，只要当数组中的其中一个Promsie状态变成resolved或者rejected时，就可以调用.then方法了； 参考：MDN web docs看这一篇就够了！浅谈ES6的Promise对象Javascript 中的神器——Promise前端基础进阶（十三）：透彻掌握Promise的使用，读这篇就够了]]></content>
@@ -222,8 +233,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>ajax</tag>
+        <tag>js</tag>
       </tags>
   </entry>
 </search>
