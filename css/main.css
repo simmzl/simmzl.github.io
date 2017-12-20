@@ -1818,7 +1818,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #28ffc6;
+  background: #8fe922;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2910,8 +2910,14 @@ hr {
 .header-inner {
   padding: 30px 0;
 }
+.posts-expand .post {
+  margin-top: 80px;
+}
 * {
   font-family: 'Lato', 'Microsoft Jhenghei', "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+.site-meta {
+  margin-left: 0;
 }
 .site-meta .custom-logo-site-title .site-title {
   font-family: 'Lato', 'Microsoft Jhenghei', "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -2923,6 +2929,17 @@ h4,
 h5,
 h6 {
   font-family: 'Lato', 'Microsoft Jhenghei', "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+.posts-expand .post:first-child {
+  margin-top: 0;
+}
+@media (max-width: 767px) {
+  .header-inner {
+    padding: 10px;
+  }
+  .site-meta {
+    margin-left: 10px;
+  }
 }
 @media screen and (max-width: 992px) and (min-width: 768px) {
   .footer-inner,
