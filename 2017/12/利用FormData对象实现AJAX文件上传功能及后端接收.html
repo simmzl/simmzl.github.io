@@ -53,7 +53,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="js,php," />
+  <meta name="keywords" content="ajax,js,php," />
 
 
 
@@ -69,19 +69,23 @@
 
 
 
-<meta name="keywords" content="js,php">
+<meta name="description" content="包括HTML基础设置、CSS界面优化、JS利用FormData对象和AJAX进行上传、后端接收文件并存储到指定路径以及删除文件操作。">
+<meta name="keywords" content="ajax,js,php">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用FormData对象实现AJAX文件上传功能及后端实现">
 <meta property="og:url" content="http://blog.simmzl.cn/2017/12/利用FormData对象实现AJAX文件上传功能及后端接收.html">
 <meta property="og:site_name" content="CQ STUDIO">
+<meta property="og:description" content="包括HTML基础设置、CSS界面优化、JS利用FormData对象和AJAX进行上传、后端接收文件并存储到指定路径以及删除文件操作。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://static.simmzl.cn/blog/171220/lE4hc1EkB8.png?imageslim">
+<meta property="og:image" content="http://static.simmzl.cn/blog/171221/4H45b80fG1.png?imageslim">
 <meta property="og:image" content="http://static.simmzl.cn/blog/171220/fh120IGA0F.png?imageslim">
-<meta property="og:image" content="http://static.simmzl.cn/blog/171220/lE4hc1EkB8.png?imageslim">
-<meta property="og:updated_time" content="2017-12-20T15:52:22.995Z">
+<meta property="og:image" content="http://static.simmzl.cn/blog/171221/4H45b80fG1.png?imageslim">
+<meta property="og:image" content="http://static.simmzl.cn/blog/171221/6ajifkcLgC.png?imageslim">
+<meta property="og:updated_time" content="2017-12-20T17:17:49.790Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用FormData对象实现AJAX文件上传功能及后端实现">
-<meta name="twitter:image" content="http://static.simmzl.cn/blog/171220/lE4hc1EkB8.png?imageslim">
+<meta name="twitter:description" content="包括HTML基础设置、CSS界面优化、JS利用FormData对象和AJAX进行上传、后端接收文件并存储到指定路径以及删除文件操作。">
+<meta name="twitter:image" content="http://static.simmzl.cn/blog/171221/4H45b80fG1.png?imageslim">
 
 
 
@@ -392,9 +396,9 @@
       
 
       
-        <p><img src="http://static.simmzl.cn/blog/171220/lE4hc1EkB8.png?imageslim" alt="mark"><br><a id="more"></a></p>
-<h1 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h1><p>最基础的设置：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"file"</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">multiple</span>=<span class="string">"multiple"</span> <span class="attr">name</span>=<span class="string">"file"</span> <span class="attr">accept</span>=<span class="string">"..."</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"上传"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<h2 id="Form的enctype属性"><a href="#Form的enctype属性" class="headerlink" title="Form的enctype属性"></a>Form的enctype属性</h2><p>enctype这个属性管理的是表单的MIME编码，它一共有三个属性：</p>
+        <p><img src="http://static.simmzl.cn/blog/171221/4H45b80fG1.png?imageslim" alt="mark"><br>包括HTML基础设置、CSS界面优化、JS利用FormData对象和AJAX进行上传、后端接收文件并存储到指定路径以及删除文件操作。<br><a id="more"></a></p>
+<h1 id="FE"><a href="#FE" class="headerlink" title="FE"></a>FE</h1><h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><p>基础的设置：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"file"</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">multiple</span>=<span class="string">"multiple"</span> <span class="attr">name</span>=<span class="string">"file"</span> <span class="attr">accept</span>=<span class="string">"..."</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"上传"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="Form的enctype属性"><a href="#Form的enctype属性" class="headerlink" title="Form的enctype属性"></a>Form的enctype属性</h3><p>enctype这个属性管理的是表单的MIME编码，它一共有三个属性：</p>
 <table>
 <thead>
 <tr>
@@ -418,21 +422,70 @@
 </tbody>
 </table>
 <p>因此，传输完整的文件数据需要<code>multipart/form-data</code>属性。</p>
-<h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><h3 id="value"><a href="#value" class="headerlink" title="value"></a>value</h3><p>保存了用户指定的文件的名称。</p>
-<h3 id="type-”file”"><a href="#type-”file”" class="headerlink" title="type=”file”"></a>type=”file”</h3><p>设置input类型为file。</p>
-<h3 id="multiple-”multiple”"><a href="#multiple-”multiple”" class="headerlink" title="multiple=”multiple”"></a>multiple=”multiple”</h3><p>可多选，不设置为单选。</p>
-<h3 id="accept-”…”"><a href="#accept-”…”" class="headerlink" title="accept=”…”"></a>accept=”…”</h3><p>设置可选文件的MIME_type。在设置之后点击选择文件按钮会默认显示符合设置的MIME_type的文件（存在兼容性）。具体的文件类型对应的MIME类型可以搜索到，这里列出我用到的类型：<br>| 文件类型 | MIME类型 |<br>| ————- |————-|<br>| .txt |text/plain|<br>| .pdf | application/pdf |<br>| .doc | application/msword |<br>| .docx | application/vnd.openxmlformats-officedocument.wordprocessingml.document |<br>| .xls | application/vnd.ms-excel |<br>| .ppt |application/vnd.ms-powerpoint|<br>| .pptx |application/vnd.openxmlformats-officedocument.presentationml.presentation|</p>
-<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p><img src="http://static.simmzl.cn/blog/171220/fh120IGA0F.png?imageslim" alt="mark"></p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><h4 id="value"><a href="#value" class="headerlink" title="value"></a>value</h4><p>保存了用户指定的文件的名称。</p>
+<h4 id="type-”file”"><a href="#type-”file”" class="headerlink" title="type=”file”"></a>type=”file”</h4><p>设置input类型为file。</p>
+<h4 id="multiple-”multiple”"><a href="#multiple-”multiple”" class="headerlink" title="multiple=”multiple”"></a>multiple=”multiple”</h4><p>可多选，不设置为单选。</p>
+<h4 id="accept-”…”"><a href="#accept-”…”" class="headerlink" title="accept=”…”"></a>accept=”…”</h4><p>设置可选文件的MIME_type。在设置之后点击选择文件按钮会默认显示符合设置的MIME_type的文件（存在兼容性）。具体的文件类型对应的MIME类型可以搜索到，这里列出我用到的类型：</p>
+<table>
+<thead>
+<tr>
+<th>文件类型</th>
+<th>MIME类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.txt</td>
+<td>text/plain</td>
+</tr>
+<tr>
+<td>.pdf</td>
+<td>application/pdf</td>
+</tr>
+<tr>
+<td>.doc</td>
+<td>application/msword</td>
+</tr>
+<tr>
+<td>.docx</td>
+<td>application/vnd.openxmlformats-officedocument.wordprocessingml.document</td>
+</tr>
+<tr>
+<td>.xls</td>
+<td>application/vnd.ms-excel</td>
+</tr>
+<tr>
+<td>.ppt</td>
+<td>application/vnd.ms-powerpoint</td>
+</tr>
+<tr>
+<td>.pptx</td>
+<td>application/vnd.openxmlformats-officedocument.presentationml.presentation</td>
+</tr>
+</tbody>
+</table>
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p><img src="http://static.simmzl.cn/blog/171220/fh120IGA0F.png?imageslim" alt="mark"></p>
 <p>太丑，不能忍…</p>
-<h1 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h1><p>默认界面会在选择文件按钮后会跟一个显示文件名的文本区域，选择文件按钮无法编辑。<br>我修改的方法是将input框隐藏，再设置一个lable标签使用户点击lable标签时触发选择文件按钮。</p>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><p>默认界面会在选择文件按钮后会跟一个显示文件名的文本区域，选择文件按钮无法编辑。<br>我修改的方法是将input框隐藏，再设置一个lable标签使用户点击lable标签时触发选择文件按钮。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"file"</span>&gt;</span>选择文件<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div></pre></td></tr></table></figure>
-<h2 id="效果-1"><a href="#效果-1" class="headerlink" title="效果"></a>效果</h2><p><img src="http://static.simmzl.cn/blog/171220/lE4hc1EkB8.png?imageslim" alt="mark"></p>
-<p>#JS<br>在使用from提交时，浏览器会向服务器发送选中的文件的内容而不仅仅是发送文件名。</p>
+<h3 id="效果-1"><a href="#效果-1" class="headerlink" title="效果"></a>效果</h3><p><img src="http://static.simmzl.cn/blog/171221/4H45b80fG1.png?imageslim" alt="mark"></p>
+<h2 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h2><p>在使用from提交时，浏览器会向服务器发送选中的文件的内容而不仅仅是发送文件名。</p>
 <blockquote>
 <p>为安全起见，<code>&lt;input type=&quot;file&quot;&gt;</code>即file-upload 元素不允许 HTML 作者或 JavaScript 程序员指定一个默认的文件名。HTML value 属性被忽略，并且对于此类元素来说，value属性是只读的，这意味着只有用户可以输入一个文件名。当用户选择或编辑一个文件名时，file-upload 元素触发 onchange 事件句柄。</p>
 </blockquote>
-<p>利用form提交会导致页面刷新，体验不好，所以使用AJAX进行文件上传。</p>
-
+<p>利用form提交会导致页面刷新，体验不好，所以使用AJAX进行文件上传是个不错的选择。但这需要我们自己来组织通过POST请求发送的内容。</p>
+<h3 id="FormData对象"><a href="#FormData对象" class="headerlink" title="FormData对象"></a>FormData对象</h3><blockquote>
+<p>通过FormData对象可以组装一组用 XMLHttpRequest发送请求的键/值对。它可以更灵活方便的发送表单数据，因为可以独立于表单使用。如果你把表单的编码类型设置为multipart/form-data ，则通过FormData传输的数据格式和表单通过submit() 方法传输的数据格式相同。<br>—— MDN web docs</p>
+</blockquote>
+<h4 id="创建FormData对象"><a href="#创建FormData对象" class="headerlink" title="创建FormData对象"></a>创建FormData对象</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> formData = <span class="keyword">new</span> FormData();</div></pre></td></tr></table></figure>
+<h4 id="向实例化对象中添加文件字段"><a href="#向实例化对象中添加文件字段" class="headerlink" title="向实例化对象中添加文件字段"></a>向实例化对象中添加文件字段</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> myFile = <span class="built_in">document</span>.getElementById(<span class="string">'file'</span>);</div><div class="line"><span class="comment">// myFile.file[0]为第一个文件（单选）,多个文件（多选）则要循环添加</span></div><div class="line">formData.append(<span class="string">'myFile'</span>, myFile.files[<span class="number">0</span>]);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(myFile.files[<span class="number">0</span>]);</div></pre></td></tr></table></figure>
+<p><img src="http://static.simmzl.cn/blog/171221/6ajifkcLgC.png?imageslim" alt="mark"></p>
+<p>其中size属性单位是byte（字节），即b。</p>
+<h4 id="添加自定义字段"><a href="#添加自定义字段" class="headerlink" title="添加自定义字段"></a>添加自定义字段</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">formData.append(<span class="string">'username'</span>, <span class="string">'simmzl'</span>);</div></pre></td></tr></table></figure>
+<h3 id="AJAX发送"><a href="#AJAX发送" class="headerlink" title="AJAX发送"></a>AJAX发送</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> request = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">request.open(<span class="string">"POST"</span>, <span class="string">"http://foo.com/foo.php"</span>);</div><div class="line">request.send(formData);</div></pre></td></tr></table></figure>
+<h3 id="不使用FromData对象"><a href="#不使用FromData对象" class="headerlink" title="不使用FromData对象"></a>不使用FromData对象</h3><p>不使用FormData对象的情况下，需要通过AJAX序列化和提交表单 ：<br><a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest#Submitting_forms_and_uploading_files" target="_blank" rel="external">Using nothing but XMLHttpRequest</a></p>
+<h1 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h1>
       
     </div>
     
@@ -448,6 +501,8 @@
     <footer class="post-footer">
       
         <div class="post-tags">
+          
+            <a href="/tags/ajax/" rel="tag"># ajax</a>
           
             <a href="/tags/js/" rel="tag"># js</a>
           
@@ -629,7 +684,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTML"><span class="nav-number">1.</span> <span class="nav-text">HTML</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Form的enctype属性"><span class="nav-number">1.1.</span> <span class="nav-text">Form的enctype属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Input"><span class="nav-number">1.2.</span> <span class="nav-text">Input</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#value"><span class="nav-number">1.2.1.</span> <span class="nav-text">value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#type-”file”"><span class="nav-number">1.2.2.</span> <span class="nav-text">type=”file”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#multiple-”multiple”"><span class="nav-number">1.2.3.</span> <span class="nav-text">multiple=”multiple”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#accept-”…”"><span class="nav-number">1.2.4.</span> <span class="nav-text">accept=”…”</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果"><span class="nav-number">1.3.</span> <span class="nav-text">效果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS"><span class="nav-number">2.</span> <span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#效果-1"><span class="nav-number">2.1.</span> <span class="nav-text">效果</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#FE"><span class="nav-number">1.</span> <span class="nav-text">FE</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML"><span class="nav-number">1.1.</span> <span class="nav-text">HTML</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Form的enctype属性"><span class="nav-number">1.1.1.</span> <span class="nav-text">Form的enctype属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input"><span class="nav-number">1.1.2.</span> <span class="nav-text">Input</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#value"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">value</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#type-”file”"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">type=”file”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#multiple-”multiple”"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">multiple=”multiple”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#accept-”…”"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">accept=”…”</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效果"><span class="nav-number">1.1.3.</span> <span class="nav-text">效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS"><span class="nav-number">1.2.</span> <span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#效果-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS"><span class="nav-number">1.3.</span> <span class="nav-text">JS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FormData对象"><span class="nav-number">1.3.1.</span> <span class="nav-text">FormData对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建FormData对象"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">创建FormData对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#向实例化对象中添加文件字段"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">向实例化对象中添加文件字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加自定义字段"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">添加自定义字段</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AJAX发送"><span class="nav-number">1.3.2.</span> <span class="nav-text">AJAX发送</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不使用FromData对象"><span class="nav-number">1.3.3.</span> <span class="nav-text">不使用FromData对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PHP"><span class="nav-number">2.</span> <span class="nav-text">PHP</span></a></li></ol></div>
             
 
           </div>
