@@ -1818,7 +1818,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #292694;
+  background: #28ffc6;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2911,6 +2911,17 @@ hr {
   padding: 30px 0;
 }
 * {
+  font-family: 'Lato', 'Microsoft Jhenghei', "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+.site-meta .custom-logo-site-title .site-title {
+  font-family: 'Lato', 'Microsoft Jhenghei', "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Lato', 'Microsoft Jhenghei', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 @media screen and (max-width: 992px) and (min-width: 768px) {
