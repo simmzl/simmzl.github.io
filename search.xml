@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[利用FormData对象实现AJAX文件上传功能]]></title>
-    <url>%2F2017%2F12%2F%E5%88%A9%E7%94%A8FormData%E5%AF%B9%E8%B1%A1%E5%AE%9E%E7%8E%B0AJAX%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%8A%9F%E8%83%BD.html</url>
-    <content type="text"></content>
+    <title><![CDATA[利用FormData对象实现AJAX文件上传功能及后端实现]]></title>
+    <url>%2F2017%2F12%2F%E5%88%A9%E7%94%A8FormData%E5%AF%B9%E8%B1%A1%E5%AE%9E%E7%8E%B0AJAX%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%8A%9F%E8%83%BD%E5%8F%8A%E5%90%8E%E7%AB%AF%E6%8E%A5%E6%94%B6.html</url>
+    <content type="text"><![CDATA[HTML最基础的设置：1234&lt;form enctype="multipart/form-data"&gt; &lt;input id="file" type="file" multiple="multiple" name="file" accept="..."&gt; &lt;input type="submit" value="上传"&gt;&lt;/form&gt; Form的enctype属性enctype这个属性管理的是表单的MIME编码，它一共有三个属性： 值 描述 application/x-www-form-urlencoded 在发送前编码所有字符（默认） multipart/form-data 不对字符编码，用来制定传输数据的特殊类型，如mp3、jpg text/plain 纯文本传输 因此，传输完整的文件数据需要multipart/form-data属性。 Inputvalue保存了用户指定的文件的名称。 type=”file”设置input类型为file。 multiple=”multiple”可多选，不设置为单选。 accept=”…”设置可选文件的MIME_type。在设置之后点击选择文件按钮会默认显示符合设置的MIME_type的文件（存在兼容性）。具体的文件类型对应的MIME类型可以搜索到，这里列出我用到的类型：| 文件类型 | MIME类型 || ————- |————-|| .txt |text/plain|| .pdf | application/pdf || .doc | application/msword || .docx | application/vnd.openxmlformats-officedocument.wordprocessingml.document || .xls | application/vnd.ms-excel || .ppt |application/vnd.ms-powerpoint|| .pptx |application/vnd.openxmlformats-officedocument.presentationml.presentation| 效果 太丑，不能忍… CSS默认界面会在选择文件按钮后会跟一个显示文件名的文本区域，选择文件按钮无法编辑。我修改的方法是将input框隐藏，再设置一个lable标签使用户点击lable标签时触发选择文件按钮。 1&lt;label for="file"&gt;选择文件&lt;/label&gt; 效果 #JS在使用from提交时，浏览器会向服务器发送选中的文件的内容而不仅仅是发送文件名。 为安全起见，&lt;input type=&quot;file&quot;&gt;即file-upload 元素不允许 HTML 作者或 JavaScript 程序员指定一个默认的文件名。HTML value 属性被忽略，并且对于此类元素来说，value属性是只读的，这意味着只有用户可以输入一个文件名。当用户选择或编辑一个文件名时，file-upload 元素触发 onchange 事件句柄。 利用form提交会导致页面刷新，体验不好，所以使用AJAX进行文件上传。]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+        <tag>php</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[左侧定宽，右侧自适应与双飞翼布局]]></title>
@@ -130,8 +137,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>面试</tag>
         <tag>js</tag>
+        <tag>面试</tag>
       </tags>
   </entry>
   <entry>
@@ -165,8 +172,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>笔试题</tag>
         <tag>js</tag>
+        <tag>笔试题</tag>
       </tags>
   </entry>
   <entry>
@@ -238,8 +245,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>ajax</tag>
+        <tag>js</tag>
       </tags>
   </entry>
 </search>
