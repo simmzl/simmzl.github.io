@@ -1818,7 +1818,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #588bff;
+  background: #292694;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2907,9 +2907,11 @@ hr {
 .site-nav-toggle button {
   outline: none;
 }
-#header.header {
-  box-shadow: 1px -2px 10px rgba(14,14,14,0.26);
-  background: #fff;
+.header-inner {
+  padding: 30px 0;
+}
+* {
+  font-family: 'Lato', 'Microsoft Jhenghei', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 @media screen and (max-width: 992px) and (min-width: 768px) {
   .footer-inner,
