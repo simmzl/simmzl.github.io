@@ -53,7 +53,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ajax,js,php," />
+  <meta name="keywords" content="js,ajax,php," />
 
 
 
@@ -70,7 +70,7 @@
 
 
 <meta name="description" content="包括HTML基础设置、CSS界面优化、JS利用FormData对象和AJAX进行上传、后端接收文件并存储到指定路径以及删除文件操作。">
-<meta name="keywords" content="ajax,js,php">
+<meta name="keywords" content="js,ajax,php">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用FormData对象实现AJAX文件上传功能及后端实现">
 <meta property="og:url" content="http://blog.simmzl.cn/2017/12/利用FormData对象实现AJAX文件上传功能及后端接收.html">
@@ -81,7 +81,7 @@
 <meta property="og:image" content="http://static.simmzl.cn/blog/171220/fh120IGA0F.png?imageslim">
 <meta property="og:image" content="http://static.simmzl.cn/blog/171221/4H45b80fG1.png?imageslim">
 <meta property="og:image" content="http://static.simmzl.cn/blog/171221/6ajifkcLgC.png?imageslim">
-<meta property="og:updated_time" content="2017-12-20T17:17:49.790Z">
+<meta property="og:updated_time" content="2017-12-21T15:25:14.211Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用FormData对象实现AJAX文件上传功能及后端实现">
 <meta name="twitter:description" content="包括HTML基础设置、CSS界面优化、JS利用FormData对象和AJAX进行上传、后端接收文件并存储到指定路径以及删除文件操作。">
@@ -485,7 +485,56 @@
 <h4 id="添加自定义字段"><a href="#添加自定义字段" class="headerlink" title="添加自定义字段"></a>添加自定义字段</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">formData.append(<span class="string">'username'</span>, <span class="string">'simmzl'</span>);</div></pre></td></tr></table></figure>
 <h3 id="AJAX发送"><a href="#AJAX发送" class="headerlink" title="AJAX发送"></a>AJAX发送</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> request = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">request.open(<span class="string">"POST"</span>, <span class="string">"http://foo.com/foo.php"</span>);</div><div class="line">request.send(formData);</div></pre></td></tr></table></figure>
 <h3 id="不使用FromData对象"><a href="#不使用FromData对象" class="headerlink" title="不使用FromData对象"></a>不使用FromData对象</h3><p>不使用FormData对象的情况下，需要通过AJAX序列化和提交表单 ：<br><a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest#Submitting_forms_and_uploading_files" target="_blank" rel="external">Using nothing but XMLHttpRequest</a></p>
-<h1 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h1>
+<h1 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h1><h2 id="接收"><a href="#接收" class="headerlink" title="接收"></a>接收</h2><p>全局数组 <code>$_FILES</code>，第一个参数是表单的 input name，第二个下标是 “name”, “type”, “size”, “tmp_name” 或 “error”。可以根据这些属性做相关限制，如<strong>限制文件大小、文件类型等</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>文件名</td>
+</tr>
+<tr>
+<td>type</td>
+<td>文件的MIME类型</td>
+</tr>
+<tr>
+<td>size</td>
+<td>以字节Byte为单位的文件大小</td>
+</tr>
+<tr>
+<td>tmp_name</td>
+<td>PHP接收文件会存为暂时文件，如需保存到指定路径还要移动这个暂时文件才可以</td>
+</tr>
+<tr>
+<td>error</td>
+<td><code>1-7</code>代表7种不同错误类别以及<code>0</code>代表成功</td>
+</tr>
+</tbody>
+</table>
+<p><strong>error：</strong><br>成功：0(UPLOAD_ERR_OK)<br>失败：</p>
+<ol>
+<li>超过了配置文件上传文件的大小</li>
+<li>超过了表单设置上传文件的大小</li>
+<li>文件部分被上传</li>
+<li>没有文件被上传</li>
+<li>没有找到临时目录</li>
+<li>文件不可写</li>
+<li>由于PHP的扩展程序中断了文件上传</li>
+</ol>
+<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>上传文件是通过POST发送的，<code>is_uploaded_file(file)</code>函数可以判断指定的文件是否是通过 HTTP POST 上传的，返回布尔值。</p>
+<blockquote>
+<p>该函数可以用于确保恶意的用户无法欺骗脚本去访问本不能访问的文件，例如 /etc/passwd。<br>这种检查显得格外重要，如果上传的文件有可能会造成对用户或本系统的其他用户显示其内容的话。</p>
+</blockquote>
+<h2 id="保存"><a href="#保存" class="headerlink" title="保存"></a>保存</h2><p>上传的文件暂存在tmp_name中，需要使用<code>move_uploaded_file(file,newlocation)</code>将上传的文件移动到指定路径，返回布尔值。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>( move_uploaded_file($tmp_name, $destination) ) &#123;</div><div class="line">  <span class="keyword">echo</span> <span class="string">"文件上传成功"</span>;</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">  <span class="keyword">echo</span> <span class="string">"文件移动失败"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p>使用<code>unlink(filepath)</code>删除文件，参数是文件路径。</p>
+<h2 id="拓展功能"><a href="#拓展功能" class="headerlink" title="拓展功能"></a>拓展功能</h2><p>当然除了接收、验证、保存和删除这四个基本操作外，还可以添加诸如将文件路径存入数据库、生成文件列表等功能，视需求而定。</p>
+
       
     </div>
     
@@ -502,9 +551,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ajax/" rel="tag"># ajax</a>
-          
             <a href="/tags/js/" rel="tag"># js</a>
+          
+            <a href="/tags/ajax/" rel="tag"># ajax</a>
           
             <a href="/tags/php/" rel="tag"># php</a>
           
@@ -684,7 +733,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#FE"><span class="nav-number">1.</span> <span class="nav-text">FE</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML"><span class="nav-number">1.1.</span> <span class="nav-text">HTML</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Form的enctype属性"><span class="nav-number">1.1.1.</span> <span class="nav-text">Form的enctype属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input"><span class="nav-number">1.1.2.</span> <span class="nav-text">Input</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#value"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">value</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#type-”file”"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">type=”file”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#multiple-”multiple”"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">multiple=”multiple”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#accept-”…”"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">accept=”…”</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效果"><span class="nav-number">1.1.3.</span> <span class="nav-text">效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS"><span class="nav-number">1.2.</span> <span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#效果-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS"><span class="nav-number">1.3.</span> <span class="nav-text">JS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FormData对象"><span class="nav-number">1.3.1.</span> <span class="nav-text">FormData对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建FormData对象"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">创建FormData对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#向实例化对象中添加文件字段"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">向实例化对象中添加文件字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加自定义字段"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">添加自定义字段</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AJAX发送"><span class="nav-number">1.3.2.</span> <span class="nav-text">AJAX发送</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不使用FromData对象"><span class="nav-number">1.3.3.</span> <span class="nav-text">不使用FromData对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PHP"><span class="nav-number">2.</span> <span class="nav-text">PHP</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#FE"><span class="nav-number">1.</span> <span class="nav-text">FE</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML"><span class="nav-number">1.1.</span> <span class="nav-text">HTML</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Form的enctype属性"><span class="nav-number">1.1.1.</span> <span class="nav-text">Form的enctype属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input"><span class="nav-number">1.1.2.</span> <span class="nav-text">Input</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#value"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">value</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#type-”file”"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">type=”file”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#multiple-”multiple”"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">multiple=”multiple”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#accept-”…”"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">accept=”…”</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效果"><span class="nav-number">1.1.3.</span> <span class="nav-text">效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS"><span class="nav-number">1.2.</span> <span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#效果-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS"><span class="nav-number">1.3.</span> <span class="nav-text">JS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FormData对象"><span class="nav-number">1.3.1.</span> <span class="nav-text">FormData对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建FormData对象"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">创建FormData对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#向实例化对象中添加文件字段"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">向实例化对象中添加文件字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加自定义字段"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">添加自定义字段</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AJAX发送"><span class="nav-number">1.3.2.</span> <span class="nav-text">AJAX发送</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不使用FromData对象"><span class="nav-number">1.3.3.</span> <span class="nav-text">不使用FromData对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PHP"><span class="nav-number">2.</span> <span class="nav-text">PHP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#接收"><span class="nav-number">2.1.</span> <span class="nav-text">接收</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#验证"><span class="nav-number">2.2.</span> <span class="nav-text">验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保存"><span class="nav-number">2.3.</span> <span class="nav-text">保存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除"><span class="nav-number">2.4.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拓展功能"><span class="nav-number">2.5.</span> <span class="nav-text">拓展功能</span></a></li></ol></li></ol></div>
             
 
           </div>
