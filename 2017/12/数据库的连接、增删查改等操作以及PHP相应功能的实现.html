@@ -53,7 +53,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="js,ajax,php," />
+  <meta name="keywords" content="php,mysql," />
 
 
 
@@ -69,23 +69,21 @@
 
 
 
-<meta name="description" content="包括HTML基础设置、CSS界面优化、JS利用FormData对象和AJAX进行上传、后端接收文件并存储到指定路径以及删除文件操作。">
-<meta name="keywords" content="js,ajax,php">
+<meta name="description" content="最近做的毕设后端要自己写，总结一下数据库基本的连接、增删查改等语句以及相应功能利用PHP实现。">
+<meta name="keywords" content="php,mysql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="利用FormData对象实现AJAX文件上传功能及后端实现">
-<meta property="og:url" content="http://blog.simmzl.cn/2017/12/利用FormData对象实现AJAX文件上传功能及后端接收.html">
+<meta property="og:title" content="数据库的连接、增删查改等操作以及PHP相应功能的实现">
+<meta property="og:url" content="http://blog.simmzl.cn/2017/12/数据库的连接、增删查改等操作以及PHP相应功能的实现.html">
 <meta property="og:site_name" content="CQ STUDIO">
-<meta property="og:description" content="包括HTML基础设置、CSS界面优化、JS利用FormData对象和AJAX进行上传、后端接收文件并存储到指定路径以及删除文件操作。">
+<meta property="og:description" content="最近做的毕设后端要自己写，总结一下数据库基本的连接、增删查改等语句以及相应功能利用PHP实现。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://static.simmzl.cn/blog/171221/4H45b80fG1.png?imageslim">
-<meta property="og:image" content="http://static.simmzl.cn/blog/171220/fh120IGA0F.png?imageslim">
-<meta property="og:image" content="http://static.simmzl.cn/blog/171221/4H45b80fG1.png?imageslim">
-<meta property="og:image" content="http://static.simmzl.cn/blog/171221/6ajifkcLgC.png?imageslim">
-<meta property="og:updated_time" content="2017-12-21T15:25:14.211Z">
+<meta property="og:image" content="http://static.simmzl.cn/blog/171231/EB789gDI79.png?imageslim">
+<meta property="og:image" content="http://static.simmzl.cn/blog/171231/G5i3iL06ge.png?imageslim">
+<meta property="og:updated_time" content="2017-12-31T09:38:27.200Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="利用FormData对象实现AJAX文件上传功能及后端实现">
-<meta name="twitter:description" content="包括HTML基础设置、CSS界面优化、JS利用FormData对象和AJAX进行上传、后端接收文件并存储到指定路径以及删除文件操作。">
-<meta name="twitter:image" content="http://static.simmzl.cn/blog/171221/4H45b80fG1.png?imageslim">
+<meta name="twitter:title" content="数据库的连接、增删查改等操作以及PHP相应功能的实现">
+<meta name="twitter:description" content="最近做的毕设后端要自己写，总结一下数据库基本的连接、增删查改等语句以及相应功能利用PHP实现。">
+<meta name="twitter:image" content="http://static.simmzl.cn/blog/171231/EB789gDI79.png?imageslim">
 
 
 
@@ -115,13 +113,13 @@
 
 
 
-  <link rel="canonical" href="http://blog.simmzl.cn/2017/12/利用FormData对象实现AJAX文件上传功能及后端接收.html"/>
+  <link rel="canonical" href="http://blog.simmzl.cn/2017/12/数据库的连接、增删查改等操作以及PHP相应功能的实现.html"/>
 
 
 
 
 
-  <title>利用FormData对象实现AJAX文件上传功能及后端实现 | CQ STUDIO</title>
+  <title>数据库的连接、增删查改等操作以及PHP相应功能的实现 | CQ STUDIO</title>
   
 
 
@@ -302,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.simmzl.cn/2017/12/利用FormData对象实现AJAX文件上传功能及后端接收.html">
+    <link itemprop="mainEntityOfPage" href="http://blog.simmzl.cn/2017/12/数据库的连接、增删查改等操作以及PHP相应功能的实现.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Simmzl">
@@ -319,7 +317,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">利用FormData对象实现AJAX文件上传功能及后端实现</h2>
+          <h2 class="post-title" itemprop="name headline">数据库的连接、增删查改等操作以及PHP相应功能的实现</h2>
         
 
         <div class="post-meta">
@@ -331,8 +329,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T15:57:53+08:00">
-                2017-12-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-31T14:42:51+08:00">
+                2017-12-31
               </time>
             
 
@@ -354,8 +352,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript</span>
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
                   </a>
                 </span>
 
@@ -396,144 +394,65 @@
       
 
       
-        <p><img src="http://static.simmzl.cn/blog/171221/4H45b80fG1.png?imageslim" alt="mark"><br>包括HTML基础设置、CSS界面优化、JS利用FormData对象和AJAX进行上传、后端接收文件并存储到指定路径以及删除文件操作。<br><a id="more"></a></p>
-<h1 id="FE"><a href="#FE" class="headerlink" title="FE"></a>FE</h1><h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><p>基础的设置：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"file"</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">multiple</span>=<span class="string">"multiple"</span> <span class="attr">name</span>=<span class="string">"file"</span> <span class="attr">accept</span>=<span class="string">"..."</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"上传"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<h3 id="Form的enctype属性"><a href="#Form的enctype属性" class="headerlink" title="Form的enctype属性"></a>Form的enctype属性</h3><p>enctype这个属性管理的是表单的MIME编码，它一共有三个属性：</p>
-<table>
-<thead>
-<tr>
-<th>值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>application/x-www-form-urlencoded</td>
-<td>在发送前编码所有字符（默认）</td>
-</tr>
-<tr>
-<td>multipart/form-data</td>
-<td>不对字符编码，用来制定传输数据的特殊类型，如mp3、jpg</td>
-</tr>
-<tr>
-<td>text/plain</td>
-<td>纯文本传输</td>
-</tr>
-</tbody>
-</table>
-<p>因此，传输完整的文件数据需要<code>multipart/form-data</code>属性。</p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><h4 id="value"><a href="#value" class="headerlink" title="value"></a>value</h4><p>保存了用户指定的文件的名称。</p>
-<h4 id="type-”file”"><a href="#type-”file”" class="headerlink" title="type=”file”"></a>type=”file”</h4><p>设置input类型为file。</p>
-<h4 id="multiple-”multiple”"><a href="#multiple-”multiple”" class="headerlink" title="multiple=”multiple”"></a>multiple=”multiple”</h4><p>可多选，不设置为单选。</p>
-<h4 id="accept-”…”"><a href="#accept-”…”" class="headerlink" title="accept=”…”"></a>accept=”…”</h4><p>设置可选文件的MIME_type。在设置之后点击选择文件按钮会默认显示符合设置的MIME_type的文件（存在兼容性）。具体的文件类型对应的MIME类型可以搜索到，这里列出我用到的类型：</p>
-<table>
-<thead>
-<tr>
-<th>文件类型</th>
-<th>MIME类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>.txt</td>
-<td>text/plain</td>
-</tr>
-<tr>
-<td>.pdf</td>
-<td>application/pdf</td>
-</tr>
-<tr>
-<td>.doc</td>
-<td>application/msword</td>
-</tr>
-<tr>
-<td>.docx</td>
-<td>application/vnd.openxmlformats-officedocument.wordprocessingml.document</td>
-</tr>
-<tr>
-<td>.xls</td>
-<td>application/vnd.ms-excel</td>
-</tr>
-<tr>
-<td>.ppt</td>
-<td>application/vnd.ms-powerpoint</td>
-</tr>
-<tr>
-<td>.pptx</td>
-<td>application/vnd.openxmlformats-officedocument.presentationml.presentation</td>
-</tr>
-</tbody>
-</table>
-<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p><img src="http://static.simmzl.cn/blog/171220/fh120IGA0F.png?imageslim" alt="mark"></p>
-<p>太丑，不能忍…</p>
-<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><p>默认界面会在选择文件按钮后会跟一个显示文件名的文本区域，选择文件按钮无法编辑。<br>我修改的方法是将input框隐藏，再设置一个lable标签使用户点击lable标签时触发选择文件按钮。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"file"</span>&gt;</span>选择文件<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="效果-1"><a href="#效果-1" class="headerlink" title="效果"></a>效果</h3><p><img src="http://static.simmzl.cn/blog/171221/4H45b80fG1.png?imageslim" alt="mark"></p>
-<h2 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h2><p>在使用from提交时，浏览器会向服务器发送选中的文件的内容而不仅仅是发送文件名。</p>
-<blockquote>
-<p>为安全起见，<code>&lt;input type=&quot;file&quot;&gt;</code>即file-upload 元素不允许 HTML 作者或 JavaScript 程序员指定一个默认的文件名。HTML value 属性被忽略，并且对于此类元素来说，value属性是只读的，这意味着只有用户可以输入一个文件名。当用户选择或编辑一个文件名时，file-upload 元素触发 onchange 事件句柄。</p>
-</blockquote>
-<p>利用form提交会导致页面刷新，体验不好，所以使用AJAX进行文件上传是个不错的选择。但这需要我们自己来组织通过POST请求发送的内容。</p>
-<h3 id="FormData对象"><a href="#FormData对象" class="headerlink" title="FormData对象"></a>FormData对象</h3><blockquote>
-<p>通过FormData对象可以组装一组用 XMLHttpRequest发送请求的键/值对。它可以更灵活方便的发送表单数据，因为可以独立于表单使用。如果你把表单的编码类型设置为multipart/form-data ，则通过FormData传输的数据格式和表单通过submit() 方法传输的数据格式相同。<br>—— MDN web docs</p>
-</blockquote>
-<h4 id="创建FormData对象"><a href="#创建FormData对象" class="headerlink" title="创建FormData对象"></a>创建FormData对象</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> formData = <span class="keyword">new</span> FormData();</div></pre></td></tr></table></figure>
-<h4 id="向实例化对象中添加文件字段"><a href="#向实例化对象中添加文件字段" class="headerlink" title="向实例化对象中添加文件字段"></a>向实例化对象中添加文件字段</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> myFile = <span class="built_in">document</span>.getElementById(<span class="string">'file'</span>);</div><div class="line"><span class="comment">// myFile.file[0]为第一个文件（单选）,多个文件（多选）则要循环添加</span></div><div class="line">formData.append(<span class="string">'myFile'</span>, myFile.files[<span class="number">0</span>]);</div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(myFile.files[<span class="number">0</span>]);</div></pre></td></tr></table></figure>
-<p><img src="http://static.simmzl.cn/blog/171221/6ajifkcLgC.png?imageslim" alt="mark"></p>
-<p>其中size属性单位是byte（字节），即b。</p>
-<h4 id="添加自定义字段"><a href="#添加自定义字段" class="headerlink" title="添加自定义字段"></a>添加自定义字段</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">formData.append(<span class="string">'username'</span>, <span class="string">'simmzl'</span>);</div></pre></td></tr></table></figure>
-<h3 id="AJAX发送"><a href="#AJAX发送" class="headerlink" title="AJAX发送"></a>AJAX发送</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> request = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">request.open(<span class="string">"POST"</span>, <span class="string">"http://foo.com/foo.php"</span>);</div><div class="line">request.send(formData);</div></pre></td></tr></table></figure>
-<h3 id="不使用FromData对象"><a href="#不使用FromData对象" class="headerlink" title="不使用FromData对象"></a>不使用FromData对象</h3><p>不使用FormData对象的情况下，需要通过AJAX序列化和提交表单 ：<br><a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest#Submitting_forms_and_uploading_files" target="_blank" rel="external">Using nothing but XMLHttpRequest</a></p>
-<h1 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h1><h2 id="接收"><a href="#接收" class="headerlink" title="接收"></a>接收</h2><p>全局数组 <code>$_FILES</code>，第一个参数是表单的 input name，第二个下标是 “name”, “type”, “size”, “tmp_name” 或 “error”。可以根据这些属性做相关限制，如<strong>限制文件大小、文件类型等</strong>。</p>
-<table>
-<thead>
-<tr>
-<th>值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>name</td>
-<td>文件名</td>
-</tr>
-<tr>
-<td>type</td>
-<td>文件的MIME类型</td>
-</tr>
-<tr>
-<td>size</td>
-<td>以字节Byte为单位的文件大小</td>
-</tr>
-<tr>
-<td>tmp_name</td>
-<td>PHP接收文件会存为暂时文件，如需保存到指定路径还要移动这个暂时文件才可以</td>
-</tr>
-<tr>
-<td>error</td>
-<td><code>1-7</code>代表7种不同错误类别以及<code>0</code>代表成功</td>
-</tr>
-</tbody>
-</table>
-<p><strong>error：</strong><br>成功：0(UPLOAD_ERR_OK)<br>失败：</p>
-<ol>
-<li>超过了配置文件上传文件的大小</li>
-<li>超过了表单设置上传文件的大小</li>
-<li>文件部分被上传</li>
-<li>没有文件被上传</li>
-<li>没有找到临时目录</li>
-<li>文件不可写</li>
-<li>由于PHP的扩展程序中断了文件上传</li>
-</ol>
-<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>上传文件是通过POST发送的，<code>is_uploaded_file(file)</code>函数可以判断指定的文件是否是通过 HTTP POST 上传的，返回布尔值。</p>
-<blockquote>
-<p>该函数可以用于确保恶意的用户无法欺骗脚本去访问本不能访问的文件，例如 /etc/passwd。<br>这种检查显得格外重要，如果上传的文件有可能会造成对用户或本系统的其他用户显示其内容的话。</p>
-</blockquote>
-<h2 id="保存"><a href="#保存" class="headerlink" title="保存"></a>保存</h2><p>上传的文件暂存在tmp_name中，需要使用<code>move_uploaded_file(file,newlocation)</code>将上传的文件移动到指定路径，返回布尔值。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>( move_uploaded_file($tmp_name, $destination) ) &#123;</div><div class="line">  <span class="keyword">echo</span> <span class="string">"文件上传成功"</span>;</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">  <span class="keyword">echo</span> <span class="string">"文件移动失败"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p>使用<code>unlink(filepath)</code>删除文件，参数是文件路径。</p>
-<h2 id="拓展功能"><a href="#拓展功能" class="headerlink" title="拓展功能"></a>拓展功能</h2><p>当然除了接收、验证、保存和删除这四个基本操作外，还可以添加诸如将文件路径存入数据库、生成文件列表等功能，视需求而定。</p>
+        <p><img src="http://static.simmzl.cn/blog/171231/EB789gDI79.png?imageslim" alt="mark"><br>最近做的毕设后端要自己写，总结一下数据库基本的连接、增删查改等语句以及相应功能利用PHP实现。<br><a id="more"></a></p>
+<h1 id="连接-关闭-MySQL主机"><a href="#连接-关闭-MySQL主机" class="headerlink" title="连接/关闭 MySQL主机"></a>连接/关闭 MySQL主机</h1><h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><p><code>mysql_connect()</code> 函数打开非持久的 MySQL 连接，它最常用到的三个参数是MySQL主机名称、用户名、密码。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// php</span></div><div class="line"><span class="comment">// MySQL主机名称，通常是 localhost</span></div><div class="line">$mysql_server_name=<span class="string">'localhost'</span>; </div><div class="line"><span class="comment">// 资料库的帐号</span></div><div class="line">$mysql_username=<span class="string">'username'</span>; </div><div class="line"><span class="comment">// 资料库的帐号密码</span></div><div class="line">$mysql_password=<span class="string">'password'</span>; </div><div class="line"><span class="comment">// 数据库的名称</span></div><div class="line">$mysql_database=<span class="string">'your_database'</span>; </div><div class="line"><span class="comment">// 连接</span></div><div class="line">$con=mysql_connect($mysql_server_name,$mysql_username,$mysql_password) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">"error connecting"</span>);</div><div class="line"></div><div class="line"><span class="comment">// 以上可以简写</span></div><div class="line">$con=mysql_connect(<span class="string">'localhost'</span>,<span class="string">'username'</span>,<span class="string">'password'</span>) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">"error connecting"</span>);</div><div class="line"></div><div class="line"><span class="comment">// 数据库输出编码</span></div><div class="line">mysql_query(<span class="string">"set names 'utf8'"</span>); </div><div class="line"><span class="comment">// 打开数据库'your_database'</span></div><div class="line">mysql_select_db($mysql_database);</div><div class="line"><span class="comment">// 定义sql语句</span></div><div class="line">$sql = <span class="string">"select * from table where username = demo"</span>;</div><div class="line"><span class="comment">// 执行sql语句</span></div><div class="line">$row = mysql_query($sql,$con); <span class="comment">//查询</span></div></pre></td></tr></table></figure>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 关闭mysql连接</span></div><div class="line">mysql_close($con);</div></pre></td></tr></table></figure>
+<h1 id="执行MySQL语句"><a href="#执行MySQL语句" class="headerlink" title="执行MySQL语句"></a>执行MySQL语句</h1><p><code>mysql_query(query,connection)</code>函数执行一条 MySQL 查询，如果查询执行不正确则返回 FALSE。</p>
+<ul>
+<li><code>query</code> MySQL语句</li>
+<li><code>connection</code> 主机连接，如果未规定，则使用上一个打开的连接。</li>
+</ul>
+<h1 id="新建-删除-数据库"><a href="#新建-删除-数据库" class="headerlink" title="新建/删除 数据库"></a>新建/删除 数据库</h1><h2 id="新建"><a href="#新建" class="headerlink" title="新建"></a>新建</h2><p>MySQL语句：<code>CREATE DATABASE my_db</code>；<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 定义sql语句</span></div><div class="line">$sql = <span class="string">"CREATE DATABASE my_db"</span>;</div><div class="line"><span class="comment">// 执行sql语句</span></div><div class="line">$row = mysql_query($sql,$con);</div></pre></td></tr></table></figure></p>
+<h2 id="删除-1"><a href="#删除-1" class="headerlink" title="删除"></a>删除</h2><p>MySQL语句：<code>DROP DATABASE my_db</code>；<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$sql = <span class="string">"DROP DATABASE my_db"</span>;</div><div class="line">$row = mysql_query($sql,$con);</div></pre></td></tr></table></figure></p>
+<h1 id="新建-删除-数据表"><a href="#新建-删除-数据表" class="headerlink" title="新建/删除 数据表"></a>新建/删除 数据表</h1><h2 id="新建-1"><a href="#新建-1" class="headerlink" title="新建"></a>新建</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name (column_name column_type);</div></pre></td></tr></table></figure>
+<ul>
+<li><code>column_name</code> 为列名，即字段名</li>
+<li><code>column_type</code> 为该字段属性</li>
+</ul>
+<p>phpMyAdmin:</p>
+<p><img src="http://static.simmzl.cn/blog/171231/G5i3iL06ge.png?imageslim" alt="mark"></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$sql = <span class="string">"CREATE TABLE  `machine_data`.`00000003` (</span></div><div class="line"><span class="string">`id` INT( 20 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,</span></div><div class="line"><span class="string">`date` INT( 20 ) NOT NULL ,</span></div><div class="line"><span class="string">`wind_speed` FLOAT NOT NULL ,</span></div><div class="line"><span class="string">`temperature` FLOAT NOT NULL ,</span></div><div class="line"><span class="string">`humidity` FLOAT NOT NULL</span></div><div class="line"><span class="string">) ENGINE = MYISAM"</span></div><div class="line">$result = mysql_query($sql,$con);</div></pre></td></tr></table></figure>
+<h2 id="删除-2"><a href="#删除-2" class="headerlink" title="删除"></a>删除</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> table_name ;</div></pre></td></tr></table></figure>
+<h1 id="向表中插入数据（增）INSERT"><a href="#向表中插入数据（增）INSERT" class="headerlink" title="向表中插入数据（增）INSERT"></a>向表中插入数据（增）INSERT</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name ( field1, field2,...fieldN )</div><div class="line">                       <span class="keyword">VALUES</span></div><div class="line">                       ( value1, value2,...valueN );</div></pre></td></tr></table></figure>
+<p>例如用户注册功能：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// POST接收（默认已运行addslashes()转义字符）</span></div><div class="line">$username = $_POST[<span class="string">'username'</span>];</div><div class="line">$password = $_POST[<span class="string">'password'</span>];</div><div class="line">$email = $_POST[<span class="string">'email'</span>];</div><div class="line"></div><div class="line">$sql = <span class="string">"insert into user (username,password,email) values ('&#123;$username&#125;','&#123;$password&#125;','&#123;$email&#125;')"</span>;</div><div class="line">$result = mysql_query($sql,$con);</div></pre></td></tr></table></figure></p>
+<h1 id="删-DELETE"><a href="#删-DELETE" class="headerlink" title="删 DELETE"></a>删 DELETE</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> table_name [<span class="keyword">WHERE</span> Clause]</div></pre></td></tr></table></figure>
+<p>ps: 如果没有指定 WHERE 子句，MySQL 表中的所有记录将被删除。</p>
+<p>例如删除用户名为<code>simmzl</code>的用户：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$sql = <span class="string">" DELETE FROM user WHERE username = simmzl "</span>;</div></pre></td></tr></table></figure>
+<h1 id="查-SELECT"><a href="#查-SELECT" class="headerlink" title="查 SELECT"></a>查 SELECT</h1><h2 id="SELECT"><a href="#SELECT" class="headerlink" title="SELECT"></a>SELECT</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> column_name,column_name... <span class="keyword">FROM</span> table_name</div><div class="line">[<span class="keyword">WHERE</span> Clause]</div><div class="line">[<span class="keyword">LIMIT</span> N][ <span class="keyword">OFFSET</span> M]</div></pre></td></tr></table></figure>
+<ul>
+<li>也可以使用<code>*</code> 代替<code>column_name</code>，表示查询所有。</li>
+<li><code>LIMIT</code> 设定返回的记录数</li>
+<li><code>OFFSET</code> 设定开始查询的数据偏移量。默认情况下偏移量为0。</li>
+</ul>
+<p>例如查询用户名为<code>simmzl</code>的用户信息：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 数据库输出编码</span></div><div class="line">mysql_query(<span class="string">"set names 'utf8'"</span>); </div><div class="line"><span class="comment">// 打开数据库'your_database'</span></div><div class="line">mysql_select_db(<span class="string">"my_db"</span>);</div><div class="line">$sql = <span class="string">"SELECT * FROM user WHERE USERNAME = simmzl"</span>;</div><div class="line">$result = mysql_query($sql, $con);</div></pre></td></tr></table></figure>
+<h2 id="ORDER-BY-排序"><a href="#ORDER-BY-排序" class="headerlink" title="ORDER BY 排序"></a>ORDER BY 排序</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ORDER BY field1, [field2...] [ASC [DESC]]</div></pre></td></tr></table></figure>
+<ul>
+<li><code>ASC</code> 升序</li>
+<li><code>DESC</code>降序</li>
+</ul>
+<p>例如将所有用户信息输出并按照<code>username</code>升序排序：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$sql = <span class="string">"SELECT * FROM user ORDER BY username ASC"</span>;</div></pre></td></tr></table></figure>
+<h2 id="mysql-fetch-array"><a href="#mysql-fetch-array" class="headerlink" title="mysql_fetch_array()"></a>mysql_fetch_array()</h2><p><code>mysql_query()</code> 仅对 <code>SELECT</code>语句返回一个资源标识符，因此还需要使用<code>mysql_fetch_array(data,array_type)</code>将取得的数据转成数组。</p>
+<p><code>array_type</code>有三个值：</p>
+<ul>
+<li><code>MYSQL_ASSOC</code> - 关联数组，如： [username] =&gt; simmzl</li>
+<li><code>MYSQL_NUM</code> - 数字数组，如：[0] =&gt; simmzl</li>
+<li><code>MYSQL_BOTH</code> - 默认。同时产生关联和数字数组</li>
+</ul>
+<p>因此，在执行<code>$result = mysql_query($sql, $con)</code>后，还需执行</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 转成关联数组</span></div><div class="line">$res = mysql_fetch_array($result,MYSQL_ASSOC);</div><div class="line"><span class="keyword">echo</span> $res;</div></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Array</span></div><div class="line">(</div><div class="line">[username] =&gt; simmzl</div><div class="line">[pwd] =&gt; xxx</div><div class="line">[email] =&gt; me@simmzl.cn</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>在当<code>mysql_query()</code>查询结果有多行时，依次调用<code>mysql_fetch_array()</code>将返回结果集中的下一行，如果没有更多行则返回 FALSE。<br>因此使用while循环取出所有行数据：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span>($tmp[] = mysql_fetch_array($result,MYSQL_ASSOC))&#123;&#125;;</div><div class="line"><span class="comment">// tmp[]最后一个值为flase，故删除</span></div><div class="line">array_pop($tmp);</div></pre></td></tr></table></figure>
+<h2 id="json-encode"><a href="#json-encode" class="headerlink" title="json_encode()"></a>json_encode()</h2><p>将<strong>数组</strong>转成<strong>前端</strong>想要的<strong>JSON格式</strong><br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">echo</span> json_encode($res);</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">  &#123;</div><div class="line">    &quot;username&quot;: &quot;simmzl&quot;,</div><div class="line">    &quot;pwd&quot;: &quot;xxx&quot;,</div><div class="line">    &quot;email&quot;: &quot;me@simmzl.cn&quot;</div><div class="line">  &#125;</div><div class="line">]</div></pre></td></tr></table></figure>
+<h2 id="json-decode"><a href="#json-decode" class="headerlink" title="json_decode()"></a>json_decode()</h2><p>相反，将JSON转成数组。</p>
+<h1 id="改-UPDATE"><a href="#改-UPDATE" class="headerlink" title="改 UPDATE"></a>改 UPDATE</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">UPDATE</span> table_name <span class="keyword">SET</span> field1=<span class="keyword">new</span>-value1, field2=<span class="keyword">new</span>-value2</div><div class="line">[<span class="keyword">WHERE</span> Clause]</div></pre></td></tr></table></figure>
+<p>例如修改<code>simmzl</code>的密码和邮箱：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$sql = <span class="string">"UPDATE user SET pwd = xxxx, email = hr@simmzl.cn WHERE username = simmzl"</span>;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -551,11 +470,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/js/" rel="tag"># js</a>
-          
-            <a href="/tags/ajax/" rel="tag"># ajax</a>
-          
             <a href="/tags/php/" rel="tag"># php</a>
+          
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
           
         </div>
       
@@ -568,8 +485,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/左侧定宽，右侧自适应与双飞翼布局.html" rel="next" title="左侧定宽，右侧自适应与双飞翼布局">
-                <i class="fa fa-chevron-left"></i> 左侧定宽，右侧自适应与双飞翼布局
+              <a href="/2017/12/利用FormData对象实现AJAX文件上传功能及后端接收.html" rel="next" title="利用FormData对象实现AJAX文件上传功能及后端实现">
+                <i class="fa fa-chevron-left"></i> 利用FormData对象实现AJAX文件上传功能及后端实现
               </a>
             
           </div>
@@ -577,10 +494,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/数据库的连接、增删查改等操作以及PHP相应功能的实现.html" rel="prev" title="数据库的连接、增删查改等操作以及PHP相应功能的实现">
-                数据库的连接、增删查改等操作以及PHP相应功能的实现 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -737,7 +650,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#FE"><span class="nav-number">1.</span> <span class="nav-text">FE</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML"><span class="nav-number">1.1.</span> <span class="nav-text">HTML</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Form的enctype属性"><span class="nav-number">1.1.1.</span> <span class="nav-text">Form的enctype属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input"><span class="nav-number">1.1.2.</span> <span class="nav-text">Input</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#value"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">value</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#type-”file”"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">type=”file”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#multiple-”multiple”"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">multiple=”multiple”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#accept-”…”"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">accept=”…”</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效果"><span class="nav-number">1.1.3.</span> <span class="nav-text">效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS"><span class="nav-number">1.2.</span> <span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#效果-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS"><span class="nav-number">1.3.</span> <span class="nav-text">JS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FormData对象"><span class="nav-number">1.3.1.</span> <span class="nav-text">FormData对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建FormData对象"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">创建FormData对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#向实例化对象中添加文件字段"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">向实例化对象中添加文件字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加自定义字段"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">添加自定义字段</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AJAX发送"><span class="nav-number">1.3.2.</span> <span class="nav-text">AJAX发送</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不使用FromData对象"><span class="nav-number">1.3.3.</span> <span class="nav-text">不使用FromData对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PHP"><span class="nav-number">2.</span> <span class="nav-text">PHP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#接收"><span class="nav-number">2.1.</span> <span class="nav-text">接收</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#验证"><span class="nav-number">2.2.</span> <span class="nav-text">验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保存"><span class="nav-number">2.3.</span> <span class="nav-text">保存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除"><span class="nav-number">2.4.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拓展功能"><span class="nav-number">2.5.</span> <span class="nav-text">拓展功能</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#连接-关闭-MySQL主机"><span class="nav-number">1.</span> <span class="nav-text">连接/关闭 MySQL主机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#连接"><span class="nav-number">1.1.</span> <span class="nav-text">连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除"><span class="nav-number">1.2.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#执行MySQL语句"><span class="nav-number">2.</span> <span class="nav-text">执行MySQL语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新建-删除-数据库"><span class="nav-number">3.</span> <span class="nav-text">新建/删除 数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#新建"><span class="nav-number">3.1.</span> <span class="nav-text">新建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除-1"><span class="nav-number">3.2.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新建-删除-数据表"><span class="nav-number">4.</span> <span class="nav-text">新建/删除 数据表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#新建-1"><span class="nav-number">4.1.</span> <span class="nav-text">新建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除-2"><span class="nav-number">4.2.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#向表中插入数据（增）INSERT"><span class="nav-number">5.</span> <span class="nav-text">向表中插入数据（增）INSERT</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删-DELETE"><span class="nav-number">6.</span> <span class="nav-text">删 DELETE</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查-SELECT"><span class="nav-number">7.</span> <span class="nav-text">查 SELECT</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SELECT"><span class="nav-number">7.1.</span> <span class="nav-text">SELECT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ORDER-BY-排序"><span class="nav-number">7.2.</span> <span class="nav-text">ORDER BY 排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql-fetch-array"><span class="nav-number">7.3.</span> <span class="nav-text">mysql_fetch_array()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#json-encode"><span class="nav-number">7.4.</span> <span class="nav-text">json_encode()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#json-decode"><span class="nav-number">7.5.</span> <span class="nav-text">json_decode()</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#改-UPDATE"><span class="nav-number">8.</span> <span class="nav-text">改 UPDATE</span></a></li></ol></div>
             
 
           </div>
