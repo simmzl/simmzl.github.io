@@ -69,20 +69,20 @@
 
 
 
-<meta name="description" content="最近做的毕设后端要自己写，总结一下数据库基本的连接、增删查改等语句以及相应功能利用PHP实现。">
+<meta name="description" content="最近做的项目后端要自己写，总结一下数据库基本的连接、增删查改等语句以及相应功能利用PHP实现。">
 <meta name="keywords" content="php,mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库的连接、增删查改等操作以及PHP相应功能的实现">
 <meta property="og:url" content="http://blog.simmzl.cn/2017/12/数据库的连接、增删查改等操作以及PHP相应功能的实现.html">
 <meta property="og:site_name" content="CQ STUDIO">
-<meta property="og:description" content="最近做的毕设后端要自己写，总结一下数据库基本的连接、增删查改等语句以及相应功能利用PHP实现。">
+<meta property="og:description" content="最近做的项目后端要自己写，总结一下数据库基本的连接、增删查改等语句以及相应功能利用PHP实现。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://static.simmzl.cn/blog/171231/EB789gDI79.png?imageslim">
 <meta property="og:image" content="http://static.simmzl.cn/blog/171231/G5i3iL06ge.png?imageslim">
-<meta property="og:updated_time" content="2017-12-31T09:38:27.200Z">
+<meta property="og:updated_time" content="2017-12-31T09:51:44.396Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库的连接、增删查改等操作以及PHP相应功能的实现">
-<meta name="twitter:description" content="最近做的毕设后端要自己写，总结一下数据库基本的连接、增删查改等语句以及相应功能利用PHP实现。">
+<meta name="twitter:description" content="最近做的项目后端要自己写，总结一下数据库基本的连接、增删查改等语句以及相应功能利用PHP实现。">
 <meta name="twitter:image" content="http://static.simmzl.cn/blog/171231/EB789gDI79.png?imageslim">
 
 
@@ -394,7 +394,7 @@
       
 
       
-        <p><img src="http://static.simmzl.cn/blog/171231/EB789gDI79.png?imageslim" alt="mark"><br>最近做的毕设后端要自己写，总结一下数据库基本的连接、增删查改等语句以及相应功能利用PHP实现。<br><a id="more"></a></p>
+        <p><img src="http://static.simmzl.cn/blog/171231/EB789gDI79.png?imageslim" alt="mark"><br>最近做的项目后端要自己写，总结一下数据库基本的连接、增删查改等语句以及相应功能利用PHP实现。<br><a id="more"></a></p>
 <h1 id="连接-关闭-MySQL主机"><a href="#连接-关闭-MySQL主机" class="headerlink" title="连接/关闭 MySQL主机"></a>连接/关闭 MySQL主机</h1><h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><p><code>mysql_connect()</code> 函数打开非持久的 MySQL 连接，它最常用到的三个参数是MySQL主机名称、用户名、密码。</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// php</span></div><div class="line"><span class="comment">// MySQL主机名称，通常是 localhost</span></div><div class="line">$mysql_server_name=<span class="string">'localhost'</span>; </div><div class="line"><span class="comment">// 资料库的帐号</span></div><div class="line">$mysql_username=<span class="string">'username'</span>; </div><div class="line"><span class="comment">// 资料库的帐号密码</span></div><div class="line">$mysql_password=<span class="string">'password'</span>; </div><div class="line"><span class="comment">// 数据库的名称</span></div><div class="line">$mysql_database=<span class="string">'your_database'</span>; </div><div class="line"><span class="comment">// 连接</span></div><div class="line">$con=mysql_connect($mysql_server_name,$mysql_username,$mysql_password) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">"error connecting"</span>);</div><div class="line"></div><div class="line"><span class="comment">// 以上可以简写</span></div><div class="line">$con=mysql_connect(<span class="string">'localhost'</span>,<span class="string">'username'</span>,<span class="string">'password'</span>) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">"error connecting"</span>);</div><div class="line"></div><div class="line"><span class="comment">// 数据库输出编码</span></div><div class="line">mysql_query(<span class="string">"set names 'utf8'"</span>); </div><div class="line"><span class="comment">// 打开数据库'your_database'</span></div><div class="line">mysql_select_db($mysql_database);</div><div class="line"><span class="comment">// 定义sql语句</span></div><div class="line">$sql = <span class="string">"select * from table where username = demo"</span>;</div><div class="line"><span class="comment">// 执行sql语句</span></div><div class="line">$row = mysql_query($sql,$con); <span class="comment">//查询</span></div></pre></td></tr></table></figure>
 <h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 关闭mysql连接</span></div><div class="line">mysql_close($con);</div></pre></td></tr></table></figure>
