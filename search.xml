@@ -3,7 +3,7 @@
   <entry>
     <title></title>
     <url>%2F2018%2F01%2FSome-tips-in-Jan-2018.html</url>
-    <content type="text"><![CDATA[title: ‘Some tips in Jan,2018’date: 2018-01-18 20:55:24categories: 笔记tags: js css Q&amp;A 1234567891011121314151617181920212223242526272829303132//TODO// Object.defineproperty()// 垂直重叠// 字的基线// 深拷贝与浅拷贝// 升级为全局变量的原因// HTTPS与HTTP// &gt; + ~// rem 在chrome中设置宽高// IOT 中pull-right// 小题var obj1 = &#123; age: 20, getAge: function() &#123; return this.age; &#125;&#125;var obj2 = &#123; age: 30 &#125;var getAge = obj1.getAge;obj2.getAge = getAge;console.log(obj1.getAge());console.log(obj2.getAge());]]></content>
+    <content type="text"><![CDATA[title: Some tips in Jan,2018date: 2018-01-18 20:55:24categories: 笔记tags: js css Q&amp;A 1234567891011121314151617181920212223242526272829303132//TODO// Object.defineproperty()// 垂直重叠// 字的基线// 深拷贝与浅拷贝// 升级为全局变量的原因// HTTPS与HTTP// &gt; + ~// rem 在chrome中设置宽高// IOT 中pull-right// 小题var obj1 = &#123; age: 20, getAge: function() &#123; return this.age; &#125;&#125;var obj2 = &#123; age: 30 &#125;var getAge = obj1.getAge;obj2.getAge = getAge;console.log(obj1.getAge());console.log(obj2.getAge());]]></content>
   </entry>
   <entry>
     <title><![CDATA[数据库的连接、增删查改等操作以及PHP相应功能的实现]]></title>
@@ -25,8 +25,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>ajax</tag>
+        <tag>js</tag>
         <tag>php</tag>
       </tags>
   </entry>
@@ -263,8 +263,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>ajax</tag>
+        <tag>js</tag>
       </tags>
   </entry>
 </search>
