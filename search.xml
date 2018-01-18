@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title></title>
+    <url>%2F2018%2F01%2FSome-tips-in-Jan-2018.html</url>
+    <content type="text"><![CDATA[title: ‘Some tips in Jan,2018’date: 2018-01-18 20:55:24categories: 笔记tags: js css Q&amp;A 1234567891011121314151617181920212223242526272829303132//TODO// Object.defineproperty()// 垂直重叠// 字的基线// 深拷贝与浅拷贝// 升级为全局变量的原因// HTTPS与HTTP// &gt; + ~// rem 在chrome中设置宽高// IOT 中pull-right// 小题var obj1 = &#123; age: 20, getAge: function() &#123; return this.age; &#125;&#125;var obj2 = &#123; age: 30 &#125;var getAge = obj1.getAge;obj2.getAge = getAge;console.log(obj1.getAge());console.log(obj2.getAge());]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[数据库的连接、增删查改等操作以及PHP相应功能的实现]]></title>
     <url>%2F2017%2F12%2F%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E8%BF%9E%E6%8E%A5%E3%80%81%E5%A2%9E%E5%88%A0%E6%9F%A5%E6%94%B9%E7%AD%89%E6%93%8D%E4%BD%9C%E4%BB%A5%E5%8F%8APHP%E7%9B%B8%E5%BA%94%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0.html</url>
     <content type="text"><![CDATA[最近做的项目后端要自己写，总结一下数据库基本的连接、增删查改等语句以及相应功能利用PHP实现。 连接/关闭 MySQL主机连接mysql_connect() 函数打开非持久的 MySQL 连接，它最常用到的三个参数是MySQL主机名称、用户名、密码。 1234567891011121314151617181920212223// php// MySQL主机名称，通常是 localhost$mysql_server_name='localhost'; // 资料库的帐号$mysql_username='username'; // 资料库的帐号密码$mysql_password='password'; // 数据库的名称$mysql_database='your_database'; // 连接$con=mysql_connect($mysql_server_name,$mysql_username,$mysql_password) or die("error connecting");// 以上可以简写$con=mysql_connect('localhost','username','password') or die("error connecting");// 数据库输出编码mysql_query("set names 'utf8'"); // 打开数据库'your_database'mysql_select_db($mysql_database);// 定义sql语句$sql = "select * from table where username = demo";// 执行sql语句$row = mysql_query($sql,$con); //查询 删除12// 关闭mysql连接mysql_close($con); 执行MySQL语句mysql_query(query,connection)函数执行一条 MySQL 查询，如果查询执行不正确则返回 FALSE。 query MySQL语句 connection 主机连接，如果未规定，则使用上一个打开的连接。 新建/删除 数据库新建MySQL语句：CREATE DATABASE my_db；1234// 定义sql语句$sql = "CREATE DATABASE my_db";// 执行sql语句$row = mysql_query($sql,$con); 删除MySQL语句：DROP DATABASE my_db；12$sql = "DROP DATABASE my_db";$row = mysql_query($sql,$con); 新建/删除 数据表新建1CREATE TABLE table_name (column_name column_type); column_name 为列名，即字段名 column_type 为该字段属性 phpMyAdmin: 12345678$sql = "CREATE TABLE `machine_data`.`00000003` (`id` INT( 20 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,`date` INT( 20 ) NOT NULL ,`wind_speed` FLOAT NOT NULL ,`temperature` FLOAT NOT NULL ,`humidity` FLOAT NOT NULL) ENGINE = MYISAM"$result = mysql_query($sql,$con); 删除1DROP TABLE table_name ; 向表中插入数据（增）INSERT123INSERT INTO table_name ( field1, field2,...fieldN ) VALUES ( value1, value2,...valueN ); 例如用户注册功能：1234567// POST接收（默认已运行addslashes()转义字符）$username = $_POST['username'];$password = $_POST['password'];$email = $_POST['email'];$sql = "insert into user (username,password,email) values ('&#123;$username&#125;','&#123;$password&#125;','&#123;$email&#125;')";$result = mysql_query($sql,$con); 删 DELETE1DELETE FROM table_name [WHERE Clause] ps: 如果没有指定 WHERE 子句，MySQL 表中的所有记录将被删除。 例如删除用户名为simmzl的用户： 1$sql = " DELETE FROM user WHERE username = simmzl "; 查 SELECTSELECT123SELECT column_name,column_name... FROM table_name[WHERE Clause][LIMIT N][ OFFSET M] 也可以使用* 代替column_name，表示查询所有。 LIMIT 设定返回的记录数 OFFSET 设定开始查询的数据偏移量。默认情况下偏移量为0。 例如查询用户名为simmzl的用户信息： 123456// 数据库输出编码mysql_query("set names 'utf8'"); // 打开数据库'your_database'mysql_select_db("my_db");$sql = "SELECT * FROM user WHERE USERNAME = simmzl";$result = mysql_query($sql, $con); ORDER BY 排序1ORDER BY field1, [field2...] [ASC [DESC]] ASC 升序 DESC降序 例如将所有用户信息输出并按照username升序排序： 1$sql = "SELECT * FROM user ORDER BY username ASC"; mysql_fetch_array()mysql_query() 仅对 SELECT语句返回一个资源标识符，因此还需要使用mysql_fetch_array(data,array_type)将取得的数据转成数组。 array_type有三个值： MYSQL_ASSOC - 关联数组，如： [username] =&gt; simmzl MYSQL_NUM - 数字数组，如：[0] =&gt; simmzl MYSQL_BOTH - 默认。同时产生关联和数字数组 因此，在执行$result = mysql_query($sql, $con)后，还需执行 123// 转成关联数组$res = mysql_fetch_array($result,MYSQL_ASSOC);echo $res; 123456Array([username] =&gt; simmzl[pwd] =&gt; xxx[email] =&gt; me@simmzl.cn) 在当mysql_query()查询结果有多行时，依次调用mysql_fetch_array()将返回结果集中的下一行，如果没有更多行则返回 FALSE。因此使用while循环取出所有行数据： 123while($tmp[] = mysql_fetch_array($result,MYSQL_ASSOC))&#123;&#125;;// tmp[]最后一个值为flase，故删除array_pop($tmp); json_encode()将数组转成前端想要的JSON格式1echo json_encode($res); 1234567[ &#123; &quot;username&quot;: &quot;simmzl&quot;, &quot;pwd&quot;: &quot;xxx&quot;, &quot;email&quot;: &quot;me@simmzl.cn&quot; &#125;] json_decode()相反，将JSON转成数组。 改 UPDATE12UPDATE table_name SET field1=new-value1, field2=new-value2[WHERE Clause] 例如修改simmzl的密码和邮箱： 1$sql = "UPDATE user SET pwd = xxxx, email = hr@simmzl.cn WHERE username = simmzl";]]></content>
@@ -150,8 +155,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>面试</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -185,8 +190,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>笔试题</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
