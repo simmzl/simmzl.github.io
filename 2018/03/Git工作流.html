@@ -77,7 +77,7 @@
 <meta property="og:site_name" content="CQ STUDIO">
 <meta property="og:description" content="多人协作Git操作必不可少，参考大佬的文章梳理总结下整个Git工作流以及常用到的Git命令。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-23T10:16:13.215Z">
+<meta property="og:updated_time" content="2018-03-26T09:08:45.549Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git工作流及常见命令">
 <meta name="twitter:description" content="多人协作Git操作必不可少，参考大佬的文章梳理总结下整个Git工作流以及常用到的Git命令。">
@@ -413,17 +413,13 @@
 <li><code>git branch -r</code>查看远程分支</li>
 <li><code>git branch -a</code> 查看本地和远程所有分支</li>
 <li><code>git branch -d &lt;local-branchname&gt;</code> 删除本地分支</li>
-<li><p><code>git push origin --delete &lt;remote-branchname&gt;</code>删除远程分支</p>
-</li>
-<li><p><code>git diff --word-diff</code>详细展示一行中的修改</p>
-</li>
-<li><p><code>git diff &lt;commit-id&gt; &lt;commit-id&gt;</code>查看两个 commit 的不同</p>
-</li>
-<li><p><code>git remote add origin git@github.com:git_username/repository_name.git</code>本地目录下关联远程仓库</p>
-</li>
+<li><code>git push origin --delete &lt;remote-branchname&gt;</code>删除远程分支</li>
+<li><code>git diff --word-diff</code>详细展示一行中的修改</li>
+<li><code>git diff &lt;commit-id&gt; &lt;commit-id&gt;</code>查看两个 commit 的不同</li>
+<li><code>git remote add origin git@github.com:git_username/repository_name.git</code>本地目录下关联远程仓库</li>
 <li><code>git remote remove origin</code>取消本地目录下关联的远程仓库</li>
 </ul>
-<h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h2><p>Git钩子</p>
+<h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h2><h3 id="Git钩子"><a href="#Git钩子" class="headerlink" title="Git钩子"></a>Git钩子</h3><p>可以使用husky或其他插件在precommit或者prepush时执行脚本命令。<br>遇到个问题:<br>在commit之前，会自动执行<code>npm run -s precommit</code>, 然后根据<code>package.json &gt; scripts &gt; &quot;precommit&quot;: &quot;npm run lint&quot;</code> ，执行<code>npm run lint</code>进行代码校验。但是自动执行<code>npm run -s precommit</code>时会报“npm 不是内部或外部命令”，手动执行<code>npm run -s precommit</code>一切正常，且<code>node</code>、<code>npm</code>全局环境均已配好。目前还不知道原因所在，只能通过<code>git commit --no-verify</code>绕过验证.</p>
 <h2 id="MORE"><a href="#MORE" class="headerlink" title="MORE"></a>MORE</h2><p><a href="https://git-scm.com/book/zh/v1/自定义-Git-Git挂钩" target="_blank" rel="external">MORE</a></p>
 
       
@@ -620,7 +616,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用分支约定"><span class="nav-number">1.</span> <span class="nav-text">常用分支约定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主分支"><span class="nav-number">1.1.</span> <span class="nav-text">主分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发分支"><span class="nav-number">1.2.</span> <span class="nav-text">开发分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试分支"><span class="nav-number">1.3.</span> <span class="nav-text">测试分支</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程"><span class="nav-number">2.</span> <span class="nav-text">流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开发"><span class="nav-number">2.1.</span> <span class="nav-text">开发</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见Git命令"><span class="nav-number">3.</span> <span class="nav-text">常见Git命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#坑"><span class="nav-number">4.</span> <span class="nav-text">坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MORE"><span class="nav-number">5.</span> <span class="nav-text">MORE</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用分支约定"><span class="nav-number">1.</span> <span class="nav-text">常用分支约定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主分支"><span class="nav-number">1.1.</span> <span class="nav-text">主分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发分支"><span class="nav-number">1.2.</span> <span class="nav-text">开发分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试分支"><span class="nav-number">1.3.</span> <span class="nav-text">测试分支</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程"><span class="nav-number">2.</span> <span class="nav-text">流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开发"><span class="nav-number">2.1.</span> <span class="nav-text">开发</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见Git命令"><span class="nav-number">3.</span> <span class="nav-text">常见Git命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#坑"><span class="nav-number">4.</span> <span class="nav-text">坑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Git钩子"><span class="nav-number">4.1.</span> <span class="nav-text">Git钩子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MORE"><span class="nav-number">5.</span> <span class="nav-text">MORE</span></a></li></ol></div>
             
 
           </div>

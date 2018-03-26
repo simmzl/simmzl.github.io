@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Git工作流及常见命令]]></title>
     <url>%2F2018%2F03%2FGit%E5%B7%A5%E4%BD%9C%E6%B5%81.html</url>
-    <content type="text"><![CDATA[多人协作Git操作必不可少，参考大佬的文章梳理总结下整个Git工作流以及常用到的Git命令。 常用分支约定主分支用于正式上线发布；master 开发分支用于开发，融合功能分支；在开发分支的基础上可以新建很多具体功能分支、BUG分支；dev 测试分支用于测试部署；test 流程开发每个新功能的开发，都要先git pull更新开发分支dev，然后在其基础上新建自己的分支。开发完成后自测功能没有BUG，git push自己的分支和代码到远程仓库，之后在平台上发起pull/merge request申请把自己的分支融合到dev分支。以某新功能开发为例： git clone远程仓库到本地 git checkout dev切换到本地分支 git pull更新本地代码到最新 git checkout -b czl/0323/feature 建立新功能的开发分支，分支命名格式要统一，可以是为{名字首字母}/{日期}/{新功能名} git push --set-upstream origin czl/0323/feature 将新建的分支推送到远端仓库 开发自测没问题后，git add . git commit -m &quot;&quot; git push到远程分支 在平台上发起merge request，等待代码审核常见Git命令 git checkout &lt;branchname&gt;切换分支 git checkout -b &lt;local-branchname&gt;新建本地分支 git branch 查看本地分支 git branch -r查看远程分支 git branch -a 查看本地和远程所有分支 git branch -d &lt;local-branchname&gt; 删除本地分支 git push origin --delete &lt;remote-branchname&gt;删除远程分支 git diff --word-diff详细展示一行中的修改 git diff &lt;commit-id&gt; &lt;commit-id&gt;查看两个 commit 的不同 git remote add origin git@github.com:git_username/repository_name.git本地目录下关联远程仓库 git remote remove origin取消本地目录下关联的远程仓库 坑Git钩子 MOREMORE]]></content>
+    <content type="text"><![CDATA[多人协作Git操作必不可少，参考大佬的文章梳理总结下整个Git工作流以及常用到的Git命令。 常用分支约定主分支用于正式上线发布；master 开发分支用于开发，融合功能分支；在开发分支的基础上可以新建很多具体功能分支、BUG分支；dev 测试分支用于测试部署；test 流程开发每个新功能的开发，都要先git pull更新开发分支dev，然后在其基础上新建自己的分支。开发完成后自测功能没有BUG，git push自己的分支和代码到远程仓库，之后在平台上发起pull/merge request申请把自己的分支融合到dev分支。以某新功能开发为例： git clone远程仓库到本地 git checkout dev切换到本地分支 git pull更新本地代码到最新 git checkout -b czl/0323/feature 建立新功能的开发分支，分支命名格式要统一，可以是为{名字首字母}/{日期}/{新功能名} git push --set-upstream origin czl/0323/feature 将新建的分支推送到远端仓库 开发自测没问题后，git add . git commit -m &quot;&quot; git push到远程分支 在平台上发起merge request，等待代码审核常见Git命令 git checkout &lt;branchname&gt;切换分支 git checkout -b &lt;local-branchname&gt;新建本地分支 git branch 查看本地分支 git branch -r查看远程分支 git branch -a 查看本地和远程所有分支 git branch -d &lt;local-branchname&gt; 删除本地分支 git push origin --delete &lt;remote-branchname&gt;删除远程分支 git diff --word-diff详细展示一行中的修改 git diff &lt;commit-id&gt; &lt;commit-id&gt;查看两个 commit 的不同 git remote add origin git@github.com:git_username/repository_name.git本地目录下关联远程仓库 git remote remove origin取消本地目录下关联的远程仓库 坑Git钩子可以使用husky或其他插件在precommit或者prepush时执行脚本命令。遇到个问题:在commit之前，会自动执行npm run -s precommit, 然后根据package.json &gt; scripts &gt; &quot;precommit&quot;: &quot;npm run lint&quot; ，执行npm run lint进行代码校验。但是自动执行npm run -s precommit时会报“npm 不是内部或外部命令”，手动执行npm run -s precommit一切正常，且node、npm全局环境均已配好。目前还不知道原因所在，只能通过git commit --no-verify绕过验证. MOREMORE]]></content>
       <categories>
         <category>笔记</category>
       </categories>
@@ -57,8 +57,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>ajax</tag>
         <tag>js</tag>
+        <tag>ajax</tag>
         <tag>php</tag>
       </tags>
   </entry>
@@ -187,8 +187,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>面试</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -222,8 +222,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>笔试题</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -295,8 +295,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>ajax</tag>
         <tag>js</tag>
+        <tag>ajax</tag>
       </tags>
   </entry>
 </search>
