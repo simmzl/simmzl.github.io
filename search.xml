@@ -12,16 +12,15 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[NO TITLE]]></title>
-    <url>%2F2018%2F03%2FNO-TITLE.html</url>
-    <content type="text"><![CDATA[ES7的Async/AwaitAsyncAsync function 异步函数，返回一个promis对象；声明异步函数：async function foo() {}const foo = async function () {};const foo = async () =&gt; {}; awaitawait（只允许在 async(异步) 函数内部使用，等待其操作的对象 Promise 返回; 如果 Promise 是完成状态，才会继续往下执行。 如果 Promise 是拒绝状态，await 会抛出拒绝值，不再往下执行。 使用async function的原因就是为了在其中使用await,而await之后跟的是表达式，可以是函数（异步函数或者其他普通函数）或者其他表达式。 12345678async function testAsync() &#123; return "hello async";&#125;async function test() &#123; const result = await testAsync(); console.log(result);&#125;test(); await 后接get、post等异步请求，实现请求之后的执行then()的效果：1234567const param = &#123;&#125;;async function getList() &#123; const res = await me.axios.post(Api.ACTOR_LIST, param); if (res.success) &#123; // 对请求结果进行处理 &#125;&#125; $nextTick[callback]在改变数据后使用this.$nextTick[callback]，触发DOM更新。]]></content>
+    <title><![CDATA[吃了这口ES6/7语法糖]]></title>
+    <url>%2F2018%2F03%2F%E5%90%83%E4%BA%86%E8%BF%99%E5%8F%A3ES67%E8%AF%AD%E6%B3%95%E7%B3%96.html</url>
+    <content type="text"><![CDATA[Async/AwaitAsyncAsync function 异步函数，返回一个promis对象；声明异步函数：async function foo() {}const foo = async function () {};const foo = async () =&gt; {}; awaitawait（只允许在 async(异步) 函数内部使用，等待其操作的对象 Promise 返回; 如果 Promise 是完成状态，才会继续往下执行。 如果 Promise 是拒绝状态，await 会抛出拒绝值，不再往下执行。 使用async function的原因就是为了在其中使用await,而await之后跟的是表达式，可以是函数（异步函数或者其他普通函数）或者其他表达式。 12345678async function testAsync() &#123; return "hello async";&#125;async function test() &#123; const result = await testAsync(); console.log(result);&#125;test(); await 后接get、post等异步请求，实现请求之后的执行then()的效果：1234567const param = &#123;&#125;;async function getList() &#123; const res = await me.axios.post(Api.ACTOR_LIST, param); if (res.success) &#123; // 对请求结果进行处理 &#125;&#125;]]></content>
       <categories>
         <category>笔记</category>
       </categories>
       <tags>
         <tag>js</tag>
-        <tag>Q&amp;A</tag>
-        <tag>css</tag>
+        <tag>es6/7</tag>
       </tags>
   </entry>
   <entry>

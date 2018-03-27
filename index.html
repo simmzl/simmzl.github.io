@@ -442,7 +442,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.simmzl.cn/2018/03/NO-TITLE.html">
+    <link itemprop="mainEntityOfPage" href="http://blog.simmzl.cn/2018/03/吃了这口ES67语法糖.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Simmzl">
@@ -461,7 +461,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/NO-TITLE.html" itemprop="url">NO TITLE</a></h2>
+                <a class="post-title-link" href="/2018/03/吃了这口ES67语法糖.html" itemprop="url">吃了这口ES6/7语法糖</a></h2>
         
 
         <div class="post-meta">
@@ -535,7 +535,7 @@
       
         
           
-            <h1 id="ES7的Async-Await"><a href="#ES7的Async-Await" class="headerlink" title="ES7的Async/Await"></a>ES7的Async/Await</h1><h2 id="Async"><a href="#Async" class="headerlink" title="Async"></a>Async</h2><p>Async function 异步函数，返回一个promis对象；<br>声明异步函数：<br>async function foo() {}<br>const foo = async function () {};<br>const foo = async () =&gt; {};</p>
+            <h2 id="Async-Await"><a href="#Async-Await" class="headerlink" title="Async/Await"></a>Async/Await</h2><h2 id="Async"><a href="#Async" class="headerlink" title="Async"></a>Async</h2><p>Async function 异步函数，返回一个promis对象；<br>声明异步函数：<br>async function foo() {}<br>const foo = async function () {};<br>const foo = async () =&gt; {};</p>
 <h2 id="await"><a href="#await" class="headerlink" title="await"></a>await</h2><p>await（只允许在 async(异步) 函数内部使用，等待其操作的对象 Promise 返回;</p>
 <ul>
 <li>如果 Promise 是完成状态，才会继续往下执行。</li>
@@ -544,7 +544,6 @@
 <p>使用async function的原因就是为了在其中使用await,而await之后跟的是表达式，可以是函数（异步函数或者其他普通函数）或者其他表达式。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">testAsync</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="string">"hello async"</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> result = <span class="keyword">await</span> testAsync();</div><div class="line">  <span class="built_in">console</span>.log(result);</div><div class="line">&#125;</div><div class="line">test();</div></pre></td></tr></table></figure>
 <p>await 后接get、post等异步请求，实现请求之后的执行then()的效果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> param = &#123;&#125;;</div><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getList</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> res = <span class="keyword">await</span> me.axios.post(Api.ACTOR_LIST, param);</div><div class="line">  <span class="keyword">if</span> (res.success) &#123;</div><div class="line">    <span class="comment">// 对请求结果进行处理</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h1 id="nextTick-callback"><a href="#nextTick-callback" class="headerlink" title="$nextTick[callback]"></a>$nextTick[callback]</h1><p>在改变数据后使用this.$nextTick[callback]，触发DOM更新。</p>
 
           
         
@@ -1856,7 +1855,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
