@@ -296,6 +296,171 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.simmzl.cn/2018/03/nodejs-begining.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simmzl">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://owq0w2j6m.bkt.clouddn.com/cqs.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CQ STUDIO">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/nodejs-begining.html" itemprop="url">nodejs-begining</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-28T19:00:00+08:00">
+                2018-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/node-js/" itemprop="url" rel="index">
+                    <span itemprop="name">node.js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="node的全局环境"><a href="#node的全局环境" class="headerlink" title="node的全局环境"></a>node的全局环境</h1><p>global,process,与浏览器window，document类似。</p>
+<h1 id="common-js规范"><a href="#common-js规范" class="headerlink" title="common.js规范"></a>common.js规范</h1><p>暴露对象可以使用：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">exports.name = name;</div></pre></td></tr></table></figure></p>
+<p>or<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = name;</div></pre></td></tr></table></figure></p>
+<h1 id="node-模块"><a href="#node-模块" class="headerlink" title="node 模块"></a>node 模块</h1><p>分为很多模块，使用模块都需要单独引入：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> name = <span class="built_in">require</span>(<span class="string">"moduleName"</span>);</div></pre></td></tr></table></figure></p>
+<h2 id="url-API"><a href="#url-API" class="headerlink" title="url API"></a>url API</h2><p>用于网络请求参数处理等需求。</p>
+<h3 id="url-parse-urlString-parseQueryString-slashesDenoteHost"><a href="#url-parse-urlString-parseQueryString-slashesDenoteHost" class="headerlink" title="url.parse(urlString[, parseQueryString[, slashesDenoteHost]])"></a>url.parse(urlString[, parseQueryString[, slashesDenoteHost]])</h3><ul>
+<li>将<code>urlString</code>解析为<code>urlObj</code>。</li>
+<li><code>parseQueryString</code>默认<code>false</code>，将query解析为字符串：<code>query=string</code></li>
+<li><p><code>parseQueryString</code>为<code>true</code>时，将query解析为对象：<code>query: { query: &#39;string&#39; }</code>;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">url.parse(<span class="string">"https://user:pass@sub.host.com:8080/p/a/t/h?query=string#hash"</span>, <span class="literal">true</span>);</div><div class="line"><span class="comment">// =&gt; </span></div><div class="line">Url &#123;</div><div class="line">  protocol: <span class="string">'https:'</span>,</div><div class="line">  slashes: <span class="literal">true</span>,</div><div class="line">  auth: <span class="string">'user:pass'</span>,</div><div class="line">  host: <span class="string">'sub.host.com:8080'</span>,</div><div class="line">  port: <span class="string">'8080'</span>,</div><div class="line">  hostname: <span class="string">'sub.host.com'</span>,</div><div class="line">  hash: <span class="string">'#hash'</span>,</div><div class="line">  search: <span class="string">'?query=string'</span>,</div><div class="line">  query: &#123; <span class="attr">query</span>: <span class="string">'string'</span> &#125;,</div><div class="line">  pathname: <span class="string">'/p/a/t/h'</span>,</div><div class="line">  path: <span class="string">'/p/a/t/h?query=string'</span>,</div><div class="line">  href: <span class="string">'https://user:pass@sub.host.com:8080/p/a/t/h?query=string#hash'</span> &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>slashesDenoteHost</code>（斜杠表示HOST），默认为<code>false</code>,如果为<code>urlString</code>不带协议头，如<code>//simmzl.cn/movie?query=simmzl#hash</code>,则解析不出<code>host</code>为<code>simmzl.cn</code>,为<code>true</code>则可以。</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">url.parse(<span class="string">"//simmzl.cn/music/?query=simmzl#hash"</span>,<span class="literal">true</span>,<span class="literal">false</span>);</div><div class="line"><span class="comment">// =&gt;</span></div><div class="line">Url &#123;</div><div class="line">  protocol: <span class="literal">null</span>,</div><div class="line">  slashes: <span class="literal">null</span>,</div><div class="line">  auth: <span class="literal">null</span>,</div><div class="line">  host: <span class="literal">null</span>,</div><div class="line">  port: <span class="literal">null</span>,</div><div class="line">  hostname: <span class="literal">null</span>,</div><div class="line">  hash: <span class="string">'#hash'</span>,</div><div class="line">  search: <span class="string">'?query=simmzl'</span>,</div><div class="line">  query: &#123; <span class="attr">query</span>: <span class="string">'simmzl'</span> &#125;,</div><div class="line">  <span class="comment">// 将主机当作了路径名</span></div><div class="line">  pathname: <span class="string">'//simmzl.cn/music/'</span>,</div><div class="line">  path: <span class="string">'//simmzl.cn/music/?query=simmzl'</span>,</div><div class="line">  href: <span class="string">'//simmzl.cn/music/?query=simmzl#hash'</span> &#125;</div></pre></td></tr></table></figure>
+<h3 id="url-format-urlObj"><a href="#url-format-urlObj" class="headerlink" title="url.format(urlObj);"></a>url.format(urlObj);</h3><p>将<code>url对象</code>格式化为<code>url字符串</code>,与<code>parse()</code>相反；<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">url.format(&#123;</div><div class="line">    protocol: <span class="string">'https:'</span>,</div><div class="line">  slashes: <span class="literal">true</span>,</div><div class="line">  auth: <span class="string">'user:pass'</span>,</div><div class="line">  host: <span class="string">'sub.host.com:8080'</span>,</div><div class="line">  port: <span class="string">'8080'</span>,</div><div class="line">  hostname: <span class="string">'sub.host.com'</span>,</div><div class="line">  hash: <span class="string">'#hash'</span>,</div><div class="line">  search: <span class="string">'?query=string'</span>,</div><div class="line">  query: &#123; <span class="attr">query</span>: <span class="string">'string'</span> &#125;,</div><div class="line">  pathname: <span class="string">'/p/a/t/h'</span>,</div><div class="line">  path: <span class="string">'/p/a/t/h?query=string'</span>,</div><div class="line">  href: <span class="string">'https://user:pass@sub.host.com:8080/p/a/t/h?query=string#hash'</span></div><div class="line">&#125;);</div><div class="line"><span class="comment">// =&gt;</span></div><div class="line"><span class="string">"https://user:pass@sub.host.com:8080/p/a/t/h?query=string#hash"</span></div></pre></td></tr></table></figure></p>
+<h3 id="url-reslove-from-to"><a href="#url-reslove-from-to" class="headerlink" title="url.reslove(from to);"></a>url.reslove(from to);</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>);</div><div class="line">url.resolve(<span class="string">'/one/two/three'</span>, <span class="string">'four'</span>);         <span class="comment">// '/one/two/four'</span></div><div class="line">url.resolve(<span class="string">'http://example.com/'</span>, <span class="string">'/one'</span>);    <span class="comment">// 'http://example.com/one'</span></div><div class="line">url.resolve(<span class="string">'http://example.com/one/three'</span>, <span class="string">'/two'</span>); <span class="comment">// 'http://example.com/two'</span></div></pre></td></tr></table></figure>
+<h2 id="querystring-API"><a href="#querystring-API" class="headerlink" title="querystring API"></a>querystring API</h2><blockquote>
+<p><a href="http://nodejs.cn/api/querystring.html" target="_blank" rel="external">文档</a></p>
+</blockquote>
+<p>用于解析与格式化 URL 查询字符串</p>
+<h3 id="querystring-stringify-obj-sep-eq-options"><a href="#querystring-stringify-obj-sep-eq-options" class="headerlink" title="querystring.stringify(obj[, sep[, eq[, options]]])"></a>querystring.stringify(obj[, sep[, eq[, options]]])</h3><p>将对象序列化为字符串<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 默认</span></div><div class="line">querystring.stringify(&#123; <span class="attr">name</span>: <span class="string">'simmzl'</span>, <span class="attr">foo</span>: <span class="string">"foo"</span>, <span class="attr">bar</span>: <span class="string">"bar"</span> &#125;);</div><div class="line"><span class="comment">// 'name=simmzl&amp;foo=foo&amp;bar=bar'</span></div><div class="line"></div><div class="line">querystring.stringify(&#123; <span class="attr">name</span>: <span class="string">'simmzl'</span>, <span class="attr">foo</span>: <span class="string">"foo"</span>, <span class="attr">bar</span>: <span class="string">"bar"</span> &#125;, <span class="string">","</span>);</div><div class="line"><span class="comment">// 'name=simmzl,foo=foo,bar=bar'</span></div><div class="line"></div><div class="line">querystring.stringify(&#123; <span class="attr">name</span>: <span class="string">'simmzl'</span>, <span class="attr">foo</span>: <span class="string">"foo"</span>, <span class="attr">bar</span>: <span class="string">"bar"</span> &#125;, <span class="string">","</span>, <span class="string">":"</span>);</div><div class="line"><span class="comment">// 'name:simmzl,foo:foo,bar:bar'</span></div></pre></td></tr></table></figure></p>
+<h3 id="querystring-parse-str-sep-eq-options"><a href="#querystring-parse-str-sep-eq-options" class="headerlink" title="querystring.parse(str[, sep[, eq[, options]]])"></a>querystring.parse(str[, sep[, eq[, options]]])</h3><p>将字符串反序列化为对象<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">querystring.parse(<span class="string">"name=simmzl&amp;foo=foo&amp;bar=bar&amp;arr=tom&amp;arr=jerry"</span>)</div><div class="line"><span class="comment">// &#123; name: 'simmzl',</span></div><div class="line"><span class="comment">//   foo: 'foo',</span></div><div class="line"><span class="comment">//   bar: 'bar',</span></div><div class="line"><span class="comment">//   arr: [ 'tom', 'jerry' ] &#125;</span></div><div class="line"></div><div class="line">querystring.parse(<span class="string">'name:simmzl,foo:foo,bar:bar'</span>, <span class="string">','</span>, <span class="string">':'</span>)</div><div class="line"><span class="comment">// &#123; name: 'simmzl', foo: 'foo', bar: 'bar' &#125;</span></div></pre></td></tr></table></figure></p>
+<h3 id="querystring-escape-str-amp-amp-querystring-unescape-str"><a href="#querystring-escape-str-amp-amp-querystring-unescape-str" class="headerlink" title="querystring.escape(str) &amp;&amp; ### querystring.unescape(str);"></a>querystring.escape(str) &amp;&amp; ### querystring.unescape(str);</h3><p>转义字符与反转义<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">querystring.escape(<span class="string">'&lt;哈哈&gt;'</span>);</div><div class="line"><span class="comment">// '%3C%E5%93%88%E5%93%88%3E'</span></div><div class="line"></div><div class="line">querystring.unescape(<span class="string">'%3C%E5%93%88%E5%93%88%3E'</span>);</div><div class="line"><span class="comment">// '&lt;哈哈&gt;'</span></div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.simmzl.cn/2018/03/Git工作流.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -535,7 +700,7 @@
       
         
           
-            <h2 id="Async-Await"><a href="#Async-Await" class="headerlink" title="Async/Await"></a>Async/Await</h2><h2 id="Async"><a href="#Async" class="headerlink" title="Async"></a>Async</h2><p>Async function 异步函数，返回一个promis对象；<br>声明异步函数：<br>async function foo() {}<br>const foo = async function () {};<br>const foo = async () =&gt; {};</p>
+            <h1 id="Async-Await"><a href="#Async-Await" class="headerlink" title="Async/Await"></a>Async/Await</h1><h2 id="Async"><a href="#Async" class="headerlink" title="Async"></a>Async</h2><p>Async function 异步函数，返回一个promis对象；<br>声明异步函数：<br>async function foo() {}<br>const foo = async function () {};<br>const foo = async () =&gt; {};</p>
 <h2 id="await"><a href="#await" class="headerlink" title="await"></a>await</h2><p>await（只允许在 async(异步) 函数内部使用，等待其操作的对象 Promise 返回;</p>
 <ul>
 <li>如果 Promise 是完成状态，才会继续往下执行。</li>
@@ -544,6 +709,15 @@
 <p>使用async function的原因就是为了在其中使用await,而await之后跟的是表达式，可以是函数（异步函数或者其他普通函数）或者其他表达式。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">testAsync</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="string">"hello async"</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> result = <span class="keyword">await</span> testAsync();</div><div class="line">  <span class="built_in">console</span>.log(result);</div><div class="line">&#125;</div><div class="line">test();</div></pre></td></tr></table></figure>
 <p>await 后接get、post等异步请求，实现请求之后的执行then()的效果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> param = &#123;&#125;;</div><div class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getList</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> res = <span class="keyword">await</span> me.axios.post(Api.ACTOR_LIST, param);</div><div class="line">  <span class="keyword">if</span> (res.success) &#123;</div><div class="line">    <span class="comment">// 对请求结果进行处理</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="…展开运算符"><a href="#…展开运算符" class="headerlink" title="…展开运算符"></a>…展开运算符</h1><p>解构赋值、类数组对象变成数组等功能.</p>
+<h2 id="用于函数调用-传参"><a href="#用于函数调用-传参" class="headerlink" title="用于函数调用,传参"></a>用于函数调用,传参</h2><p>以前将数组数据用于函数参数时：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">const test = (a, b, c) =&gt; &#123;&#125;</div><div class="line">const args = [0, 1, 2];</div><div class="line">test.apply(null, args);</div></pre></td></tr></table></figure></p>
+<p>有了展开运算符：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">const test = (a,b,c) =&gt; &#123;&#125;</div><div class="line">const args = [0,1,2];</div><div class="line">test(...args);</div></pre></td></tr></table></figure></p>
+<h2 id="用于数组字面量"><a href="#用于数组字面量" class="headerlink" title="用于数组字面量"></a>用于数组字面量</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">let arr1 = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];</div><div class="line">let arr2 = [...arr1, &apos;d&apos;, &apos;e&apos;]; // [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;,&apos;e&apos;]</div><div class="line">let arr3 = [&apos;p&apos;, &apos;o&apos;];</div><div class="line">arr1.push(...arr3); // [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;p&apos;, &apos;o&apos;]</div></pre></td></tr></table></figure>
+<h2 id="用于解构赋值"><a href="#用于解构赋值" class="headerlink" title="用于解构赋值"></a>用于解构赋值</h2><p>数组赋值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">let [arg1, arg2, ...arg3] = [1, 2, 3, 4];</div><div class="line">arg1 //1</div><div class="line">arg2 //2</div><div class="line">arg3 //[&apos;3&apos;,&apos;4&apos;]</div></pre></td></tr></table></figure></p>
+<p>对象赋值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">let &#123;x, y, ...z&#125;=&#123;x:1, y:2, a:3, b:4&#125;;</div><div class="line">x; //1</div><div class="line">y; //2</div><div class="line">z; //&#123;a:3,b:4&#125;</div></pre></td></tr></table></figure></p>
+<p>注：此时展开运算符必须放在数组或对象最后。<br>合并对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">let a = &#123;x:1, y:2&#125;;</div><div class="line">let b = &#123;z:3&#125;;</div><div class="line">let ab = &#123;...a, ...b&#125;;</div><div class="line">ab // &#123;x:1,y:2,z:3&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="类数组对象变成数组"><a href="#类数组对象变成数组" class="headerlink" title="类数组对象变成数组"></a>类数组对象变成数组</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">const list=document.getElementsByTagName(&apos;div&apos;);</div><div class="line">const arr=[..list];</div></pre></td></tr></table></figure>
+<h1 id="函数参数默认值"><a href="#函数参数默认值" class="headerlink" title="函数参数默认值"></a>函数参数默认值</h1><p>函数参数有默认值的情况下，先取赋值，无则取默认值；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">const foo = (height = 50, color = &apos;red&apos;) =&gt; &#123;</div><div class="line">  console.log(height, color);</div><div class="line">&#125;</div><div class="line">foo(); // 50, &quot;red&quot;</div><div class="line">foo(100, &quot;yellow&quot;); // 100, &quot;yellow&quot;</div></pre></td></tr></table></figure></p>
 
           
         
@@ -1634,152 +1808,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.simmzl.cn/2017/10/在centos上安装node.js.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simmzl">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://owq0w2j6m.bkt.clouddn.com/cqs.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="CQ STUDIO">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/在centos上安装node.js.html" itemprop="url">在centos上安装node.js</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-30T09:06:26+08:00">
-                2017-10-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/node-js/" itemprop="url" rel="index">
-                    <span itemprop="name">node.js</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>我的云服务器是centos 6.8 64位，最近需要在服务器上跑node.js程序，所以安装了node.js，网上有很多办法，试了一些，有些没用，踩了一点坑，总结一下。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/在centos上安装node.js.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1833,7 +1861,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
