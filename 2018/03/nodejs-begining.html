@@ -69,18 +69,18 @@
 
 
 
-<meta name="description" content="node的全局环境global,process,与浏览器window，document类似。 common.js规范暴露对象可以使用：1exports.name = name; or1module.exports = name; node 模块分为很多模块，使用模块都需要单独引入：1const name = require(&quot;moduleName&quot;); url API用于网络请求参数处理等需求。">
+<meta name="description" content="使用node做中间层，服务端渲染的需求，开始学习node.js">
 <meta name="keywords" content="node">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nodejs-begining">
 <meta property="og:url" content="http://blog.simmzl.cn/2018/03/nodejs-begining.html">
 <meta property="og:site_name" content="CQ STUDIO">
-<meta property="og:description" content="node的全局环境global,process,与浏览器window，document类似。 common.js规范暴露对象可以使用：1exports.name = name; or1module.exports = name; node 模块分为很多模块，使用模块都需要单独引入：1const name = require(&quot;moduleName&quot;); url API用于网络请求参数处理等需求。">
+<meta property="og:description" content="使用node做中间层，服务端渲染的需求，开始学习node.js">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-28T11:00:37.635Z">
+<meta property="og:updated_time" content="2018-03-28T11:42:43.946Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nodejs-begining">
-<meta name="twitter:description" content="node的全局环境global,process,与浏览器window，document类似。 common.js规范暴露对象可以使用：1exports.name = name; or1module.exports = name; node 模块分为很多模块，使用模块都需要单独引入：1const name = require(&quot;moduleName&quot;); url API用于网络请求参数处理等需求。">
+<meta name="twitter:description" content="使用node做中间层，服务端渲染的需求，开始学习node.js">
 
 
 
@@ -391,7 +391,8 @@
       
 
       
-        <h1 id="node的全局环境"><a href="#node的全局环境" class="headerlink" title="node的全局环境"></a>node的全局环境</h1><p>global,process,与浏览器window，document类似。</p>
+        <p>使用node做中间层，服务端渲染的需求，开始学习node.js<br><a id="more"></a></p>
+<h1 id="node的全局环境"><a href="#node的全局环境" class="headerlink" title="node的全局环境"></a>node的全局环境</h1><p>global,process,与浏览器window，document类似。</p>
 <h1 id="common-js规范"><a href="#common-js规范" class="headerlink" title="common.js规范"></a>common.js规范</h1><p>暴露对象可以使用：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">exports.name = name;</div></pre></td></tr></table></figure></p>
 <p>or<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = name;</div></pre></td></tr></table></figure></p>
 <h1 id="node-模块"><a href="#node-模块" class="headerlink" title="node 模块"></a>node 模块</h1><p>分为很多模块，使用模块都需要单独引入：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> name = <span class="built_in">require</span>(<span class="string">"moduleName"</span>);</div></pre></td></tr></table></figure></p>
