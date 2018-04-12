@@ -77,7 +77,7 @@
 <meta property="og:site_name" content="CQ STUDIO">
 <meta property="og:description" content="多人协作Git操作必不可少，参考大佬的文章梳理总结下整个Git工作流以及常用到的Git命令。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-11T08:33:03.100Z">
+<meta property="og:updated_time" content="2018-04-12T09:39:21.468Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git工作流及常见命令">
 <meta name="twitter:description" content="多人协作Git操作必不可少，参考大佬的文章梳理总结下整个Git工作流以及常用到的Git命令。">
@@ -421,7 +421,12 @@
 </li>
 <li><p><code>git status</code>显示工作目录和暂存区的状态（相较于暂存区，工作区更改了哪些文件），如果使用了<code>git add</code>，则工作区保存到暂存区，是无法看到自己的更改的。</p>
 </li>
-<li><code>git diff filePath</code> 对比指定文件的与暂存区的不同，这个<code>filePath</code>可以通过<code>git status</code>看得到；</li>
+<li><p><code>git diff filePath</code> 对比指定文件的与暂存区的不同，这个<code>filePath</code>可以通过<code>git status</code>看得到；</p>
+</li>
+<li><p><code>git log</code>查看commit的历史；</p>
+</li>
+<li><code>git show [commitHashID]</code> 查看具体某个commit的提交详情；</li>
+<li><code>git reset HEAD~n</code>回退到前几个commit版本；</li>
 </ul>
 <h2 id="实际需求"><a href="#实际需求" class="headerlink" title="实际需求"></a>实际需求</h2><p>本地分支在开发中需要pull远程已经更新过的dev分支：</p>
 <ul>
