@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://static.simmzl.cn/js/jquery.fancybox.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+  
+
+<link href="https://static.simmzl.cn/js/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="php,mysql,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="https://static.simmzl.cn/imgs/favicon.png?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="最近做的项目后端要自己写，总结一下数据库基本的连接、增删查改等语句以及相应功能利用PHP实现。">
+<meta name="keywords" content="php,mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库的连接、增删查改等操作以及PHP相应功能的实现">
+<meta property="og:url" content="https://blog.simmzl.cn/2017/12/数据库的连接、增删查改等操作以及PHP相应功能的实现.html">
+<meta property="og:site_name" content="CQ Studio">
+<meta property="og:description" content="最近做的项目后端要自己写，总结一下数据库基本的连接、增删查改等语句以及相应功能利用PHP实现。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://static.simmzl.cn/blog/171231/EB789gDI79.png?imageslim">
+<meta property="og:image" content="http://static.simmzl.cn/blog/171231/G5i3iL06ge.png?imageslim">
+<meta property="og:updated_time" content="2021-04-22T06:19:59.963Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据库的连接、增删查改等操作以及PHP相应功能的实现">
+<meta name="twitter:description" content="最近做的项目后端要自己写，总结一下数据库基本的连接、增删查改等语句以及相应功能利用PHP实现。">
+<meta name="twitter:image" content="http://static.simmzl.cn/blog/171231/EB789gDI79.png?imageslim">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms","applicationID":"PGSULVYJOM","indexName":"prod","chunkSize":5000}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://blog.simmzl.cn/2017/12/数据库的连接、增删查改等操作以及PHP相应功能的实现.html">
+
+
+
+
+
+  <title>数据库的连接、增删查改等操作以及PHP相应功能的实现 | CQ Studio</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5fdad4c6c1a4b4836d58a1393084fbba";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title"></span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.simmzl.cn/2017/12/数据库的连接、增删查改等操作以及PHP相应功能的实现.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simmzl">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://static.simmzl.cn/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CQ Studio">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">数据库的连接、增删查改等操作以及PHP相应功能的实现</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-31T14:42:51+08:00">
+                2017-12-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Database/" itemprop="url" rel="index">
+                    <span itemprop="name">Database</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://static.simmzl.cn/blog/171231/EB789gDI79.png?imageslim" alt="mark"><br>最近做的项目后端要自己写，总结一下数据库基本的连接、增删查改等语句以及相应功能利用PHP实现。<br><a id="more"></a></p>
+<h1 id="连接-关闭-MySQL主机"><a href="#连接-关闭-MySQL主机" class="headerlink" title="连接/关闭 MySQL主机"></a>连接/关闭 MySQL主机</h1><h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><p><code>mysql_connect()</code> 函数打开非持久的 MySQL 连接，它最常用到的三个参数是MySQL主机名称、用户名、密码。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// php</span></span><br><span class="line"><span class="comment">// MySQL主机名称，通常是 localhost</span></span><br><span class="line">$mysql_server_name=<span class="string">'localhost'</span>;</span><br><span class="line"><span class="comment">// 资料库的帐号</span></span><br><span class="line">$mysql_username=<span class="string">'username'</span>;</span><br><span class="line"><span class="comment">// 资料库的帐号密码</span></span><br><span class="line">$mysql_password=<span class="string">'password'</span>;</span><br><span class="line"><span class="comment">// 数据库的名称</span></span><br><span class="line">$mysql_database=<span class="string">'your_database'</span>;</span><br><span class="line"><span class="comment">// 连接</span></span><br><span class="line">$con=mysql_connect($mysql_server_name,$mysql_username,$mysql_password) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">"error connecting"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以上可以简写</span></span><br><span class="line">$con=mysql_connect(<span class="string">'localhost'</span>,<span class="string">'username'</span>,<span class="string">'password'</span>) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">"error connecting"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 数据库输出编码</span></span><br><span class="line">mysql_query(<span class="string">"set names 'utf8'"</span>);</span><br><span class="line"><span class="comment">// 打开数据库'your_database'</span></span><br><span class="line">mysql_select_db($mysql_database);</span><br><span class="line"><span class="comment">// 定义sql语句</span></span><br><span class="line">$sql = <span class="string">"select * from table where username = demo"</span>;</span><br><span class="line"><span class="comment">// 执行sql语句</span></span><br><span class="line">$row = mysql_query($sql,$con); <span class="comment">//查询</span></span><br></pre></td></tr></table></figure>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 关闭mysql连接</span></span><br><span class="line">mysql_close($con);</span><br></pre></td></tr></table></figure>
+<h1 id="执行MySQL语句"><a href="#执行MySQL语句" class="headerlink" title="执行MySQL语句"></a>执行MySQL语句</h1><p><code>mysql_query(query,connection)</code>函数执行一条 MySQL 查询，如果查询执行不正确则返回 FALSE。</p>
+<ul>
+<li><code>query</code> MySQL语句</li>
+<li><code>connection</code> 主机连接，如果未规定，则使用上一个打开的连接。</li>
+</ul>
+<h1 id="新建-删除-数据库"><a href="#新建-删除-数据库" class="headerlink" title="新建/删除 数据库"></a>新建/删除 数据库</h1><h2 id="新建"><a href="#新建" class="headerlink" title="新建"></a>新建</h2><p>MySQL语句：<code>CREATE DATABASE my_db</code>；</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义sql语句</span></span><br><span class="line">$sql = <span class="string">"CREATE DATABASE my_db"</span>;</span><br><span class="line"><span class="comment">// 执行sql语句</span></span><br><span class="line">$row = mysql_query($sql,$con);</span><br></pre></td></tr></table></figure>
+<h2 id="删除-1"><a href="#删除-1" class="headerlink" title="删除"></a>删除</h2><p>MySQL语句：<code>DROP DATABASE my_db</code>；</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$sql = <span class="string">"DROP DATABASE my_db"</span>;</span><br><span class="line">$row = mysql_query($sql,$con);</span><br></pre></td></tr></table></figure>
+<h1 id="新建-删除-数据表"><a href="#新建-删除-数据表" class="headerlink" title="新建/删除 数据表"></a>新建/删除 数据表</h1><h2 id="新建-1"><a href="#新建-1" class="headerlink" title="新建"></a>新建</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name (column_name column_type);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>column_name</code> 为列名，即字段名</li>
+<li><code>column_type</code> 为该字段属性</li>
+</ul>
+<p>phpMyAdmin:</p>
+<p><img src="http://static.simmzl.cn/blog/171231/G5i3iL06ge.png?imageslim" alt="mark"></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$sql = <span class="string">"CREATE TABLE  `machine_data`.`00000003` (</span></span><br><span class="line"><span class="string">`id` INT( 20 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,</span></span><br><span class="line"><span class="string">`date` INT( 20 ) NOT NULL ,</span></span><br><span class="line"><span class="string">`wind_speed` FLOAT NOT NULL ,</span></span><br><span class="line"><span class="string">`temperature` FLOAT NOT NULL ,</span></span><br><span class="line"><span class="string">`humidity` FLOAT NOT NULL</span></span><br><span class="line"><span class="string">) ENGINE = MYISAM"</span></span><br><span class="line">$result = mysql_query($sql,$con);</span><br></pre></td></tr></table></figure>
+<h2 id="删除-2"><a href="#删除-2" class="headerlink" title="删除"></a>删除</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> table_name ;</span><br></pre></td></tr></table></figure>
+<h1 id="向表中插入数据（增）INSERT"><a href="#向表中插入数据（增）INSERT" class="headerlink" title="向表中插入数据（增）INSERT"></a>向表中插入数据（增）INSERT</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name ( field1, field2,...fieldN )</span><br><span class="line">                       <span class="keyword">VALUES</span></span><br><span class="line">                       ( value1, value2,...valueN );</span><br></pre></td></tr></table></figure>
+<p>例如用户注册功能：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// POST接收（默认已运行addslashes()转义字符）</span></span><br><span class="line">$username = $_POST[<span class="string">'username'</span>];</span><br><span class="line">$password = $_POST[<span class="string">'password'</span>];</span><br><span class="line">$email = $_POST[<span class="string">'email'</span>];</span><br><span class="line"></span><br><span class="line">$sql = <span class="string">"insert into user (username,password,email) values ('&#123;$username&#125;','&#123;$password&#125;','&#123;$email&#125;')"</span>;</span><br><span class="line">$result = mysql_query($sql,$con);</span><br></pre></td></tr></table></figure>
+<h1 id="删-DELETE"><a href="#删-DELETE" class="headerlink" title="删 DELETE"></a>删 DELETE</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> table_name [<span class="keyword">WHERE</span> Clause]</span><br></pre></td></tr></table></figure>
+<p>ps: 如果没有指定 WHERE 子句，MySQL 表中的所有记录将被删除。</p>
+<p>例如删除用户名为<code>simmzl</code>的用户：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sql = <span class="string">" DELETE FROM user WHERE username = simmzl "</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="查-SELECT"><a href="#查-SELECT" class="headerlink" title="查 SELECT"></a>查 SELECT</h1><h2 id="SELECT"><a href="#SELECT" class="headerlink" title="SELECT"></a>SELECT</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column_name,column_name... <span class="keyword">FROM</span> table_name</span><br><span class="line">[<span class="keyword">WHERE</span> Clause]</span><br><span class="line">[<span class="keyword">LIMIT</span> N][ <span class="keyword">OFFSET</span> M]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>也可以使用<code>*</code> 代替<code>column_name</code>，表示查询所有。</li>
+<li><code>LIMIT</code> 设定返回的记录数</li>
+<li><code>OFFSET</code> 设定开始查询的数据偏移量。默认情况下偏移量为0。</li>
+</ul>
+<p>例如查询用户名为<code>simmzl</code>的用户信息：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数据库输出编码</span></span><br><span class="line">mysql_query(<span class="string">"set names 'utf8'"</span>);</span><br><span class="line"><span class="comment">// 打开数据库'your_database'</span></span><br><span class="line">mysql_select_db(<span class="string">"my_db"</span>);</span><br><span class="line">$sql = <span class="string">"SELECT * FROM user WHERE USERNAME = simmzl"</span>;</span><br><span class="line">$result = mysql_query($sql, $con);</span><br></pre></td></tr></table></figure>
+<h2 id="ORDER-BY-排序"><a href="#ORDER-BY-排序" class="headerlink" title="ORDER BY 排序"></a>ORDER BY 排序</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ORDER BY field1, [field2...] [ASC [DESC]]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>ASC</code> 升序</li>
+<li><code>DESC</code>降序</li>
+</ul>
+<p>例如将所有用户信息输出并按照<code>username</code>升序排序：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sql = <span class="string">"SELECT * FROM user ORDER BY username ASC"</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="mysql-fetch-array"><a href="#mysql-fetch-array" class="headerlink" title="mysql_fetch_array()"></a>mysql_fetch_array()</h2><p><code>mysql_query()</code> 仅对 <code>SELECT</code>语句返回一个资源标识符，因此还需要使用<code>mysql_fetch_array(data,array_type)</code>将取得的数据转成数组。</p>
+<p><code>array_type</code>有三个值：</p>
+<ul>
+<li><code>MYSQL_ASSOC</code> - 关联数组，如： [username] =&gt; simmzl</li>
+<li><code>MYSQL_NUM</code> - 数字数组，如：[0] =&gt; simmzl</li>
+<li><code>MYSQL_BOTH</code> - 默认。同时产生关联和数字数组</li>
+</ul>
+<p>因此，在执行<code>$result = mysql_query($sql, $con)</code>后，还需执行</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 转成关联数组</span></span><br><span class="line">$res = mysql_fetch_array($result,MYSQL_ASSOC);</span><br><span class="line"><span class="keyword">echo</span> $res;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Array</span></span><br><span class="line">(</span><br><span class="line">[username] =&gt; simmzl</span><br><span class="line">[pwd] =&gt; xxx</span><br><span class="line">[email] =&gt; me@simmzl.cn</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>在当<code>mysql_query()</code>查询结果有多行时，依次调用<code>mysql_fetch_array()</code>将返回结果集中的下一行，如果没有更多行则返回 FALSE。<br>因此使用while循环取出所有行数据：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>($tmp[] = mysql_fetch_array($result,MYSQL_ASSOC))&#123;&#125;;</span><br><span class="line"><span class="comment">// tmp[]最后一个值为flase，故删除</span></span><br><span class="line">array_pop($tmp);</span><br></pre></td></tr></table></figure>
+<h2 id="json-encode"><a href="#json-encode" class="headerlink" title="json_encode()"></a>json_encode()</h2><p>将<strong>数组</strong>转成<strong>前端</strong>想要的<strong>JSON格式</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> json_encode($res);</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">"username"</span>: <span class="string">"simmzl"</span>,</span><br><span class="line">    <span class="string">"pwd"</span>: <span class="string">"xxx"</span>,</span><br><span class="line">    <span class="string">"email"</span>: <span class="string">"me@simmzl.cn"</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h2 id="json-decode"><a href="#json-decode" class="headerlink" title="json_decode()"></a>json_decode()</h2><p>相反，将JSON转成数组。</p>
+<h1 id="改-UPDATE"><a href="#改-UPDATE" class="headerlink" title="改 UPDATE"></a>改 UPDATE</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> table_name <span class="keyword">SET</span> field1=<span class="keyword">new</span>-value1, field2=<span class="keyword">new</span>-value2</span><br><span class="line">[<span class="keyword">WHERE</span> Clause]</span><br></pre></td></tr></table></figure>
+<p>例如修改<code>simmzl</code>的密码和邮箱：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sql = <span class="string">"UPDATE user SET pwd = xxxx, email = hr@simmzl.cn WHERE username = simmzl"</span>;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/php/" rel="tag"># php</a>
+          
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/利用FormData对象实现AJAX文件上传功能及后端接收.html" rel="next" title="利用FormData对象实现AJAX文件上传功能及后端实现">
+                <i class="fa fa-chevron-left"></i> 利用FormData对象实现AJAX文件上传功能及后端实现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/Some-tips-in-Jan-2018.html" rel="prev" title="Some tips in Jan,2018">
+                Some tips in Jan,2018 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://static.simmzl.cn/avatar.jpg" alt="Simmzl">
+          
+            <p class="site-author-name" itemprop="name">Simmzl</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/simmzl" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github-alt"></i></a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.douban.com/people/137373199/" target="_blank" title="Douban">
+                  
+                    <i class="fa fa-fw fa-video-camera"></i></a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://simmzl.tuchong.com" target="_blank" title="Tuchong">
+                  
+                    <i class="fa fa-fw fa-camera-retro"></i></a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#连接-关闭-MySQL主机"><span class="nav-number">1.</span> <span class="nav-text">连接/关闭 MySQL主机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#连接"><span class="nav-number">1.1.</span> <span class="nav-text">连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除"><span class="nav-number">1.2.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#执行MySQL语句"><span class="nav-number">2.</span> <span class="nav-text">执行MySQL语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新建-删除-数据库"><span class="nav-number">3.</span> <span class="nav-text">新建/删除 数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#新建"><span class="nav-number">3.1.</span> <span class="nav-text">新建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除-1"><span class="nav-number">3.2.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新建-删除-数据表"><span class="nav-number">4.</span> <span class="nav-text">新建/删除 数据表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#新建-1"><span class="nav-number">4.1.</span> <span class="nav-text">新建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除-2"><span class="nav-number">4.2.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#向表中插入数据（增）INSERT"><span class="nav-number">5.</span> <span class="nav-text">向表中插入数据（增）INSERT</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删-DELETE"><span class="nav-number">6.</span> <span class="nav-text">删 DELETE</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查-SELECT"><span class="nav-number">7.</span> <span class="nav-text">查 SELECT</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SELECT"><span class="nav-number">7.1.</span> <span class="nav-text">SELECT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ORDER-BY-排序"><span class="nav-number">7.2.</span> <span class="nav-text">ORDER BY 排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql-fetch-array"><span class="nav-number">7.3.</span> <span class="nav-text">mysql_fetch_array()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#json-encode"><span class="nav-number">7.4.</span> <span class="nav-text">json_encode()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#json-decode"><span class="nav-number">7.5.</span> <span class="nav-text">json_decode()</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#改-UPDATE"><span class="nav-number">8.</span> <span class="nav-text">改 UPDATE</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017-2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Simmzl</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.2 & 自定义</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="https://static.simmzl.cn/js/jquery-min-v2.1.3.js"></script>
+
+  
+  <script type="text/javascript" src="https://static.simmzl.cn/js/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://static.simmzl.cn/js/jquery.lazyload.js"></script>
+
+  
+  <script type="text/javascript" src="https://static.simmzl.cn/js/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://static.simmzl.cn/js/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://static.simmzl.cn/js/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="https://static.simmzl.cn/blog/v2/js/utils.js"></script>
+
+  <script type="text/javascript" src="https://static.simmzl.cn/blog/v2/js/motion.js"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="https://static.simmzl.cn/blog/v2/js/scrollspy.js"></script>
+<script type="text/javascript" src="https://static.simmzl.cn/blog/v2/js/post-details.js"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="https://static.simmzl.cn/blog/v2/js/bootstrap.js"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "https://static.simmzl.cn/blog/v2/" + search_path;
+    console.info(path)
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

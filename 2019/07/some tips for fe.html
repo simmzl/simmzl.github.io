@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://static.simmzl.cn/js/jquery.fancybox.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+  
+
+<link href="https://static.simmzl.cn/js/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="面试,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="https://static.simmzl.cn/imgs/favicon.png?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="一些面试的总结。">
+<meta name="keywords" content="面试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Some tips for FE">
+<meta property="og:url" content="https://blog.simmzl.cn/2019/07/some tips for fe.html">
+<meta property="og:site_name" content="CQ Studio">
+<meta property="og:description" content="一些面试的总结。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://static.simmzl.cn/dom2.png">
+<meta property="og:image" content="https://static.simmzl.cn/blog/2019-07-23-async%26defer.png">
+<meta property="og:image" content="https://static.simmzl.cn/blog/2019-07-24-css.png">
+<meta property="og:updated_time" content="2021-04-22T06:19:59.959Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Some tips for FE">
+<meta name="twitter:description" content="一些面试的总结。">
+<meta name="twitter:image" content="https://static.simmzl.cn/dom2.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms","applicationID":"PGSULVYJOM","indexName":"prod","chunkSize":5000}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://blog.simmzl.cn/2019/07/some tips for fe.html">
+
+
+
+
+
+  <title>Some tips for FE | CQ Studio</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5fdad4c6c1a4b4836d58a1393084fbba";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title"></span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.simmzl.cn/2019/07/some tips for fe.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simmzl">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://static.simmzl.cn/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CQ Studio">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Some tips for FE</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-11T18:50:38+08:00">
+                2019-07-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一些面试的总结。</p>
+<a id="more"></a>
+<h1 id="js"><a href="#js" class="headerlink" title="js"></a>js</h1><h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p>传统：谁调用指向谁<br>箭头函数：默认指向在定义它时,它所处的对象,而不是执行时的对象</p>
+<p><a href="https://juejin.im/post/5c049e6de51d45471745eb98" target="_blank" rel="noopener">https://juejin.im/post/5c049e6de51d45471745eb98</a></p>
+<p>this的四个调用模式（js语言精粹）：</p>
+<ul>
+<li>方法调用模式（一个函数作为一个对象的属性，这个函数内的this指向这个对象）</li>
+<li>函数调用模式 （一个函数不是对象的属性，直接定义在全局，这个函数内的this指向全局，浏览器下的window、global）</li>
+<li>构造器调用模式 （通过构造器去new 一个实例，构造函数的this会绑定到这个实例）</li>
+<li>apply调用模式 （通过可以apply、call、bind可以改变this的指向）</li>
+</ul>
+<!-- more -->
+<h2 id="call-bind-apply实现原理及区别"><a href="#call-bind-apply实现原理及区别" class="headerlink" title="call, bind, apply实现原理及区别"></a>call, bind, apply实现原理及区别</h2><ul>
+<li><p>apply、call、bind 三者都是函数的一个方法，第一个参数都是 this 要指向的对象，也就是想指定的上下文；</p>
+</li>
+<li><p>apply、call、bind 三者都可以利用后续参数传参，其中只有<strong>apply()后续参数以数组</strong>形式传；</p>
+</li>
+<li><p>bind 是返回对应的绑定函数，便于稍后调用；apply、call 则是立即调用。</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> parent = &#123;</span><br><span class="line">    age: <span class="number">30</span>,</span><br><span class="line">    <span class="comment">// 注意在用apply等时，这里不能用箭头函数，箭头定义时this已经指定，无法被apply等改变</span></span><br><span class="line">    run: <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123; <span class="built_in">console</span>.log(<span class="keyword">this</span>.age, name) &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> child = &#123;</span><br><span class="line">    age: <span class="number">1</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">parent.run.apply(child, [<span class="string">"tom"</span>]); <span class="comment">// 1 tom // 立即执行</span></span><br><span class="line">parent.run.call(child, <span class="string">"tom"</span>); <span class="comment">// 1 tom // 立即执行</span></span><br><span class="line">parent.run.apply(<span class="literal">null</span>); <span class="comment">// undefined undefined // null 是window下的，表示this指向window</span></span><br><span class="line">parent.run.apply(<span class="literal">undefined</span>); <span class="comment">// undefined undefined // undefined 指向window</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fn = parent.run.bind(child, <span class="string">"tom"</span>); <span class="comment">// bind会返回一个函数</span></span><br><span class="line">fn(); <span class="comment">// 1 tom</span></span><br></pre></td></tr></table></figure>
+<h3 id="call-amp-apply实现原理"><a href="#call-amp-apply实现原理" class="headerlink" title="call &amp; apply实现原理"></a>call &amp; apply实现原理</h3><p>可以看看这个<a href="https://segmentfault.com/a/1190000009257663" target="_blank" rel="noopener">JavaScript深入之call和apply的模拟实现</a></p>
+<p>fn.apply(obj, array)实现的原理：</p>
+<ul>
+<li>将要执行的函数fn设置为该对象obj的属性</li>
+<li>执行obj.fn(args)函数</li>
+<li>不能给这个obj对象新增新的属性，所以要删除这个属性；</li>
+<li>其中对obj要做判断，为<strong>null或undefined</strong>时，要把this指向window</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.call = <span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 首先判断是不是函数调用该方法，如果不是，则抛出异常</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span> !== <span class="string">"function"</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'Error'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 为**null或undefined**时，要把this指向window</span></span><br><span class="line">    <span class="keyword">var</span> context = context || <span class="built_in">window</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将函数设置为obj的属性</span></span><br><span class="line">    context.fn = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 类数组解构参数</span></span><br><span class="line">    <span class="keyword">var</span> args = [...arguments].slice(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 执行函数</span></span><br><span class="line">    <span class="keyword">var</span> result = context.fn(...args);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 删除函数</span></span><br><span class="line">    <span class="keyword">delete</span> context.fn;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回执行结果</span></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// apply与call不同只在于参数处理不用</span></span><br><span class="line"><span class="built_in">Function</span>.prototype.apply = <span class="function"><span class="keyword">function</span> (<span class="params">context, args</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 首先判断是不是函数调用该方法，如果不是，则抛出异常</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span> !== <span class="string">"function"</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'Error'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 为**null或undefined**时，要把this指向window</span></span><br><span class="line">    <span class="keyword">var</span> context = context || <span class="built_in">window</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将函数设置为obj的属性</span></span><br><span class="line">    context.fn = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 执行函数</span></span><br><span class="line">    <span class="keyword">var</span> result;</span><br><span class="line">    <span class="keyword">if</span> (args) &#123;</span><br><span class="line">        result = context.fn(...args);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        result = context.fn();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 删除函数</span></span><br><span class="line">    <span class="keyword">delete</span> context.fn;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回执行结果</span></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="bind实现原理"><a href="#bind实现原理" class="headerlink" title="bind实现原理"></a>bind实现原理</h3><p>bind其实是在call、apply基础上封装了一层，因此多次调用bind，只会第一次生效；</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">parent.run.bind(child, <span class="string">"tom"</span>).bind(child1, <span class="string">"jack"</span>).bind(child2, <span class="string">"Rachael"</span>)();</span><br><span class="line"><span class="comment">// 1 tom </span></span><br><span class="line"><span class="comment">// 并不会继续下去</span></span><br></pre></td></tr></table></figure>
+<p><strong>简单的实现：</strong><br>实际要复杂一些<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.myBind = <span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 首先判断是不是函数调用该方法，如果不是，则抛出异常</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span> !== <span class="string">"function"</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'Error'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> me = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 去掉第一个函数参数</span></span><br><span class="line">    <span class="keyword">var</span> args = [...arguments].slice(<span class="number">1</span>);</span><br><span class="line">    <span class="comment">// var args = Array.prototype.slice(arguments, 1);</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 把后面的执行函数的参数拼接到bing参数后</span></span><br><span class="line">        <span class="keyword">return</span> me.apply(context, args.concat(...arguments);</span><br><span class="line">        <span class="comment">// return me.apply(context, args.concat(Array.prototype.slice(arguments));</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="event-loop"><a href="#event-loop" class="headerlink" title="event loop"></a>event loop</h2><p>macrotask &amp; microtask</p>
+<p>js如何处理异步函数？</p>
+<p>Event Loop即事件循环，是指浏览器或Node的一种解决javaScript<strong>单线程</strong>运行时不会阻塞的一种机制，也就是我们经常使用异步的原理。</p>
+<h3 id="执行栈"><a href="#执行栈" class="headerlink" title="执行栈"></a>执行栈</h3><p>堆heap：程序运行时的动态内存；<strong>js中堆存放object数据</strong><br>栈stack：一个数据集合，比如一堆牌（垂直堆叠），先进后出；js中栈存放<strong>基础数据类型</strong>和<strong>函数执行的运行空间</strong>；<strong>同步任务在此处</strong><br>队列：一个数据集合，像是一个流水线，先进先出。<br>链表：一个数据集合，每个元素都是一个对象节点，包含了数据和下一个节点的指针，每个节点相连，就成了链表。</p>
+<p>event loop使得js会先执行栈内存中的同步任务，只有当同步任务执行完毕后，才去执行任务对列中的异步任务；</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>);    </span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">3</span>);</span><br><span class="line"><span class="comment">// 1 3 2</span></span><br></pre></td></tr></table></figure>
+<h3 id="微任务与宏任务"><a href="#微任务与宏任务" class="headerlink" title="微任务与宏任务"></a>微任务与宏任务</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>)</span><br><span class="line">&#125;, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">3</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1 3 2</span></span><br></pre></td></tr></table></figure>
+<p>这是因为 异步任务 分为 微任务(microtask) 和 宏任务(macrotask)，执行的顺序是 执行<strong>栈中的同步代码 =&gt; 微任务 =&gt; 宏任务</strong>。</p>
+<h4 id="微任务"><a href="#微任务" class="headerlink" title="微任务"></a>微任务</h4><p><strong>promise是微任务。</strong></p>
+<p>当执行栈中的代码执行完后，会先执行微任务对列，只有当微任务对列中所有任务执行完了，才会执行宏任务。</p>
+<h4 id="宏任务"><a href="#宏任务" class="headerlink" title="宏任务"></a>宏任务</h4><p><strong>setTimeout setInterval setImmediate(IE专用)等</strong></p>
+<p>等执行栈和微任务都执行完了，才来执行宏任务对列，且每个宏任务执行完了都要看一下微任务对列有没有新增任务，有就执行微任务，清空微任务对列后才开始回来执行宏任务。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'timeout1'</span>)</span><br><span class="line">    <span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'promise1'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'promise2'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;, <span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'timeout2'</span>)</span><br><span class="line">    <span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'promise3'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;, <span class="number">200</span>)</span><br></pre></td></tr></table></figure>
+<p>解析： </p>
+<p>1、先将两个setTimeout压入异步对列中的宏任务对列；<br>2、宏任务对列中时间到了先执行第一个setTimeout，打印timeout1。之后发现两个promise，压入微任务。<br>3、第一个setTimeout执行完毕，去看微任务对列，发现有两个微任务。先进先出，执行第一个promise：打印p1，之后p2;<br>4、微任务清空后，执行宏任务，打印t2，发现一个微任务并压入微任务对列中；<br>5、第二个setTimeout执行完毕，去看微任务对列，发现有一个微任务。执行，打印p3；</p>
+<p>所以最后输出： t1 p1 p2 t2 p3</p>
+<h2 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h2><h2 id="捕获和冒泡"><a href="#捕获和冒泡" class="headerlink" title="捕获和冒泡"></a>捕获和冒泡</h2><p>捕获是false</p>
+<h2 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h2><p>接受和或返回另一个函数称为高阶函数</p>
+<h2 id="闭包、原型链、垃圾回收机制、JS如何实现继承"><a href="#闭包、原型链、垃圾回收机制、JS如何实现继承" class="headerlink" title="闭包、原型链、垃圾回收机制、JS如何实现继承"></a>闭包、原型链、垃圾回收机制、JS如何实现继承</h2><p><a href="https://blog.simmzl.cn/2017/09/%E8%AE%A9%E4%BA%BA%E5%A4%B4%E5%A4%A7%E7%9A%84%E9%97%AD%E5%8C%85%E5%92%8C%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6GC.html">关于闭包</a></p>
+<p><strong>实例的<strong>proto</strong>属性（原型）等于其构造函数的prototype属性</strong></p>
+<p>实例p的构造函数为Person，而Person的构造函数为Function</p>
+<p>手动实现继承：Child.prototype = new Parent();</p>
+<p>prototype是函数的一个属性（每个函数都有一个prototype属性），这个属性是一个指针，指向一个对象。它是显示修改对象的原型的属性。</p>
+<p>1、Object是作为众多new出来的实例的基类   function Object(){ [ native code ] }<br>2、Function是作为众多function出来的函数的基类    function Function(){ [ native code ] }<br>3、构造函数的proto(包括Function.prototype和Object.prototype)都指向Function.prototype<br>4、原型对象的proto都指向Object.prototype<br>5、Object.prototype.proto指向null</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = &#123;&#125;,</span><br><span class="line">    F = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.prototype.a = <span class="string">'value a'</span>;</span><br><span class="line"><span class="built_in">Function</span>.prototype.b = <span class="string">'value b'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(foo.a) <span class="comment">// a</span></span><br><span class="line"><span class="built_in">console</span>.log(foo.b) <span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(F.a) <span class="comment">// a</span></span><br><span class="line"><span class="built_in">console</span>.log(F.b) <span class="comment">// b</span></span><br></pre></td></tr></table></figure>
+<h2 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h2><h3 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h3><p>let const =&gt; class 对象解构赋值 async/await 函数的默认参数值 for…of Promise</p>
+<p><a href="https://blog.simmzl.cn/2017/11/Promise%E5%AF%B9%E8%B1%A1-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.html">Promise对象-异步编程解决方案</a></p>
+<p><a href="https://blog.simmzl.cn/2018/03/%E5%90%83%E4%BA%86%E8%BF%99%E5%8F%A3ES67%E8%AF%AD%E6%B3%95%E7%B3%96.html">吃了这口ES6/7语法糖</a></p>
+<h3 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h3><h3 id="箭头函数和普通函数的区别，有什么新特性"><a href="#箭头函数和普通函数的区别，有什么新特性" class="headerlink" title="箭头函数和普通函数的区别，有什么新特性"></a>箭头函数和普通函数的区别，有什么新特性</h3><p>1、简写<br>2、es5的函数中this的指向（上下文）取决于谁调用他，而箭头函数的中this的指向在声明时就已经固定；</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;</span><br><span class="line">	aa: <span class="number">1</span>,</span><br><span class="line">	bb: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">cc</span> (<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="keyword">this</span>) &#125;;</span><br><span class="line">		cc();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">a.bb(); <span class="comment">// Window</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;</span><br><span class="line">	aa: <span class="number">1</span>,</span><br><span class="line">	bb: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">const</span> cc = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">		cc();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">a.bb(); <span class="comment">// a</span></span><br></pre></td></tr></table></figure>
+<p><a href="http://es6.ruanyifeng.com/#docs/generator" target="_blank" rel="noopener">http://es6.ruanyifeng.com/#docs/generator</a></p>
+<h2 id="for…in迭代和for…of有什么区别，-forEach"><a href="#for…in迭代和for…of有什么区别，-forEach" class="headerlink" title="for…in迭代和for…of有什么区别， forEach"></a>for…in迭代和for…of有什么区别， forEach</h2><p><a href="https://www.jianshu.com/p/c43f418d6bf0" target="_blank" rel="noopener">https://www.jianshu.com/p/c43f418d6bf0</a></p>
+<h3 id="for…in"><a href="#for…in" class="headerlink" title="for…in"></a>for…in</h3><ul>
+<li>用于对象或数组</li>
+<li><strong>遍历自有的、继承的、可枚举的、非Symbol的属性</strong>，包括原型上的，所以需要配合<code>Object.prototype.hasOwnProperty(propname)</code></li>
+<li><strong>遍历是无序的</strong>，视浏览器而定，故在<strong>遍历数组时很可能是乱序的</strong>，所以不建议用于遍历数组，推荐<code>for of</code></li>
+<li>上面讲到无序，其返回的顺序和Object.keys()、Object.values()的顺序一致；</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">1</span>,</span><br><span class="line">    b: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> o <span class="keyword">in</span> obj) &#123;</span><br><span class="line">    <span class="keyword">if</span> (o === <span class="string">"a"</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(o); <span class="comment">// a</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(arr.hasOwnProperty(i))&#123; </span><br><span class="line">	<span class="built_in">console</span>.log(arr[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="for…of"><a href="#for…of" class="headerlink" title="for…of"></a>for…of</h3><p>可迭代对象（包括 Array，Map，Set，String，TypedArray，arguments 对象等等）上创建一个迭代循环。</p>
+<p>break, throw  continue    或return终止</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只能用于数组</span></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> o <span class="keyword">of</span> arr) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(o); <span class="comment">// 1</span></span><br><span class="line">    <span class="keyword">if</span> (o === <span class="number">1</span>) <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="forEach"><a href="#forEach" class="headerlink" title="forEach"></a>forEach</h3><p>不能使用break、continue和return语句</p>
+<h2 id="DOM0和DOM2事件绑定"><a href="#DOM0和DOM2事件绑定" class="headerlink" title="DOM0和DOM2事件绑定"></a>DOM0和DOM2事件绑定</h2><h3 id="DOM0级绑定："><a href="#DOM0级绑定：" class="headerlink" title="DOM0级绑定："></a>DOM0级绑定：</h3><p>把一些常用的事件直接挂载在DOM的私有属性上，成为DOM0事件绑定：</p>
+<p><code>target.onclick = function () {}</code></p>
+<h3 id="DOM2级绑定"><a href="#DOM2级绑定" class="headerlink" title="DOM2级绑定"></a>DOM2级绑定</h3><p><code>target.addEventListener(&quot;fn name&quot;, fn, true/fasle)</code></p>
+<p>DOM2级规定事件分为三个阶段：</p>
+<ul>
+<li>捕获阶段</li>
+<li>处于目标阶段</li>
+<li>冒泡阶段</li>
+</ul>
+<p><img src="https://static.simmzl.cn/dom2.png" alt="mark"></p>
+<p>通过true/false，我们可以设定事件在捕获的阶段触发还是冒泡阶段的时候触发。</p>
+<ul>
+<li>true：捕获阶段时候触发</li>
+<li>false： 冒泡阶段触发</li>
+</ul>
+<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><p>构造函数不需要显示的返回值。使用new来创建对象(调用构造函数)时，如果return的是非对象(数字、字符串、布尔类型等)会忽而略返回值;<br>如果return的是对象，则返回该对象(注：若return null也会忽略返回值）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">    <span class="keyword">return</span> &#123;&#125;</span><br><span class="line">    <span class="comment">// return name // 忽略 &#123;name: 'Tom'&#125;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> Person(<span class="string">'Tom'</span>); <span class="comment">// &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="严格模式"><a href="#严格模式" class="headerlink" title="严格模式"></a>严格模式</h2><p><code>use strict</code></p>
+<h2 id="输入url到渲染的整个过程"><a href="#输入url到渲染的整个过程" class="headerlink" title="输入url到渲染的整个过程"></a>输入url到渲染的整个过程</h2><p>dns解析流程</p>
+<h3 id="DOM-amp-CSSOM-gt-Render-Tree"><a href="#DOM-amp-CSSOM-gt-Render-Tree" class="headerlink" title="DOM &amp; CSSOM =&gt; Render Tree"></a>DOM &amp; CSSOM =&gt; Render Tree</h3><ul>
+<li>url DNS查询到IP</li>
+<li><p>从IP下载资源 80 443</p>
+</li>
+<li><p>浏览器将资源根据编码格式转成对应字符，再根据HTML5标准解析成对应标签对象。</p>
+</li>
+<li>根据这些对象去进行深度遍历，获取到它整个的<strong>DOM</strong>；（parse html）</li>
+<li><p>在遍历遇到head中的link标签时，浏览器会下载这个资源，并解析，解析过程和解析html文件一样。最终生成一个<strong>CSS对象模型：CSSOM</strong>。</p>
+</li>
+<li><p>之后，浏览器会将DOM、CSSOM结合起来，构建<strong>渲染树 Render-tree</strong>，接下来是构建渲染树的过程：</p>
+<ul>
+<li><strong>遍历DOM</strong>每一个可见的节点（visibility:hidden只是视觉不可见但仍占位置，所以会遍历），一些script、display:none节点会忽略；</li>
+<li>为每个可见的节点匹配对应的CSSOM的规则；</li>
+<li>生成<strong>具有内容、样式的可见渲染树</strong>；</li>
+</ul>
+</li>
+</ul>
+<p>接下来进行<strong>layout布局，即reflow重排</strong>，计算位置和大小。</p>
+<ul>
+<li>浏览器<strong>从渲染树的根节点开始遍历</strong>，计算每个对象的位置、大小、形状，输出盒子模型，所有单位都转化为屏幕上的绝对像素px。</li>
+</ul>
+<p>最后，万事俱备，<strong>开始painting</strong>！我们就在viewport上看到了网页。</p>
+<h3 id="脚本的执行"><a href="#脚本的执行" class="headerlink" title="脚本的执行"></a>脚本的执行</h3><p>当浏览器解析html遇到<code>&lt;script&gt;</code>标签时，DOM构建会暂停，直到脚本执行完毕。</p>
+<p>因为解析器不知道js会对DOM做啥，所有会让js引擎编译执行脚本，直到脚本执行完毕后再继续构建DOM。所以，默认情况下，js一定会阻塞DOM构建的。</p>
+<p>所以我们最后<strong>把script脚本放在<code>&lt;/body&gt;</code>以将脚本的阻塞降到最低</strong>。</p>
+<p>在一些对DOM无操作的脚本上，我们可以异步加载脚本：在<code>&lt;script&gt;</code>上添加<code>async</code>关键字，告诉浏览器请继续构建DOM，异步的在脚本准备就绪后再执行脚本，不考虑脚本的依赖。比如谷歌分析、百度分析。</p>
+<p>加<code>defer</code>关键字时，告诉浏览器，script加载和构建DOM是异步的，但script在DOM解析完毕，DOMContentLoaded事件触发前执行。这一点，和async不同。</p>
+<p><img src="https://static.simmzl.cn/blog/2019-07-23-async%26defer.png" alt="async&amp;defer"></p>
+<p>加defer的script标签有顺序，async无顺序。<br>dom构建完成，然后defer的脚本执行完后，触发DOMContentLoaded事件。</p>
+<p>async脚本执行阶段可能DOMContentLoaded已经触发了。但是其执行完毕一定是在load之前的。</p>
+<p><strong>动态添加脚本，其默认是async的</strong></p>
+<p>讲解相当相当之好的文章：<a href="https://mp.weixin.qq.com/s/PNJ7xCTh15vtdFHWlDk5gw" target="_blank" rel="noopener">四步带你吃透浏览器渲染基本原理</a></p>
+<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><p><a href="https://blog.simmzl.cn/2018/08/cookie-localStroage-sessionStroage-indexDB-webSQL%E7%AE%80%E7%95%A5%E6%80%BB%E7%BB%93.html">cookie/localStroage/sessionStroage/indexDB/webSQL简略总结</a></p>
+<h2 id="window的onload事件和domcontentloaded谁先谁后"><a href="#window的onload事件和domcontentloaded谁先谁后" class="headerlink" title="window的onload事件和domcontentloaded谁先谁后"></a>window的onload事件和domcontentloaded谁先谁后</h2><h2 id="数组扁平化、去重"><a href="#数组扁平化、去重" class="headerlink" title="数组扁平化、去重"></a>数组扁平化、去重</h2><p>扁平：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> flatten = <span class="function"><span class="params">arr</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> arr.reduce(<span class="function">(<span class="params">prev,item</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> prev.concat(<span class="built_in">Array</span>.isArray(item) ? flatten(item) : item);</span><br><span class="line">    &#125;, []);</span><br><span class="line">&#125;</span><br><span class="line">flatten([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>], [<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, [<span class="number">11</span>, <span class="number">12</span>, [<span class="number">12</span>, <span class="number">13</span>, [<span class="number">14</span>]]]], <span class="number">10</span>]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> flatten = <span class="function"><span class="params">arr</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">while</span> (arr.some()) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="typeof和instanceof的区别"><a href="#typeof和instanceof的区别" class="headerlink" title="typeof和instanceof的区别"></a>typeof和instanceof的区别</h2><p>它返回值是一个字符串，该字符串说明运算数的类型。（typeof 运算符返回一个用来表示表达式的数据类型的字符串。</p>
+<p>instanceof是判断其构造函数的。</p>
+<p><a href="https://www.cnblogs.com/Trr-984688199/p/6180040.html" target="_blank" rel="noopener">区别</a></p>
+<h2 id="new和instanceof的内部机制"><a href="#new和instanceof的内部机制" class="headerlink" title="new和instanceof的内部机制"></a>new和instanceof的内部机制</h2><p><a href="https://juejin.im/post/5c19c1b6e51d451d1e06c163" target="_blank" rel="noopener">https://juejin.im/post/5c19c1b6e51d451d1e06c163</a></p>
+<h2 id="vue"><a href="#vue" class="headerlink" title="vue"></a>vue</h2><h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p>vue的响应式原理</p>
+<h3 id="virtual-dom有哪些好处"><a href="#virtual-dom有哪些好处" class="headerlink" title="virtual dom有哪些好处"></a>virtual dom有哪些好处</h3><h3 id="父子组建传值-跨组建传值"><a href="#父子组建传值-跨组建传值" class="headerlink" title="父子组建传值/跨组建传值"></a>父子组建传值/跨组建传值</h3><p>父 - 子： props<br>子 - 父： emit</p>
+<p>跨组件： eventbus &amp; vuex</p>
+<h3 id="vuex"><a href="#vuex" class="headerlink" title="vuex"></a>vuex</h3><p><a href="https://blog.simmzl.cn/2019/06/Vuex&amp;Redux-Vuex.html">vuex</a></p>
+<h3 id="vue的nextTick实现原理以及应用场景"><a href="#vue的nextTick实现原理以及应用场景" class="headerlink" title="vue的nextTick实现原理以及应用场景"></a>vue的nextTick实现原理以及应用场景</h3><p>Vue 在更新 DOM 时是异步执行的。只要侦听到数据变化，Vue 将开启一个队列，并缓冲在同一事件循环中发生的所有数据变更。</p>
+<p>如果同一个 watcher 被多次触发，只会被推入到队列中一次。</p>
+<p>避免不必要的计算和 DOM 操作。</p>
+<p><strong>下一个的事件循环“tick”中，Vue 刷新队列并执行实际 (已去重的) 工作</strong>，这时候DOM的数据才改变完毕。Vue 在内部对异步队列尝试使用原生的 Promise.then、MutationObserver 和 setImmediate，如果执行环境不支持，则会采用 setTimeout(fn, 0) 代替。</p>
+<p>正常都还好，但是如果<strong>你在更新数据后，想基于更新后的 DOM 状态来做点什么</strong>，这个时候你从DOM那边拿到的数据很可能是未改变的值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#example'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    message: <span class="string">'123'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">vm.message = <span class="string">'new message'</span> <span class="comment">// 更改数据</span></span><br><span class="line">vm.$el.textContent === <span class="string">'new message'</span> <span class="comment">// false // 数据未改变</span></span><br><span class="line">Vue.nextTick(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  vm.$el.textContent === <span class="string">'new message'</span> <span class="comment">// true // 数据已改变</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>$nextTick() 返回一个 Promise 对象，因此还可以这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">  updateMessage: <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.message = <span class="string">'已更新'</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.$el.textContent) <span class="comment">// =&gt; '未更新'</span></span><br><span class="line">    <span class="keyword">await</span> <span class="keyword">this</span>.$nextTick()</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.$el.textContent) <span class="comment">// =&gt; '已更新'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="SSR对性能优化的提升在哪里"><a href="#SSR对性能优化的提升在哪里" class="headerlink" title="SSR对性能优化的提升在哪里"></a>SSR对性能优化的提升在哪里</h3><h3 id="Vue3-proxy解决了哪些问题"><a href="#Vue3-proxy解决了哪些问题" class="headerlink" title="Vue3 proxy解决了哪些问题"></a>Vue3 proxy解决了哪些问题</h3><h1 id="html-amp-css"><a href="#html-amp-css" class="headerlink" title="html &amp; css"></a>html &amp; css</h1><p>1</p>
+<h2 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h2><h2 id="REM和EM"><a href="#REM和EM" class="headerlink" title="REM和EM"></a>REM和EM</h2><p>rem 1px 像素解决方案</p>
+<p>物理像素 / 逻辑像素 = dpr (devicePixelRatio)卡，通过window.devicePixelRatio获取。</p>
+<p>UI设计师<strong>要求的1px是指设备的物理像素1px</strong>，而CSS里记录的像素是逻辑像素。<br>在dpr = 2 的设备上，1px就表现为两个物理像素，就显得非常粗。</p>
+<p>1、background &amp; svg 圆角不适用</p>
+<p>postcss-write-svg插件</p>
+<p>写好方法，传入px、border的位置（left、top、color）</p>
+<p>2、1px不转rem, 用transform缩放0.5 圆角情况下用</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.setLeftLine</span>(<span class="variable">@c</span>: <span class="number">#C7C7C7</span>) &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">" "</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">1px</span>; <span class="comment">/*!no*/</span></span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">border-left</span>: <span class="number">1px</span> solid <span class="variable">@c</span>; <span class="comment">/*!no*/</span></span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">@c</span>;</span><br><span class="line">    <span class="attribute">transform-origin</span>: <span class="number">0</span> <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">transform</span>: scaleX(<span class="number">0.5</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.setLine</span>(<span class="variable">@c</span>: <span class="number">#C7C7C7</span>) &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">" "</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200%</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="variable">@c</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">@c</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200%</span>;</span><br><span class="line">    <span class="attribute">transform-origin</span>: left top;</span><br><span class="line">    <span class="attribute">transform</span>: scale(<span class="number">0.5</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>动态的改变viewport的缩放比例和rem根字体大小以及媒体查询之类因为兼容性问题和涉及全局可能会带来其他影响就没有考虑。</p>
+<h2 id="BFC什么是什么情况下bfc"><a href="#BFC什么是什么情况下bfc" class="headerlink" title="BFC什么是什么情况下bfc"></a>BFC什么是什么情况下bfc</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>块格式化上下文 (Block Formatting Context)</p>
+<p>BFC就是页面上的一个隔离的独立容器，容器里面的子元素的属性不会影响到外面元素，只在这个BFC内；两个BFC之间不会产生任何影响</p>
+<h3 id="如何产生BFC"><a href="#如何产生BFC" class="headerlink" title="如何产生BFC"></a>如何产生BFC</h3><p>下面情况会产生BFC：</p>
+<ul>
+<li>float的值不为none</li>
+<li>overflow的值不为visible</li>
+<li>display的值为table-cell, table-caption, inline-block中的任何一个</li>
+<li>position的值不为relative和static</li>
+</ul>
+<p>简单说，就是CSS3触发BFC就是让定位不是正常的，不是static、relative。</p>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ul>
+<li>内部的Box会在垂直方向上一个接一个的放置</li>
+<li>完整的说法是：属于同一个BFC的两个相邻Box的margin会发生重叠（塌陷），与方向无关。）</li>
+<li>每个元素的左外边距与包含块的左边界相接触，BFC中子元素不会超出他的包含块，而position为absolute的元素可以超出他的包含块边界</li>
+<li>BFC的区域不会与float的元素区域重叠，所以为了让浮动子元素不与外界重叠，我们就可以用这个特性来实现清楚浮动了。</li>
+<li>计算BFC的高度时，浮动子元素也参与计算，同样，可以解决父级高度塌陷的问题。</li>
+<li>BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面元素，反之亦然</li>
+</ul>
+<p>看到以上的几条约束，想想我们学习css时的几条规则</p>
+<p>Block元素会扩展到与父元素同宽，所以block元素会垂直排列<br>垂直方向上的两个相邻DIV的margin会重叠，而水平方向不会(此规则并不完全正确)<br>浮动元素会尽量接近往左上方（或右上方）<br>为父元素设置overflow：hidden或浮动父元素等，则会包含浮动元素</p>
+<h3 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h3><p>1、 比如说两个元素发生margin重叠，我们让他们其中一个元素a 的display为inline-block，或者a浮动，这时候a就是一个BFC，这样他就不会和另一个元素发生作用。</p>
+<p>在发生margin重叠的时候（只要上下相邻，中间没有其他元素，如兄弟之间、父子的上面或下面等，margin重叠只发生在垂直方向。），使用：</p>
+<ul>
+<li>padding代替</li>
+<li>之一display: inline-block  // 产生BFC</li>
+<li>之一设置重叠的元素浮动  // 产生BFC</li>
+<li>给其中一个元素包个父级div，并设置overflow: hidden / display: inline-block，这样这个父级就是一个BFC，不会影响</li>
+</ul>
+<p>2、清除内部浮动</p>
+<p>计算BFC的高度时，浮动元素也参与计算，因此可设置父级元素overflow/display/float/position达到目的。</p>
+<p>3、BFC布局规则第五条：</p>
+<p>BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。</p>
+<p>因为BFC内部的元素和外部的元素绝对不会互相影响，因此，</p>
+<p>当BFC外部存在浮动时，它不应该影响BFC内部Box的布局，BFC会通过变窄，而不与浮动有重叠。 同样的，当BFC内部有浮动时，为了不影响外部元素的布局，BFC计算高度时会包括浮动的高度。 避免margin重叠也是这样的一个道理。 </p>
+<h2 id="css"><a href="#css" class="headerlink" title="css"></a>css</h2><h3 id="贝塞尔曲线"><a href="#贝塞尔曲线" class="headerlink" title="贝塞尔曲线"></a>贝塞尔曲线</h3><h3 id="选择器相关，优先级"><a href="#选择器相关，优先级" class="headerlink" title="选择器相关，优先级"></a>选择器相关，优先级</h3><p><img src="https://static.simmzl.cn/blog/2019-07-24-css.png" alt="选择器"></p>
+<p><a href="https://blog.csdn.net/konghouy/article/details/80875641" target="_blank" rel="noopener"></a></p>
+<h3 id="css动画实现"><a href="#css动画实现" class="headerlink" title="css动画实现"></a>css动画实现</h3><p><a href="http://www.w3school.com.cn/css3/css3_animation.asp" target="_blank" rel="noopener">css动画</a></p>
+<p>animation</p>
+<p>关键帧 @keyframe</p>
+<h2 id="回流-amp-重回"><a href="#回流-amp-重回" class="headerlink" title="回流 &amp; 重回"></a>回流 &amp; 重回</h2><p>回流（reflow）<br>只要修改了dom或改变了元素的形状或大小等会改变布局的操作就会触发reflow</p>
+<p>重绘（repaint）<br>只是改变了颜色，不影响周围元素或布局，会引起浏览器的重绘</p>
+<p>减少reflow与repaint<br>不要一条一条的修改样式，应该固定写一个class，更换className，减少reflow次数</p>
+<p>不要把 DOM 结点的属性值放在一个循环里当成循环里的变量。</p>
+<p>为动画的 HTML 元件使用position:fixed 或 absolute ，那么修改他们的 CSS 是不会 reflow 的。</p>
+<p>避免使用table布局，一个很小的改动会造成整个table reflow！</p>
+<h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><h2 id="https和http"><a href="#https和http" class="headerlink" title="https和http"></a>https和http</h2><p>Http请求中的keep-alive有了解吗</p>
+<p><a href="https://blog.csdn.net/xiaoming100001/article/details/81109617" target="_blank" rel="noopener">HTTP和HTTPS协议，看一篇就够了</a></p>
+<h2 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h2><p><a href="https://www.cnblogs.com/xflonga/p/9368993.html" target="_blank" rel="noopener">常见的http状态码</a><br><a href="https://www.runoob.com/http/http-status-codes.html" target="_blank" rel="noopener">文档</a></p>
+<p>1XX系列响应代码仅在与HTTP服务器沟通时使用。<br>100(“Continue”)</p>
+<p>2XX系列响应代码表明操作成功了。<br>200(“OK”)<br>201(“Created”)服务器依照客户端的请求创建了一个新资源时，发送此响应代码<br>204(“No Content”)</p>
+<p>3XX 重定向<br>3XX系列响应代码表明：客户端需要做些额外工作才能得到所需要的资源。它们通常用于GET请求。他们通常告诉客户端需要向另一个URI发送GET请求，才能得到所需的表示。那个URI就包含在Location响应报头里。<br>304(“Not Modified”)</p>
+<p>4XX客户端错误<br>401(“Unauthorized”)<br>403(“Forbidden”)<br>405(“Method Not Allowd”)<br>408(“Reqeust Timeout”)</p>
+<p>5XX服务器错误</p>
+<p>502(“Bad Gateway”)  只有HTTP代理会发送这个响应代码。它表明代理方面出现问题，或者代理与上行服务器之间出现问题，而不是上行服务器本身有问题。若代理根本无法访问上行服务器，响应代码将是504。</p>
+<p>503(“Service Unavailable”)<br>此响应代码表明HTTP服务器正常，只是下层web服务服务不能正常工作。最可能的原因是资源不足：服务器突然收到太多请求，以至于无法全部处理。由于此问题多半由客户端反复发送请求造成，因此HTTP服务器可以选择拒绝接受客户端请求而不是接受它，并发送503响应代码。<br>响应报头：服务器可以通过Retry-After报头告知客户端何时可以重试。</p>
+<p>504(“Gateway Timeout”)<br>跟502类似，只有HTTP代理会发送此响应代码。此响应代码表明代理无法连接上行服务器。</p>
+<h2 id="xss和csrf"><a href="#xss和csrf" class="headerlink" title="xss和csrf"></a>xss和csrf</h2><p>XSS：跨站脚本（Cross-site scripting，通常简称为XSS）是一种网站应用程序的安全漏洞攻击，是代码注入的一种。它允许恶意用户将代码注入到网页上，其他用户在观看网页时就会受到影响。这类攻击通常包含了HTML以及用户端脚本语言。</p>
+<p><strong>在一个论坛发帖中发布一段恶意的JavaScript代码就是脚本注入，如果这个代码内容有请求外部服务器，那么就叫做XSS！</strong></p>
+<p>CSRF:跨站请求伪造（英语：Cross-site request forgery），也被称为 one-click attack 或者 session riding，通常缩写为 CSRF 或者 XSRF， 是一种挟制用户在当前已登录的Web应用程序上执行非本意的操作的攻击方法。</p>
+<p><strong>冒充用户发起请求（在用户不知情的情况下）,完成一些违背用户意愿的请求（如恶意发帖，删帖，改密码，发邮件等）。</strong></p>
+<p>xss的话主要使用转义，csrf的话项目中我主要使用的是jwt(javascript web token)。然后针对jwt细节问了我20多分钟。</p>
+<h2 id="对称加密与非对称加密"><a href="#对称加密与非对称加密" class="headerlink" title="对称加密与非对称加密"></a>对称加密与非对称加密</h2><p>对称：客户端用服务器的公钥加密一个随机密钥，然后加密明文，服务器拿到密文后用自己的私钥解密</p>
+<p>非对称：双方都有公钥私钥，公钥由可信任的第三方维护，都可以获取到。客户端用服务端的公钥加密明文，然后服务器用自己的私钥解密。</p>
+<h2 id="进程-amp-线程"><a href="#进程-amp-线程" class="headerlink" title="进程 &amp; 线程"></a>进程 &amp; 线程</h2><p>进程就是一次程序执行的过程，操作系统分配资源的最小单位。</p>
+<p>线程就是程序执行的最小单位，一个进程包含多个线程。</p>
+<p>进程彼此相互独立，不共享资源内存。而线程则会。</p>
+<p>js是单线程。<br>chrome每个网页都是一个独立的进程，用空间换取速度。这样一个网页崩溃不会造成所有的网页崩溃。</p>
+<h2 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h2><h3 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h3><p>需要浏览器和服务器同时支持</p>
+<p>服务端开启Access-Control-Allow-Origin添加允许的域名。</p>
+<p>为 <em> 会造成一些安全问题，允许其他域名访问后端接口。<br>为 </em> 会使浏览器不会携带cookies，服务端通过access-control-allow-credentials为true，去接受cookies，默认开启。客户端通过XHR的withCredentials为true让请求带cookies</p>
+<p>请求也会分为简单请求和非简单请求。</p>
+<p>简单即满足以下两点：</p>
+<p>1、get/post/head请求之一；<br>2、http请求头不超出以下几个字段：</p>
+<ul>
+<li>Accept</li>
+<li>Accept-Language</li>
+<li>Content-Language</li>
+<li>Last-Event-ID</li>
+<li>Content-Type：只限于三个值application/x-www-form-urlencoded、multipart/form-data、text/plain</li>
+</ul>
+<p>否则为非简单。</p>
+<p>非简单的话，浏览器会发送一个预检（preflight）请求，相当于想问问服务器，你支不支持我这个请求。</p>
+<p>预检请求是一个OPTINOS请求，特征是在请求头加了三个字段：</p>
+<ul>
+<li>origin：本次请求的域名地址，告诉服务器，这个域名你支不支持～</li>
+<li>Access-Control-Allow-Method：POST，正式请求的方法，问一问服务器你到底支持哪些；</li>
+<li>Access-Control-Request-Headers：content-type, x-requested-with；告诉服务器，正式请求会额外发送的请求头。</li>
+</ul>
+<p>服务器在检查Origin、Access-Control-Request-Method和Access-Control-Request-Headers字段以后，确认允许跨源请求之后返回回应。<br>如果浏览器否定了”预检”请求，会返回一个正常的HTTP回应，但是没有任何CORS相关的头信息字段。会触发被XHR onerror事件捕获。</p>
+<p>若允许，则在该响应头中，会在Access-Control-Allow-Origin这个字段中带上服务器允许的地址。其中还包括：</p>
+<ul>
+<li>ccess-Control-Allow-Methods: GET, POST, PUT</li>
+<li>Access-Control-Allow-Headers: X-Custom-Header</li>
+<li>Access-Control-Allow-Credentials: true</li>
+<li>Access-Control-Max-Age: 1728000  用来指定本次预检请求的有效期。会缓存这条回应，在此期间不用发出另一条预检请求。</li>
+</ul>
+<h3 id="图像ping"><a href="#图像ping" class="headerlink" title="图像ping"></a>图像ping</h3><p>利用Image对象没有同源限制的原理</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> img = <span class="keyword">new</span> Image();</span><br><span class="line"></span><br><span class="line">img.onload = img.onerror = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">"done"</span>) &#125;;</span><br><span class="line"></span><br><span class="line">img.src = <span class="string">"https://xx?form=index"</span></span><br></pre></td></tr></table></figure>
+<p>常用于用户点击次数埋点、广告曝光次数等。</p>
+<h3 id="jsonp"><a href="#jsonp" class="headerlink" title="jsonp"></a>jsonp</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">   <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span></span><br><span class="line"><span class="javascript">   script.type = <span class="string">'text/javascript'</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">   <span class="comment">// 传参一个回调函数名给后端，方便后端返回时执行这个在前端定义的回调函数</span></span></span><br><span class="line"><span class="javascript">   script.src = <span class="string">'http://www.domain2.com:8080/login?user=admin&amp;callback=handleCallback'</span>;</span></span><br><span class="line"><span class="javascript">   <span class="built_in">document</span>.head.appendChild(script);</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">   <span class="comment">// 回调执行函数</span></span></span><br><span class="line"><span class="javascript">   <span class="function"><span class="keyword">function</span> <span class="title">handleCallback</span>(<span class="params">res</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">       alert(<span class="built_in">JSON</span>.stringify(res));</span></span><br><span class="line">   &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>服务端返回：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">handleCallback(&#123;<span class="string">"status"</span>: <span class="literal">true</span>, <span class="string">"user"</span>: <span class="string">"admin"</span>&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="postMessage跨域"><a href="#postMessage跨域" class="headerlink" title="postMessage跨域"></a>postMessage跨域</h3><p>HTML5</p>
+<p>用法：postMessage(data,origin)方法接受两个参数</p>
+<p>data： html5规范支持任意基本类型或可复制的对象，但部分浏览器只支持字符串，所以传参时最好用JSON.stringify()序列化。</p>
+<p>origin： 协议+主机+端口号，也可以设置为”*”，表示可以传递给任意窗口，如果要指定和当前窗口同源的话设置为”/“。</p>
+<p>1、a.html：(<a href="http://www.domain1.com/a.html" target="_blank" rel="noopener">http://www.domain1.com/a.html</a>)</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">id</span>=<span class="string">"iframe"</span> <span class="attr">src</span>=<span class="string">"http://www.domain2.com/b.html"</span> <span class="attr">style</span>=<span class="string">"display:none;"</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span>       </span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> iframe = <span class="built_in">document</span>.getElementById(<span class="string">'iframe'</span>);</span></span><br><span class="line"><span class="javascript">    iframe.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> data = &#123;</span></span><br><span class="line"><span class="javascript">            name: <span class="string">'aym'</span></span></span><br><span class="line">        &#125;;</span><br><span class="line"><span class="javascript">        <span class="comment">// 向domain2传送跨域数据</span></span></span><br><span class="line"><span class="javascript">        iframe.contentWindow.postMessage(<span class="built_in">JSON</span>.stringify(data), <span class="string">'http://www.domain2.com'</span>);</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="comment">// 接受domain2返回数据</span></span></span><br><span class="line"><span class="javascript">    <span class="built_in">window</span>.addEventListener(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        alert(<span class="string">'data from domain2 ---&gt; '</span> + e.data);</span></span><br><span class="line"><span class="javascript">    &#125;, <span class="literal">false</span>);</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>2、b.html：(<a href="http://www.domain2.com/b.html" target="_blank" rel="noopener">http://www.domain2.com/b.html</a>)</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 接收domain1的数据</span></span></span><br><span class="line"><span class="javascript">    <span class="built_in">window</span>.addEventListener(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        alert(<span class="string">'data from domain1 ---&gt; '</span> + e.data);</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> data = <span class="built_in">JSON</span>.parse(e.data);</span></span><br><span class="line">        if (data) &#123;</span><br><span class="line">            data.number = 16;</span><br><span class="line"></span><br><span class="line"><span class="javascript">            <span class="comment">// 处理后再发回domain1</span></span></span><br><span class="line"><span class="javascript">            <span class="built_in">window</span>.parent.postMessage(<span class="built_in">JSON</span>.stringify(data), <span class="string">'http://www.domain1.com'</span>);</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="javascript">    &#125;, <span class="literal">false</span>);</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="document-domain-iframe跨域"><a href="#document-domain-iframe跨域" class="headerlink" title="document.domain + iframe跨域"></a>document.domain + iframe跨域</h3><p>主域名相同子域名不同，手动<strong>设置document.domain为基本主域名</strong>来通信（window.parent）</p>
+<p>1、父窗口：(<a href="http://www.domain.com/a.html" target="_blank" rel="noopener">http://www.domain.com/a.html</a>)</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">id</span>=<span class="string">"iframe"</span> <span class="attr">src</span>=<span class="string">"http://child.domain.com/b.html"</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.domain = <span class="string">'domain.com'</span>;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> user = <span class="string">'admin'</span>;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>2、子窗口：(<a href="http://child.domain.com/b.html" target="_blank" rel="noopener">http://child.domain.com/b.html</a>)</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.domain = <span class="string">'domain.com'</span>;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 获取父窗口中变量</span></span></span><br><span class="line"><span class="javascript">    alert(<span class="string">'get js data from parent ---&gt; '</span> + <span class="built_in">window</span>.parent.user);</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="get-post区别"><a href="#get-post区别" class="headerlink" title="get post区别"></a>get post区别</h2><p><a href="http://www.w3school.com.cn/tags/html_ref_httpmethods.asp" target="_blank" rel="noopener">w3c</a></p>
+<h2 id="token-session-cookie"><a href="#token-session-cookie" class="headerlink" title="token session cookie"></a>token session cookie</h2><p><a href="https://www.cnblogs.com/moyand/p/9047978.html" target="_blank" rel="noopener">三者区别</a></p>
+<h1 id="高阶"><a href="#高阶" class="headerlink" title="高阶"></a>高阶</h1><h2 id="Lazyman"><a href="#Lazyman" class="headerlink" title="Lazyman"></a>Lazyman</h2><h2 id="serviceworker如何保证离线缓存资源更新"><a href="#serviceworker如何保证离线缓存资源更新" class="headerlink" title="serviceworker如何保证离线缓存资源更新"></a>serviceworker如何保证离线缓存资源更新</h2><h2 id="发布订阅模式和观察者模式的异同"><a href="#发布订阅模式和观察者模式的异同" class="headerlink" title="发布订阅模式和观察者模式的异同"></a>发布订阅模式和观察者模式的异同</h2><h2 id="CI-CD整体流程"><a href="#CI-CD整体流程" class="headerlink" title="CI/CD整体流程"></a>CI/CD整体流程</h2><h2 id="vue和react选型和比较"><a href="#vue和react选型和比较" class="headerlink" title="vue和react选型和比较"></a>vue和react选型和比较</h2><p><a href="https://cn.vuejs.org/v2/guide/comparison.html" target="_blank" rel="noopener">vue官方区别</a></p>
+<h2 id="webpack的plugins和loaders的实现原理"><a href="#webpack的plugins和loaders的实现原理" class="headerlink" title="webpack的plugins和loaders的实现原理"></a>webpack的plugins和loaders的实现原理</h2><h2 id="webpack-热更新原理"><a href="#webpack-热更新原理" class="headerlink" title="webpack 热更新原理"></a>webpack 热更新原理</h2><p><a href="https://www.jianshu.com/p/f4c7254f4e24" target="_blank" rel="noopener">前端开发热更新原理解读</a></p>
+<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><h3 id="页面级别的优化"><a href="#页面级别的优化" class="headerlink" title="页面级别的优化"></a>页面级别的优化</h3><h4 id="减少-HTTP请求数"><a href="#减少-HTTP请求数" class="headerlink" title="减少 HTTP请求数"></a>减少 HTTP请求数</h4><ul>
+<li>设置HTTP缓存</li>
+</ul>
+<p>一些很少变化的图片设置HTTP Header中的Expires设置一个很长的过期头<br>一些变化不频繁而又可能会变的资源可以使用 Last-Modifed 来做请求验证</p>
+<ul>
+<li>资源合并与压缩</li>
+</ul>
+<p>多个js最终打包出来一个main.js，多个css合并。</p>
+<p>开启gzip压缩</p>
+<ul>
+<li>图片类的</li>
+</ul>
+<p>css雪碧图、小的png图片转base64、图片瀑布流等可以使用懒加载，压缩图片。</p>
+<ul>
+<li><p>资源上CDN</p>
+</li>
+<li><p>脚本放在body内最后面</p>
+</li>
+</ul>
+<p>html自上而下解析的，放在前面会阻碍html其他资源的加载。</p>
+<p>如果在加载执行脚本的时候DOM元素并没有被解析，脚本就会因为DOM元素没有生成取不到响应元素</p>
+<ul>
+<li>动态加载js、异步加载</li>
+</ul>
+<p>在需要js时，动态添加script脚本。</p>
+<p>使用async、defer，避免因为解析js造成阻塞DOM的构建</p>
+<ul>
+<li>css放在head里面</li>
+</ul>
+<p>放在head中可以尽早开始加载构建CSSOM，放在后面也会推迟页面渲染时间。</p>
+<h3 id="代码级别的优化"><a href="#代码级别的优化" class="headerlink" title="代码级别的优化"></a>代码级别的优化</h3><h4 id="js-1"><a href="#js-1" class="headerlink" title="js"></a>js</h4><ul>
+<li><p>减少DOM操作</p>
+<ul>
+<li><p>获取dom节点类数组，直接操作类数组比较耗性能，因为类数组是查询结果，每次调用都会查询一遍，转成数组再操作。</p>
+</li>
+<li><p>频繁的操作dom会造成重绘（颜色变化）和回流（改变形状大小造成布局变化）</p>
+</li>
+</ul>
+</li>
+<li><p>避免使用eval去生成变量</p>
+</li>
+<li><p>尽量避免使用全局变量，能用局部变量代替就用局部变量代替.</p>
+</li>
+<li><p>用户输入事件的处理函数去抖动</p>
+</li>
+<li><p>比较不用操作dom，耗费性能时间长的操作，放在Web Workers中执行（Web Workers不能操作dom）</p>
+</li>
+</ul>
+<h4 id="html"><a href="#html" class="headerlink" title="html"></a>html</h4><p>避免过多和过深的dom，有些是可以用伪元素代替的。dom的渲染是深度遍历的。</p>
+<p>图标可以使用iconfont代替</p>
+<h4 id="css-1"><a href="#css-1" class="headerlink" title="css"></a>css</h4><ul>
+<li>媒体类型（media type）和媒体查询（media query）来解除对渲染的阻塞。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"index.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"print.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">media</span>=<span class="string">"print"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"other.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">media</span>=<span class="string">"(min-width: 30em) and (orientation: landscape)"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>降低样式选择器的复杂度</li>
+</ul>
+<p>用一个类代替，避免过多的选择</p>
+<ul>
+<li>多次改变一个元素的css属性可以合并成一个类名</li>
+</ul>
+<h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><h2 id="二分"><a href="#二分" class="headerlink" title="二分"></a>二分</h2><h2 id="冒泡"><a href="#冒泡" class="headerlink" title="冒泡"></a>冒泡</h2><h2 id="冗余度"><a href="#冗余度" class="headerlink" title="冗余度"></a>冗余度</h2><h2 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h2><p><a href="https://juejin.im/post/5c1eec7bf265da61477034ae" target="_blank" rel="noopener">https://juejin.im/post/5c1eec7bf265da61477034ae</a></p>
+<h1 id="项目经历"><a href="#项目经历" class="headerlink" title="项目经历"></a>项目经历</h1><!-- ## 在这条主线上你做过什么，遇到过什么坑，怎么解决一定要非常清楚等 -->
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面试/" rel="tag"># 面试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/2019年5、6月，我离职了.html" rel="next" title="2019年5、6月，我离职了">
+                <i class="fa fa-chevron-left"></i> 2019年5、6月，我离职了
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/《深入浅出Vue.js》读书笔记.html" rel="prev" title="《深入浅出Vue.js》读书笔记">
+                《深入浅出Vue.js》读书笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://static.simmzl.cn/avatar.jpg" alt="Simmzl">
+          
+            <p class="site-author-name" itemprop="name">Simmzl</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/simmzl" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github-alt"></i></a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.douban.com/people/137373199/" target="_blank" title="Douban">
+                  
+                    <i class="fa fa-fw fa-video-camera"></i></a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://simmzl.tuchong.com" target="_blank" title="Tuchong">
+                  
+                    <i class="fa fa-fw fa-camera-retro"></i></a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#js"><span class="nav-number">1.</span> <span class="nav-text">js</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#this"><span class="nav-number">1.1.</span> <span class="nav-text">this</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#call-bind-apply实现原理及区别"><span class="nav-number">1.2.</span> <span class="nav-text">call, bind, apply实现原理及区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#call-amp-apply实现原理"><span class="nav-number">1.2.1.</span> <span class="nav-text">call &amp; apply实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bind实现原理"><span class="nav-number">1.2.2.</span> <span class="nav-text">bind实现原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#event-loop"><span class="nav-number">1.3.</span> <span class="nav-text">event loop</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#执行栈"><span class="nav-number">1.3.1.</span> <span class="nav-text">执行栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微任务与宏任务"><span class="nav-number">1.3.2.</span> <span class="nav-text">微任务与宏任务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#微任务"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">微任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#宏任务"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">宏任务</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量提升"><span class="nav-number">1.4.</span> <span class="nav-text">变量提升</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#捕获和冒泡"><span class="nav-number">1.5.</span> <span class="nav-text">捕获和冒泡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高阶函数"><span class="nav-number">1.6.</span> <span class="nav-text">高阶函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包、原型链、垃圾回收机制、JS如何实现继承"><span class="nav-number">1.7.</span> <span class="nav-text">闭包、原型链、垃圾回收机制、JS如何实现继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6"><span class="nav-number">1.8.</span> <span class="nav-text">ES6</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性"><span class="nav-number">1.8.1.</span> <span class="nav-text">新特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generator"><span class="nav-number">1.8.2.</span> <span class="nav-text">Generator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#箭头函数和普通函数的区别，有什么新特性"><span class="nav-number">1.8.3.</span> <span class="nav-text">箭头函数和普通函数的区别，有什么新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for…in迭代和for…of有什么区别，-forEach"><span class="nav-number">1.9.</span> <span class="nav-text">for…in迭代和for…of有什么区别， forEach</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#for…in"><span class="nav-number">1.9.1.</span> <span class="nav-text">for…in</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for…of"><span class="nav-number">1.9.2.</span> <span class="nav-text">for…of</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#forEach"><span class="nav-number">1.9.3.</span> <span class="nav-text">forEach</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM0和DOM2事件绑定"><span class="nav-number">1.10.</span> <span class="nav-text">DOM0和DOM2事件绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM0级绑定："><span class="nav-number">1.10.1.</span> <span class="nav-text">DOM0级绑定：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM2级绑定"><span class="nav-number">1.10.2.</span> <span class="nav-text">DOM2级绑定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造函数"><span class="nav-number">1.11.</span> <span class="nav-text">构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#严格模式"><span class="nav-number">1.12.</span> <span class="nav-text">严格模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入url到渲染的整个过程"><span class="nav-number">1.13.</span> <span class="nav-text">输入url到渲染的整个过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM-amp-CSSOM-gt-Render-Tree"><span class="nav-number">1.13.1.</span> <span class="nav-text">DOM &amp; CSSOM =&gt; Render Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#脚本的执行"><span class="nav-number">1.13.2.</span> <span class="nav-text">脚本的执行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存"><span class="nav-number">1.14.</span> <span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#window的onload事件和domcontentloaded谁先谁后"><span class="nav-number">1.15.</span> <span class="nav-text">window的onload事件和domcontentloaded谁先谁后</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组扁平化、去重"><span class="nav-number">1.16.</span> <span class="nav-text">数组扁平化、去重</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#typeof和instanceof的区别"><span class="nav-number">1.17.</span> <span class="nav-text">typeof和instanceof的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#new和instanceof的内部机制"><span class="nav-number">1.18.</span> <span class="nav-text">new和instanceof的内部机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue"><span class="nav-number">1.19.</span> <span class="nav-text">vue</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现原理"><span class="nav-number">1.19.1.</span> <span class="nav-text">实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#virtual-dom有哪些好处"><span class="nav-number">1.19.2.</span> <span class="nav-text">virtual dom有哪些好处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#父子组建传值-跨组建传值"><span class="nav-number">1.19.3.</span> <span class="nav-text">父子组建传值/跨组建传值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vuex"><span class="nav-number">1.19.4.</span> <span class="nav-text">vuex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue的nextTick实现原理以及应用场景"><span class="nav-number">1.19.5.</span> <span class="nav-text">vue的nextTick实现原理以及应用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSR对性能优化的提升在哪里"><span class="nav-number">1.19.6.</span> <span class="nav-text">SSR对性能优化的提升在哪里</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue3-proxy解决了哪些问题"><span class="nav-number">1.19.7.</span> <span class="nav-text">Vue3 proxy解决了哪些问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#html-amp-css"><span class="nav-number">2.</span> <span class="nav-text">html &amp; css</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#清除浮动"><span class="nav-number">2.1.</span> <span class="nav-text">清除浮动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#REM和EM"><span class="nav-number">2.2.</span> <span class="nav-text">REM和EM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BFC什么是什么情况下bfc"><span class="nav-number">2.3.</span> <span class="nav-text">BFC什么是什么情况下bfc</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">2.3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何产生BFC"><span class="nav-number">2.3.2.</span> <span class="nav-text">如何产生BFC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性"><span class="nav-number">2.3.3.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用途"><span class="nav-number">2.3.4.</span> <span class="nav-text">用途</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#css"><span class="nav-number">2.4.</span> <span class="nav-text">css</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#贝塞尔曲线"><span class="nav-number">2.4.1.</span> <span class="nav-text">贝塞尔曲线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择器相关，优先级"><span class="nav-number">2.4.2.</span> <span class="nav-text">选择器相关，优先级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#css动画实现"><span class="nav-number">2.4.3.</span> <span class="nav-text">css动画实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回流-amp-重回"><span class="nav-number">2.5.</span> <span class="nav-text">回流 &amp; 重回</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络"><span class="nav-number">3.</span> <span class="nav-text">计算机网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#https和http"><span class="nav-number">3.1.</span> <span class="nav-text">https和http</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态码"><span class="nav-number">3.2.</span> <span class="nav-text">状态码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xss和csrf"><span class="nav-number">3.3.</span> <span class="nav-text">xss和csrf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对称加密与非对称加密"><span class="nav-number">3.4.</span> <span class="nav-text">对称加密与非对称加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程-amp-线程"><span class="nav-number">3.5.</span> <span class="nav-text">进程 &amp; 线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跨域"><span class="nav-number">3.6.</span> <span class="nav-text">跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CORS"><span class="nav-number">3.6.1.</span> <span class="nav-text">CORS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图像ping"><span class="nav-number">3.6.2.</span> <span class="nav-text">图像ping</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jsonp"><span class="nav-number">3.6.3.</span> <span class="nav-text">jsonp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#postMessage跨域"><span class="nav-number">3.6.4.</span> <span class="nav-text">postMessage跨域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#document-domain-iframe跨域"><span class="nav-number">3.6.5.</span> <span class="nav-text">document.domain + iframe跨域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#get-post区别"><span class="nav-number">3.7.</span> <span class="nav-text">get post区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#token-session-cookie"><span class="nav-number">3.8.</span> <span class="nav-text">token session cookie</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高阶"><span class="nav-number">4.</span> <span class="nav-text">高阶</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lazyman"><span class="nav-number">4.1.</span> <span class="nav-text">Lazyman</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#serviceworker如何保证离线缓存资源更新"><span class="nav-number">4.2.</span> <span class="nav-text">serviceworker如何保证离线缓存资源更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布订阅模式和观察者模式的异同"><span class="nav-number">4.3.</span> <span class="nav-text">发布订阅模式和观察者模式的异同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CI-CD整体流程"><span class="nav-number">4.4.</span> <span class="nav-text">CI/CD整体流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue和react选型和比较"><span class="nav-number">4.5.</span> <span class="nav-text">vue和react选型和比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack的plugins和loaders的实现原理"><span class="nav-number">4.6.</span> <span class="nav-text">webpack的plugins和loaders的实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack-热更新原理"><span class="nav-number">4.7.</span> <span class="nav-text">webpack 热更新原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能优化"><span class="nav-number">4.8.</span> <span class="nav-text">性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#页面级别的优化"><span class="nav-number">4.8.1.</span> <span class="nav-text">页面级别的优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#减少-HTTP请求数"><span class="nav-number">4.8.1.1.</span> <span class="nav-text">减少 HTTP请求数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码级别的优化"><span class="nav-number">4.8.2.</span> <span class="nav-text">代码级别的优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#js-1"><span class="nav-number">4.8.2.1.</span> <span class="nav-text">js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#html"><span class="nav-number">4.8.2.2.</span> <span class="nav-text">html</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#css-1"><span class="nav-number">4.8.2.3.</span> <span class="nav-text">css</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#算法"><span class="nav-number">5.</span> <span class="nav-text">算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二分"><span class="nav-number">5.1.</span> <span class="nav-text">二分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#冒泡"><span class="nav-number">5.2.</span> <span class="nav-text">冒泡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#冗余度"><span class="nav-number">5.3.</span> <span class="nav-text">冗余度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序算法"><span class="nav-number">5.4.</span> <span class="nav-text">排序算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目经历"><span class="nav-number">6.</span> <span class="nav-text">项目经历</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017-2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Simmzl</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.2 & 自定义</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="https://static.simmzl.cn/js/jquery-min-v2.1.3.js"></script>
+
+  
+  <script type="text/javascript" src="https://static.simmzl.cn/js/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://static.simmzl.cn/js/jquery.lazyload.js"></script>
+
+  
+  <script type="text/javascript" src="https://static.simmzl.cn/js/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://static.simmzl.cn/js/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://static.simmzl.cn/js/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="https://static.simmzl.cn/blog/v2/js/utils.js"></script>
+
+  <script type="text/javascript" src="https://static.simmzl.cn/blog/v2/js/motion.js"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="https://static.simmzl.cn/blog/v2/js/scrollspy.js"></script>
+<script type="text/javascript" src="https://static.simmzl.cn/blog/v2/js/post-details.js"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="https://static.simmzl.cn/blog/v2/js/bootstrap.js"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "https://static.simmzl.cn/blog/v2/" + search_path;
+    console.info(path)
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
