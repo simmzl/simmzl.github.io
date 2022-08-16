@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://static.simmzl.cn/js/jquery.fancybox.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+  
+
+<link href="https://static.simmzl.cn/js/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="https://static.simmzl.cn/blog/v2/main.css" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="js,Q&A,css,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="https://static.simmzl.cn/imgs/favicon.png?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="TODO Object.defineproperty() margin垂直重叠 字的基线 深拷贝与浅拷贝 未声明的变量会自动升级为全局变量的原因 HTTPS与HTTP &amp;gt; ~ + 使用rem设置元素宽高在chrome中的问题 IOT 中pull-right/经纬度/地区输入 小题">
+<meta name="keywords" content="js,Q&amp;A,css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Some tips in Jan,2018">
+<meta property="og:url" content="https://blog.simmzl.cn/2018/01/Some-tips-in-Jan-2018.html">
+<meta property="og:site_name" content="CQ Studio">
+<meta property="og:description" content="TODO Object.defineproperty() margin垂直重叠 字的基线 深拷贝与浅拷贝 未声明的变量会自动升级为全局变量的原因 HTTPS与HTTP &amp;gt; ~ + 使用rem设置元素宽高在chrome中的问题 IOT 中pull-right/经纬度/地区输入 小题">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://static.simmzl.cn/blog/180914/lbmbmjF30f.png?imageslim">
+<meta property="og:image" content="http://static.simmzl.cn/blog/180914/lhKi19H0mh.png?imageslim">
+<meta property="og:image" content="http://static.simmzl.cn/blog/180914/4A1kElf7GI.png?imageslim">
+<meta property="og:image" content="http://static.simmzl.cn/blog/180914/LJCJC5Af9A.png?imageslim">
+<meta property="og:image" content="http://static.simmzl.cn/blog/180914/hbCGLK6813.png?imageslim">
+<meta property="og:image" content="http://static.simmzl.cn/blog/180914/e8cEFAd1H0.png?imageslim">
+<meta property="og:image" content="http://static.simmzl.cn/blog/180914/fg8fFiBAI3.png?imageslim">
+<meta property="og:image" content="http://static.simmzl.cn/blog/180914/6GjDIfKEak.png?imageslim">
+<meta property="og:updated_time" content="2021-04-22T06:19:59.956Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Some tips in Jan,2018">
+<meta name="twitter:description" content="TODO Object.defineproperty() margin垂直重叠 字的基线 深拷贝与浅拷贝 未声明的变量会自动升级为全局变量的原因 HTTPS与HTTP &amp;gt; ~ + 使用rem设置元素宽高在chrome中的问题 IOT 中pull-right/经纬度/地区输入 小题">
+<meta name="twitter:image" content="http://static.simmzl.cn/blog/180914/lbmbmjF30f.png?imageslim">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms","applicationID":"PGSULVYJOM","indexName":"prod","chunkSize":5000}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://blog.simmzl.cn/2018/01/Some-tips-in-Jan-2018.html">
+
+
+
+
+
+  <title>Some tips in Jan,2018 | CQ Studio</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5fdad4c6c1a4b4836d58a1393084fbba";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title"></span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.simmzl.cn/2018/01/Some-tips-in-Jan-2018.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simmzl">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://static.simmzl.cn/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CQ Studio">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Some tips in Jan,2018</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-18T20:55:24+08:00">
+                2018-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h1><ul>
+<li><del>Object.defineproperty()</del></li>
+<li><del>margin垂直重叠</del></li>
+<li><del>字的基线</del></li>
+<li><del>深拷贝与浅拷贝</del></li>
+<li><del>未声明的变量会自动升级为全局变量的原因</del></li>
+<li><del>HTTPS与HTTP</del></li>
+<li><del>&gt; ~ +</del></li>
+<li><del>使用rem设置元素宽高在chrome中的问题</del></li>
+<li><del>IOT 中pull-right/经纬度/地区输入</del></li>
+<li><del>小题</del></li>
+</ul>
+<a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">    age: <span class="number">20</span>,</span><br><span class="line">    getAge: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="keyword">this</span>.age; &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj2 = &#123; <span class="attr">age</span>: <span class="number">30</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> getAge = obj1.getAge;</span><br><span class="line">obj2.getAge = getAge;</span><br><span class="line"><span class="built_in">console</span>.log(obj1.getAge());</span><br><span class="line"><span class="built_in">console</span>.log(obj2.getAge());</span><br></pre></td></tr></table></figure>
+<h2 id="Object-defineProperty"><a href="#Object-defineProperty" class="headerlink" title="Object.defineProperty()"></a>Object.defineProperty()</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.defineProperty(obj, prop, descriptor)</span><br></pre></td></tr></table></figure>
+<p>该方法会直接在<strong>一个对象</strong>上定义一个<strong>新属性</strong>，或者<strong>修改</strong>一个对象的现有属性， 并<strong>返回这个对象</strong>。与常见的直接使用<code>.</code>和<code>[]</code>不同，它能通过<code>descriptor</code>参数定义属性的更多设定。</p>
+<h3 id="obj"><a href="#obj" class="headerlink" title="obj"></a>obj</h3><p>要在其上定义属性的对象。</p>
+<h3 id="prop"><a href="#prop" class="headerlink" title="prop"></a>prop</h3><p>字符串，要定义或修改的属性的名称。</p>
+<h3 id="descriptor-属性描述符"><a href="#descriptor-属性描述符" class="headerlink" title="descriptor/属性描述符"></a>descriptor/属性描述符</h3><blockquote>
+<p>对象里目前存在的属性描述符有两种主要形式：数据描述符和存取描述符。数据描述符是一个具有值的属性，该值可能是可写的，也可能不是可写的。访问器描述符是由getter-setter函数对描述的属性。描述符必须是这两种形式之一；不能同时是两者。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>/</th>
+<th>configurable</th>
+<th>enumerable</th>
+<th>value</th>
+<th>writable</th>
+<th>get</th>
+<th>set</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据描述符</td>
+<td>yes</td>
+<td>y</td>
+<td>y</td>
+<td>y</td>
+<td>no</td>
+<td>n</td>
+</tr>
+<tr>
+<td>存取描述符</td>
+<td>y</td>
+<td>y</td>
+<td>n</td>
+<td>n</td>
+<td>y</td>
+<td>y</td>
+</tr>
+</tbody>
+</table>
+<h4 id="configurable"><a href="#configurable" class="headerlink" title="configurable"></a>configurable</h4><p>设置属性描述符<code>descriptor</code>是否能被修改，默认为flase；如果尝试去更改<code>configurable:false</code>的<code>属性描述符</code>内的属性则会<strong>报错</strong>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;</span><br><span class="line">  age: <span class="number">1</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(a, <span class="string">'name'</span> , &#123;</span><br><span class="line">  configurable: <span class="literal">false</span>,</span><br><span class="line">  enumerable: <span class="literal">false</span>,</span><br><span class="line">  value: <span class="string">'obj'</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(a, <span class="string">'name'</span> , &#123;</span><br><span class="line">  configurable: <span class="literal">false</span>,</span><br><span class="line">  enumerable: <span class="literal">false</span>,</span><br><span class="line">  value: <span class="string">'name'</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// "error"</span></span><br><span class="line"><span class="comment">// "TypeError: Cannot redefine property: name</span></span><br></pre></td></tr></table></figure>
+<h4 id="enumerable"><a href="#enumerable" class="headerlink" title="enumerable"></a>enumerable</h4><p>设置属性是否能被枚举，默认为flase，不能被枚举；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;</span><br><span class="line">  age: <span class="number">1</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(a, <span class="string">'name'</span> , &#123;</span><br><span class="line">  value: <span class="string">'obj'</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> a)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(key + <span class="string">': '</span> + a[key]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// "age: 1"</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(a));</span><br><span class="line"><span class="comment">// ["age"]</span></span><br><span class="line"><span class="comment">// 默认情况下'name'无法被枚举出来</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;</span><br><span class="line">  age: <span class="number">1</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(a, <span class="string">'name'</span> , &#123;</span><br><span class="line">  enumerable: <span class="literal">true</span>,</span><br><span class="line">  value: <span class="string">'obj'</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(a));</span><br><span class="line"><span class="comment">// ["age", "name"]</span></span><br></pre></td></tr></table></figure>
+<h4 id="value"><a href="#value" class="headerlink" title="value"></a>value</h4><p>默认为<code>undefined</code></p>
+<h4 id="writable"><a href="#writable" class="headerlink" title="writable"></a>writable</h4><p>仅当该属性的<code>writable</code>为<code>true</code>时，<code>value</code>才能被赋值运算符改变。默认为 <code>false</code>。</p>
+<h5 id="这样一道题："><a href="#这样一道题：" class="headerlink" title="这样一道题："></a>这样一道题：</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  Question : please create a tool to generate Sequence</span></span><br><span class="line"><span class="comment">  Expected to be used like:</span></span><br><span class="line"><span class="comment">  var sequence1 = new Sequence();</span></span><br><span class="line"><span class="comment">  sequence1.next() --&gt; return 1;</span></span><br><span class="line"><span class="comment">  sequence1.next() --&gt; return 2;</span></span><br><span class="line"><span class="comment">  </span></span><br><span class="line"><span class="comment">  in another module:</span></span><br><span class="line"><span class="comment">  var sequence2 = new Sequence();</span></span><br><span class="line"><span class="comment">  sequence2.next() --&gt; 3;</span></span><br><span class="line"><span class="comment">  sequence2.next() --&gt; 4;</span></span><br><span class="line"><span class="comment">**/</span></span><br></pre></td></tr></table></figure>
+<p>实例化构造函数时，新的实例都会刷新变量，因此使用通常的方法无法实现效果。</p>
+<p>使用<code>Object.defineProperty</code>，并设置<code>writable: true</code>的<strong>解决方法</strong>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sequence</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.next = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        Sequence.number++;</span><br><span class="line">        <span class="built_in">console</span>.log(Sequence.number);</span><br><span class="line">        <span class="keyword">return</span> Sequence.number;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(Sequence, <span class="string">"number"</span>, &#123;</span><br><span class="line">    value: <span class="number">0</span>,</span><br><span class="line">    writable: <span class="literal">true</span>,</span><br><span class="line">    enumerable: <span class="literal">false</span>,</span><br><span class="line">    configurable: <span class="literal">false</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="get"><a href="#get" class="headerlink" title="get"></a>get</h4><p>给属性提供 getter 的方法</p>
+<h4 id="set"><a href="#set" class="headerlink" title="set"></a>set</h4><p>给属性提供 setter的方法，该方法将接受唯一参数，并将该参数的新值分配给该属性。</p>
+<h4 id="数据描述符"><a href="#数据描述符" class="headerlink" title="数据描述符"></a>数据描述符</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, <span class="string">"demo"</span>, &#123;</span><br><span class="line">  configurable: <span class="literal">true</span>,</span><br><span class="line">  enumerable: <span class="literal">true</span>,</span><br><span class="line">  writable: <span class="literal">true</span>,</span><br><span class="line">  value: <span class="number">666</span> <span class="comment">//数据描述符</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="存取描述符"><a href="#存取描述符" class="headerlink" title="存取描述符"></a>存取描述符</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> temp;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, <span class="string">'demo'</span>, &#123;</span><br><span class="line">  configurable: <span class="literal">true</span>,</span><br><span class="line">  enumerable: <span class="literal">true</span>,</span><br><span class="line">  <span class="keyword">get</span>: function()&#123;</span><br><span class="line">    <span class="keyword">return</span> temp;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="keyword">set</span>: function(new)&#123;</span><br><span class="line">    temp = <span class="keyword">new</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>参考：<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank" rel="noopener">MDN web docs</a></p>
+<h2 id="margin的垂直重叠"><a href="#margin的垂直重叠" class="headerlink" title="margin的垂直重叠"></a>margin的垂直重叠</h2><p><strong>两个或多个相邻的普通流中的块元素垂直方向上的 margin 会折叠</strong></p>
+<h3 id="两个或多个"><a href="#两个或多个" class="headerlink" title="两个或多个"></a>两个或多个</h3><p>需要两个或两个以上的元素参与的行为，且折叠是相互行为，不存在 A 和 B 折叠，B 没有和 A 折叠的现象。</p>
+<h3 id="相邻"><a href="#相邻" class="headerlink" title="相邻"></a>相邻</h3><h4 id="兄弟同级相邻"><a href="#兄弟同级相邻" class="headerlink" title="兄弟同级相邻"></a>兄弟同级相邻</h4><p>两个元素时兄弟，且二者之间没有其他元素：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">'margin-bottom:20px'</span>&gt;</span>兄<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">'margin-top:10px'</span>&gt;</span>弟<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>此时二者的间距为20px，产生重叠；</p>
+<p>若兄弟间有其他元素，则不会产生重叠，二者间距30px；</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">'margin-bottom:20px'</span>&gt;</span>兄<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>第三者<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">'margin-top:10px'</span>&gt;</span>弟<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="父子相邻"><a href="#父子相邻" class="headerlink" title="父子相邻"></a>父子相邻</h4><p>父子之间的<code>margin-top</code>相邻或<code>margin-bottom</code>相邻；</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">'margin-bottom:20px'</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>111<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">'margin-bottom:10px'</span>&gt;</span>子<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>NEXT<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>此时父级的<code>margin-bottom</code>与子级的<code>margin-bottom</code>相邻，产生重叠，对于父级外界而言，只取<code>margin-bottom</code>最大值，即20px；</p>
+<h4 id="其他相邻"><a href="#其他相邻" class="headerlink" title="其他相邻"></a>其他相邻</h4><p>其实只要满足上下相邻，中间没有其他元素皆可。</p>
+<h3 id="普通流"><a href="#普通流" class="headerlink" title="普通流"></a>普通流</h3><p>相邻的浮动、<code>inline-block</code>、<code>absolute</code>定位的元素垂直方向的<code>margin</code>不会发生重叠；</p>
+<h3 id="块元素"><a href="#块元素" class="headerlink" title="块元素"></a>块元素</h3><p>内联元素不可设置宽高和<code>margin</code>。</p>
+<h3 id="垂直方向"><a href="#垂直方向" class="headerlink" title="垂直方向"></a>垂直方向</h3><p>只有在垂直方向才会发生重叠，水平方向不会。</p>
+<h3 id="margin重叠有什么意义"><a href="#margin重叠有什么意义" class="headerlink" title="margin重叠有什么意义"></a>margin重叠有什么意义</h3><p>看起来有点奇怪的规则，其实有其现实意义。比如在我们使用<code>p</code>元素排版段落时，<code>p</code>元素默认外边距是16px，上下两个<code>p</code>元素不会产生中间间隔32px的现象；</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>1111<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>2222<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="如何使margin垂直方向不重叠"><a href="#如何使margin垂直方向不重叠" class="headerlink" title="如何使margin垂直方向不重叠"></a>如何使margin垂直方向不重叠</h3><ul>
+<li>使用padding代替；</li>
+<li>设置父级元素overflow: hidden/auto；</li>
+<li>设置二者之一的元素<code>display: inline-block</code>；</li>
+<li>设置元素浮动或者绝对定位；</li>
+</ul>
+<p>注：并不是所有的BFC都可以使margin垂直方向不重叠，设置overflow、display、浮动和绝对定位只是BFC的子集；</p>
+<h2 id="字的基线与vertical-align"><a href="#字的基线与vertical-align" class="headerlink" title="字的基线与vertical-align"></a>字的基线与vertical-align</h2><h3 id="字的基线"><a href="#字的基线" class="headerlink" title="字的基线"></a>字的基线</h3><blockquote>
+<p><a href="https://blog.csdn.net/it_queen/article/details/54729949" target="_blank" rel="noopener">CSDN文章</a></p>
+</blockquote>
+<p><img src="http://static.simmzl.cn/blog/180914/lbmbmjF30f.png?imageslim" alt="mark"></p>
+<h3 id="vertical-align"><a href="#vertical-align" class="headerlink" title="vertical-align"></a>vertical-align</h3><blockquote>
+<p><a href="http://www.w3school.com.cn/cssref/pr_pos_vertical-align.asp" target="_blank" rel="noopener">定义</a></p>
+</blockquote>
+<h4 id="默认基线对齐baseline"><a href="#默认基线对齐baseline" class="headerlink" title="默认基线对齐baseline"></a>默认基线对齐baseline</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>aghGi<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"img-sm"</span> <span class="attr">src</span>=<span class="string">"https://simmzl.cn/v2.0/img/icon.png"</span> <span class="attr">width</span>=<span class="string">100px;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://simmzl.cn/v2.0/img/icon.png"</span> <span class="attr">width</span>=<span class="string">200px;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#ffd800</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">600px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">span</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.1</span>);</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">36px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>默认基线对齐：</p>
+<p><img src="http://static.simmzl.cn/blog/180914/lhKi19H0mh.png?imageslim" alt="mark"></p>
+<h4 id="Top"><a href="#Top" class="headerlink" title="Top"></a>Top</h4><p>把元素的顶端与其他行中最高元素的顶端对齐</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.img-sm</span> &#123;</span><br><span class="line">    <span class="attribute">vertical-align</span>: top;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<p><img src="http://static.simmzl.cn/blog/180914/4A1kElf7GI.png?imageslim" alt="mark"></p>
+<h4 id="Bottom"><a href="#Bottom" class="headerlink" title="Bottom"></a>Bottom</h4><p>把元素的顶端与其他行中最低的元素的顶端对齐</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">span</span> &#123;</span><br><span class="line">    <span class="attribute">vertical-align</span>: bottom;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<p><img src="http://static.simmzl.cn/blog/180914/LJCJC5Af9A.png?imageslim" alt="mark"></p>
+<h4 id="Middle"><a href="#Middle" class="headerlink" title="Middle"></a>Middle</h4><p>把元素的中部和父元素字体的中线对齐</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    Father-gjly</span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>aghGi<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"img-sm"</span> <span class="attr">src</span>=<span class="string">"https://simmzl.cn/v2.0/img/icon.png"</span> <span class="attr">width</span>=<span class="string">100px;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://simmzl.cn/v2.0/img/icon.png"</span> <span class="attr">width</span>=<span class="string">200px;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#ffd800</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">600px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    font-size: 16px;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">span</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.1</span>);</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">36px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.img-sm</span> &#123;</span><br><span class="line">    <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<p><img src="http://static.simmzl.cn/blog/180914/hbCGLK6813.png?imageslim" alt="mark"></p>
+<h4 id="text-top-amp-text-bottom"><a href="#text-top-amp-text-bottom" class="headerlink" title="text-top &amp; text-bottom"></a>text-top &amp; text-bottom</h4><p>把元素的顶端与父元素字体的顶端对齐 &amp; 把元素的底端与父元素字体的底端对齐</p>
+<p>text-top:</p>
+<p><img src="http://static.simmzl.cn/blog/180914/e8cEFAd1H0.png?imageslim" alt="mark"></p>
+<p>text-bottom:</p>
+<p><img src="http://static.simmzl.cn/blog/180914/fg8fFiBAI3.png?imageslim" alt="mark"></p>
+<h4 id="百分比或者长度"><a href="#百分比或者长度" class="headerlink" title="百分比或者长度"></a>百分比或者长度</h4><ul>
+<li>%: 使用 “line-height” 属性的百分比值来排列此元素。允许使用负值，需要设置line-height;</li>
+<li>长度：正负px;</li>
+</ul>
+<p>以上两种只会让元素在父元素内上下移动，向上最多到父元素顶部，向下则可以出父元素</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/* 基于默认基线处上移33px和img-sm居中对齐（不精确） */</span></span><br><span class="line"><span class="selector-tag">span</span> &#123;</span><br><span class="line">    <span class="attribute">vertical-align</span>: <span class="number">33px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://static.simmzl.cn/blog/180914/6GjDIfKEak.png?imageslim" alt="mark"></p>
+<h2 id="深拷贝与浅拷贝"><a href="#深拷贝与浅拷贝" class="headerlink" title="深拷贝与浅拷贝"></a>深拷贝与浅拷贝</h2><p>讲的很好：<br><a href="https://www.cnblogs.com/echolun/p/7889848.html" target="_blank" rel="noopener">深拷贝与浅拷贝的区别，实现深拷贝的几种方法</a></p>
+<p>总结一下：</p>
+<p>基本数据类型：number,string,boolean,null,undefined五类，<strong>无需深拷贝，直接存在栈内</strong>；<br>引用数据类型：(Object类)，有常规名值对的无序对象{a:1}，数组[1,2,3]，以及函数等。<strong>存储在栈中的是堆中的地址</strong>，浅拷贝只拷贝栈中地址，故需要深拷贝。</p>
+<p>实现深拷贝：</p>
+<ul>
+<li>递归赋值所有层级属性</li>
+<li>使用<code>JSON.stringify()</code> 和<code>JSON.prase()</code></li>
+</ul>
+<p>像使用<code>slice() / concat() / Object.assign()</code>等只能深拷贝一层，不是真正的深拷贝。</p>
+<h2 id="未声明的变量会自动升级为全局变量的原因"><a href="#未声明的变量会自动升级为全局变量的原因" class="headerlink" title="未声明的变量会自动升级为全局变量的原因"></a>未声明的变量会自动升级为全局变量的原因</h2><p><a href="https://www.jianshu.com/p/41c2f8f6b80a" target="_blank" rel="noopener">js 严格模式下，为什么不能给未声明变量赋值</a></p>
+<p>拓展：<br><a href="https://blog.csdn.net/highboys/article/details/79110116" target="_blank" rel="noopener">10分钟理解JS引擎的执行机制</a></p>
+<p><a href="https://blog.csdn.net/liaodehong/article/details/50488098" target="_blank" rel="noopener">JavaScript运行原理解析</a></p>
+<h2 id="gt"><a href="#gt" class="headerlink" title="~ &gt; +"></a>~ &gt; +</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>1<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>pppppp<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>2<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>3<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>4<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">p~h1 &#123;</span><br><span class="line">    color: yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>p~h1</code>选择和<code>p</code>元素父级相同，在<code>p</code>元素之后的元素，所以<code>color</code>为<code>yellow</code>的是 <code>2 3</code>；</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"foo"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>1<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>1<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>1<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>1<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>2<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">.foo &gt; h1 &#123;</span><br><span class="line">    color: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>.foo &gt; h1</code>选择的是<code>.foo</code>内的所有元素，但只选择一代，所有只有 <code>1</code> 才显示为红色；  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"foo"</span>&gt;</span>11<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"boo"</span>&gt;</span>22<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"boo"</span>&gt;</span>33<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">.foo + .boo &#123;</span><br><span class="line">    color: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>.foo + .boo</code>选择的是<code>.foo</code>之后<strong>紧邻且同级</strong>的<code>.boo</code>元素。所以红色的为<code>22</code>，<code>33</code>并不会变红。</p>
+<h2 id="使用rem设置元素宽高在chrome中的问题"><a href="#使用rem设置元素宽高在chrome中的问题" class="headerlink" title="使用rem设置元素宽高在chrome中的问题"></a>使用rem设置元素宽高在chrome中的问题</h2><p>rem是相对于html根节点的长度单位。在使用rem替代px时，常设置：<code>html: { font-size: 62.5% }</code>, 16px为默认字体大小，<code>1rem = 62.5% * 16px = 10px</code>，方便计算，所以24px可以表示为2.4rem，即<code>2.4 * 62.5% * 16px = 24px</code>。<br><strong>但在chrome中由于浏览器默认最小字体为12px，所以导致<code>1rem = 12px</code></strong>,<code>width:10rem</code>渲染出来是<code>width:120px</code>，报道出了偏差…  </p>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>为了避免出现10px被设置为12px的问题，可将 62.5% 改为 625%，则<code>1rem = 625% * 16px = 100px</code>:  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span>: &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">625%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>100px可表示为1rem， 24px可表示为.24rem</p>
+<h2 id="小题"><a href="#小题" class="headerlink" title="小题"></a>小题</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">    age: <span class="number">20</span>,</span><br><span class="line">    getAge: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="keyword">this</span>.age; &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj2 = &#123; <span class="attr">age</span>: <span class="number">30</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> getAge = obj1.getAge;</span><br><span class="line">obj2.getAge = getAge;</span><br><span class="line"><span class="built_in">console</span>.log(obj1.getAge()); <span class="comment">// 20</span></span><br><span class="line"><span class="built_in">console</span>.log(obj2.getAge()); <span class="comment">// 30</span></span><br></pre></td></tr></table></figure>
+<p>这涉及到<strong>this的引用</strong></p>
+<ul>
+<li><p>this是函数内部的一个特殊对象（或this引用）–它引用的是函数据以执行的环境对象。（来源于JavaScript高级程序设计）</p>
+</li>
+<li><p>this引用是一种在JavaScript的代码中随时都可以使用的只读变量。 this引用，引用（指向）的是一个对象，<strong>它有着会根据代码上下文语境自动改变其引用对象的特性</strong>。</p>
+</li>
+<li>JavaScript是动态语言，<strong>this关键字在执行的时候才能确定是谁</strong>，所以this永远指向调用者，即对“调用对象”的引用。简单点说就是 <strong>调用的方法属于哪个对象，this就指向那个对象。根据函数调用方式的不同，this可以 指向全局对象，当前对象，或其他任意对象。<a href="https://blog.simmzl.cn/2017/10/%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%A4%E4%B8%AA%E9%99%84%E5%8A%A0%E5%8F%82%E6%95%B0%EF%BC%9Athis%E5%92%8Carguments.html">this四个调用模式</a></strong></li>
+</ul>
+<p>因此，this只有在被调用时才确定指向，<code>console.log(obj2.getAge())</code> 的结果是<code>obj2.age</code>，即30。</p>
+<p><strong>拓展：</strong></p>
+<p>动态语言：是指程序在运行时可以改变其结构：新的函数可以被引进，已有的函数可以被删除等在结构上的变化，类型的检查是在运行时做的，优点为方便阅读，清晰明了，缺点为不方便调试。如JavaScript；</p>
+<p>静态语言：静态类型语言的类型判断是在运行前判断（如编译阶段），比如C#、java。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+            <a href="/tags/Q-A/" rel="tag"># Q&A</a>
+          
+            <a href="/tags/css/" rel="tag"># css</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/数据库的连接、增删查改等操作以及PHP相应功能的实现.html" rel="next" title="数据库的连接、增删查改等操作以及PHP相应功能的实现">
+                <i class="fa fa-chevron-left"></i> 数据库的连接、增删查改等操作以及PHP相应功能的实现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/吃了这口ES67语法糖.html" rel="prev" title="吃了这口ES6/7语法糖">
+                吃了这口ES6/7语法糖 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image" src="https://static.simmzl.cn/avatar.jpg" alt="Simmzl">
+          
+            <p class="site-author-name" itemprop="name">Simmzl</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/simmzl" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github-alt"></i></a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.douban.com/people/137373199/" target="_blank" title="Douban">
+                  
+                    <i class="fa fa-fw fa-video-camera"></i></a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://simmzl.tuchong.com" target="_blank" title="Tuchong">
+                  
+                    <i class="fa fa-fw fa-camera-retro"></i></a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TODO"><span class="nav-number">1.</span> <span class="nav-text">TODO</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-defineProperty"><span class="nav-number">1.1.</span> <span class="nav-text">Object.defineProperty()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#obj"><span class="nav-number">1.1.1.</span> <span class="nav-text">obj</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#prop"><span class="nav-number">1.1.2.</span> <span class="nav-text">prop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#descriptor-属性描述符"><span class="nav-number">1.1.3.</span> <span class="nav-text">descriptor/属性描述符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#configurable"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">configurable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#enumerable"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">enumerable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#value"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">value</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#writable"><span class="nav-number">1.1.3.4.</span> <span class="nav-text">writable</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#这样一道题："><span class="nav-number">1.1.3.4.1.</span> <span class="nav-text">这样一道题：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#get"><span class="nav-number">1.1.3.5.</span> <span class="nav-text">get</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set"><span class="nav-number">1.1.3.6.</span> <span class="nav-text">set</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据描述符"><span class="nav-number">1.1.3.7.</span> <span class="nav-text">数据描述符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存取描述符"><span class="nav-number">1.1.3.8.</span> <span class="nav-text">存取描述符</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#margin的垂直重叠"><span class="nav-number">1.2.</span> <span class="nav-text">margin的垂直重叠</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#两个或多个"><span class="nav-number">1.2.1.</span> <span class="nav-text">两个或多个</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相邻"><span class="nav-number">1.2.2.</span> <span class="nav-text">相邻</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#兄弟同级相邻"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">兄弟同级相邻</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#父子相邻"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">父子相邻</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他相邻"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">其他相邻</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#普通流"><span class="nav-number">1.2.3.</span> <span class="nav-text">普通流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#块元素"><span class="nav-number">1.2.4.</span> <span class="nav-text">块元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垂直方向"><span class="nav-number">1.2.5.</span> <span class="nav-text">垂直方向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#margin重叠有什么意义"><span class="nav-number">1.2.6.</span> <span class="nav-text">margin重叠有什么意义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何使margin垂直方向不重叠"><span class="nav-number">1.2.7.</span> <span class="nav-text">如何使margin垂直方向不重叠</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字的基线与vertical-align"><span class="nav-number">1.3.</span> <span class="nav-text">字的基线与vertical-align</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字的基线"><span class="nav-number">1.3.1.</span> <span class="nav-text">字的基线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vertical-align"><span class="nav-number">1.3.2.</span> <span class="nav-text">vertical-align</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#默认基线对齐baseline"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">默认基线对齐baseline</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Top"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">Top</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Bottom"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">Bottom</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Middle"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">Middle</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#text-top-amp-text-bottom"><span class="nav-number">1.3.2.5.</span> <span class="nav-text">text-top &amp; text-bottom</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#百分比或者长度"><span class="nav-number">1.3.2.6.</span> <span class="nav-text">百分比或者长度</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深拷贝与浅拷贝"><span class="nav-number">1.4.</span> <span class="nav-text">深拷贝与浅拷贝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未声明的变量会自动升级为全局变量的原因"><span class="nav-number">1.5.</span> <span class="nav-text">未声明的变量会自动升级为全局变量的原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gt"><span class="nav-number">1.6.</span> <span class="nav-text">~ &gt; +</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用rem设置元素宽高在chrome中的问题"><span class="nav-number">1.7.</span> <span class="nav-text">使用rem设置元素宽高在chrome中的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决"><span class="nav-number">1.7.1.</span> <span class="nav-text">解决</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小题"><span class="nav-number">1.8.</span> <span class="nav-text">小题</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017-2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Simmzl</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.2 & 自定义</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="https://static.simmzl.cn/js/jquery-min-v2.1.3.js"></script>
+
+  
+  <script type="text/javascript" src="https://static.simmzl.cn/js/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://static.simmzl.cn/js/jquery.lazyload.js"></script>
+
+  
+  <script type="text/javascript" src="https://static.simmzl.cn/js/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://static.simmzl.cn/js/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://static.simmzl.cn/js/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="https://static.simmzl.cn/blog/v2/js/utils.js"></script>
+
+  <script type="text/javascript" src="https://static.simmzl.cn/blog/v2/js/motion.js"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="https://static.simmzl.cn/blog/v2/js/scrollspy.js"></script>
+<script type="text/javascript" src="https://static.simmzl.cn/blog/v2/js/post-details.js"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="https://static.simmzl.cn/blog/v2/js/bootstrap.js"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "https://static.simmzl.cn/blog/v2/" + search_path;
+    console.info(path)
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
